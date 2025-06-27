@@ -1,18 +1,12 @@
-import useStore from '@/store/useStore.ts';
-import type { PlayerProp, Opportunity, OddsUpdate } from '@/types/core.ts';
-import type { Sport, PropType } from '@/types/common.ts';
-import { oddsjamService } from '@/services/oddsjam.ts';
-import { dailyFantasyService } from '@/services/dailyFantasy.ts';
-import { useState, useEffect, useCallback } from 'react.ts';
-import { webSocketManager } from '@/services/unified/WebSocketManager.ts';
+import { useState, useEffect, useCallback } from 'react';
 
 interface UseBettingDataOptions {
-  sport?: Sport;
-  propType?: PropType;
+  sport?: string;
+  propType?: string;
   autoRefresh?: boolean;
   refreshInterval?: number;
   minOddsChange?: number;
-  onNewOpportunity?: (opportunity: Opportunity) => void;
+  onNewOpportunity?: (opportunity: any) => void;
 }
 
 export const useBettingData = ({

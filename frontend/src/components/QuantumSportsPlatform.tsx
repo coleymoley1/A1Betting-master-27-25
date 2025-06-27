@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 // Import real components from workspace
-import PropGPT from './PropGPT';
+import PropOllama from './user-friendly/PropOllama';
 import { MoneyMaker } from './MoneyMaker';
 import PrizePicksPro from './user-friendly/PrizePicksPro';
 import MLModelDashboard from './ml/MLModelDashboard';
@@ -230,8 +230,8 @@ const Sidebar: React.FC = () => {
       color: 'text-yellow-400',
     },
     {
-      name: 'PropGPT',
-      key: 'propgpt',
+      name: 'PropOllama',
+      key: 'propollama',
       icon: MessageCircle,
       category: 'ai',
       indicator: '🤖',
@@ -433,8 +433,8 @@ const PageRenderer: React.FC = () => {
         return <MoneyMaker />;
       case 'prizepicks':
         return <PrizePicksPro />;
-      case 'propgpt':
-        return <PropGPT />;
+      case 'propollama':
+        return <PropOllama />;
       case 'ml-center':
         return <MLModelDashboard />;
       case 'analytics':
@@ -444,7 +444,7 @@ const PageRenderer: React.FC = () => {
       case 'admin':
         return <AdminPanel />;
       default:
-        return <Dashboard />;
+        return <QuantumDashboard />;
     }
   };
 

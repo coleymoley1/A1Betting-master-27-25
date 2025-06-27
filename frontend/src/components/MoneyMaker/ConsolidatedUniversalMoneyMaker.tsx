@@ -1,6 +1,6 @@
-import React from 'react.ts';
-import ErrorBoundary from '@/ErrorBoundary.ts';
-import UniversalMoneyMaker from './UniversalMoneyMaker.ts';
+import React from 'react';
+import ErrorBoundary from '../ErrorBoundary';
+import UniversalMoneyMaker from './UniversalMoneyMaker';
 
 // ============================================================================
 // TYPES & INTERFACES;

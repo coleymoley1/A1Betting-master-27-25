@@ -8,7 +8,6 @@ import React, {
   ReactNode,
 } from 'react';
 import PropOllama from './user-friendly/PropOllama';
-import PropGPT from './PropGPT';
 
 /**
  * A1Betting Quantum Platform - Exact Clone of poe-preview (8).html
@@ -570,8 +569,8 @@ const Sidebar: React.FC = () => {
       color: 'text-yellow-400',
     },
     {
-      name: 'PropGPT',
-      key: 'propgpt',
+      name: 'PropOllama',
+      key: 'propollama',
       icon: 'fa-comments',
       category: 'ai',
       indicator: '🤖',
@@ -1054,7 +1053,9 @@ const Dashboard: FC = () => {
               <div className='absolute inset-0 bg-purple-400/30 rounded-full blur-2xl' />
               <div className='relative text-7xl text-purple-400 animate-float'>🤖</div>
             </div>
-            <h3 className='text-2xl font-black mb-3 text-purple-400 font-cyber'>PROPGPT NEURAL</h3>
+            <h3 className='text-2xl font-black mb-3 text-purple-400 font-cyber'>
+              PROPOLLAMA NEURAL
+            </h3>
             <p className='text-gray-300 mb-6 text-sm font-mono'>
               AI assistant powered by quantum intelligence
             </p>
@@ -1067,7 +1068,7 @@ const Dashboard: FC = () => {
               variant='ghost'
               className='w-full'
               size='lg'
-              onClick={() => setCurrentPage('propgpt')}
+              onClick={() => setCurrentPage('propollama')}
             />
           </div>
         </Card>
@@ -1437,8 +1438,8 @@ const PageContent: FC = () => {
       return <PrizePicks />;
     case 'money-maker':
       return <MoneyMaker />;
-    case 'propgpt':
-      return <PropGPT />;
+    case 'propollama':
+      return <PropOllama />;
     default:
       return <Dashboard />;
   }
