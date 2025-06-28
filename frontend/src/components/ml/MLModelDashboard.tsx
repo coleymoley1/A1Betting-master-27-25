@@ -1,7 +1,8 @@
-// Placeholder for MLModelDashboard component
+import React from 'react';
+import UltraAdvancedMLDashboard from './UltraAdvancedMLDashboard';
 
-const MLModelDashboard = () => {
-    return <div>ML Model Dashboard - Coming Soon</div>;
+const MLModelDashboard: React.FC = () => {
+  return <UltraAdvancedMLDashboard />;
 };
 
 export default MLModelDashboard;
