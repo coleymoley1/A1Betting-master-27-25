@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Download, Undo, X } from 'lucide-react';
+import {
+  Save,
+  Download,
+  Undo,
+  X,
+  User,
+  Settings,
+  Crown,
+  Brain,
+  Shield,
+  Sliders,
+  Trophy,
+  Code,
+} from 'lucide-react';
 
 interface ProfileData {
   name: string;
@@ -171,88 +184,113 @@ const UltimateSettingsPage: React.FC = () => {
   ];
 
   const tabs = [
-    { id: 'profile', name: 'Profile', icon: 'fa-user', color: 'text-electric-400' },
-    { id: 'account', name: 'Account', icon: 'fa-cog', color: 'text-blue-400' },
-    { id: 'subscription', name: 'Subscription', icon: 'fa-crown', color: 'text-yellow-400' },
-    { id: 'neural', name: 'Neural AI', icon: 'fa-brain', color: 'text-purple-400' },
-    { id: 'security', name: 'Security', icon: 'fa-shield-alt', color: 'text-red-400' },
-    { id: 'preferences', name: 'Preferences', icon: 'fa-sliders-h', color: 'text-green-400' },
-    { id: 'achievements', name: 'Achievements', icon: 'fa-trophy', color: 'text-orange-400' },
-    { id: 'api', name: 'API Access', icon: 'fa-code', color: 'text-cyan-400' },
+    { id: 'profile', name: 'Profile', icon: User, color: 'text-electric-400' },
+    { id: 'account', name: 'Account', icon: Settings, color: 'text-blue-400' },
+    { id: 'subscription', name: 'Subscription', icon: Crown, color: 'text-yellow-400' },
+    { id: 'neural', name: 'Neural AI', icon: Brain, color: 'text-purple-400' },
+    { id: 'security', name: 'Security', icon: Shield, color: 'text-red-400' },
+    { id: 'preferences', name: 'Preferences', icon: Sliders, color: 'text-green-400' },
+    { id: 'achievements', name: 'Achievements', icon: Trophy, color: 'text-orange-400' },
+    { id: 'api', name: 'API Access', icon: Code, color: 'text-cyan-400' },
   ];
 
   const exportData = () => {
     const data = {
       profile: profileData,
       preferences: preferences,
-      stats: {
-        level: 47,
-        experience: 125000,
-        accuracy: 94.2,
-        totalProfit: 247500,
-        winRate: 87.3,
-      },
-      achievements: achievements.filter(a => [1, 2, 3, 4].includes(a.id)),
-      exportDate: new Date().toISOString(),
+      achievements: achievements,
+      timestamp: new Date().toISOString(),
     };
 
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `a1betting-profile-${profileData.name.toLowerCase().replace(' ', '-')}-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = 'quantum-settings-export.json';
     a.click();
     URL.revokeObjectURL(url);
   };
 
-  const applyTheme = (newTheme: string) => {
-    console.log('Applying theme:', newTheme);
-  };
-
-  const Button = ({ label, variant, icon, onClick, className }: any) => {
-    const getVariantClasses = () => {
-      switch (variant) {
-        case 'primary':
-          return 'bg-gradient-to-r from-electric-400 to-neon-blue text-black hover:shadow-neon';
-        case 'secondary':
-          return 'bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:shadow-gray-500/50';
-        case 'danger':
-          return 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:shadow-red-500/50';
-        default:
-          return 'bg-gradient-to-r from-electric-400 to-neon-blue text-black hover:shadow-neon';
-      }
-    };
-
-    return (
-      <motion.button
-        onClick={onClick}
-        className={`flex items-center space-x-2 px-6 py-3 rounded-2xl font-bold transition-all duration-300 font-cyber ${getVariantClasses()} ${className}`}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        {icon && <i className={`${icon} text-lg`} />}
-        <span>{label}</span>
-      </motion.button>
-    );
-  };
-
   const renderTabContent = () => {
     switch (activeTab) {
+      case 'profile':
+        return (
+          <div className='space-y-6'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>QUANTUM PROFILE</h3>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+              <div>
+                <label className='block text-sm font-bold mb-2 text-electric-400 font-cyber'>
+                  NAME
+                </label>
+                <input
+                  type='text'
+                  value={profileData.name}
+                  onChange={e => setProfileData({ ...profileData, name: e.target.value })}
+                  className='w-full p-4 rounded-xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-bold mb-2 text-electric-400 font-cyber'>
+                  EMAIL
+                </label>
+                <input
+                  type='email'
+                  value={profileData.email}
+                  onChange={e => setProfileData({ ...profileData, email: e.target.value })}
+                  className='w-full p-4 rounded-xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
+                />
+              </div>
+              <div className='md:col-span-2'>
+                <label className='block text-sm font-bold mb-2 text-electric-400 font-cyber'>
+                  BIO
+                </label>
+                <textarea
+                  value={profileData.bio}
+                  onChange={e => setProfileData({ ...profileData, bio: e.target.value })}
+                  rows={4}
+                  className='w-full p-4 rounded-xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
+                />
+              </div>
+            </div>
+          </div>
+        );
+
       case 'preferences':
         return (
-          <div className='space-y-10'>
-            {/* Display Preferences */}
-            <div className='quantum-card rounded-3xl p-10'>
-              <h3 className='text-2xl font-bold text-electric-400 holographic mb-8 font-cyber'>
-                DISPLAY PREFERENCES
-              </h3>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-                <div>
-                  <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-                    THEME
+          <div className='space-y-8'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>QUANTUM PREFERENCES</h3>
+
+            {/* Notifications */}
+            <div className='quantum-card p-6 rounded-2xl'>
+              <h4 className='text-lg font-bold text-electric-400 mb-4'>Notifications</h4>
+              <div className='grid grid-cols-2 gap-4'>
+                {Object.entries(preferences.notifications).map(([key, value]) => (
+                  <label key={key} className='flex items-center space-x-3'>
+                    <input
+                      type='checkbox'
+                      checked={value}
+                      onChange={e =>
+                        setPreferences({
+                          ...preferences,
+                          notifications: { ...preferences.notifications, [key]: e.target.checked },
+                        })
+                      }
+                      className='w-4 h-4'
+                    />
+                    <span className='text-gray-300 font-mono capitalize'>{key}</span>
                   </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Display Settings */}
+            <div className='quantum-card p-6 rounded-2xl'>
+              <h4 className='text-lg font-bold text-electric-400 mb-4'>Display Settings</h4>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div>
+                  <label className='block text-sm font-bold mb-2 text-purple-400'>Theme</label>
                   <select
-                    value={theme}
+                    value={preferences.display.theme}
                     onChange={e => {
                       const newTheme = e.target.value;
                       setTheme(newTheme);
@@ -260,40 +298,17 @@ const UltimateSettingsPage: React.FC = () => {
                         ...preferences,
                         display: { ...preferences.display, theme: newTheme },
                       });
-                      applyTheme(newTheme);
                     }}
-                    className='w-full p-4 rounded-2xl border-2 border-electric-500/30 focus:border-electric-500 bg-slate-800 text-white'
+                    className='w-full p-3 rounded-xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
                   >
                     <option value='quantum-dark'>Quantum Dark</option>
-                    <option value='neural-purple'>Neural Purple</option>
-                    <option value='cyber-blue'>Cyber Blue</option>
-                    <option value='quantum-light'>Quantum Light</option>
+                    <option value='neural-blue'>Neural Blue</option>
+                    <option value='cyber-purple'>Cyber Purple</option>
+                    <option value='matrix-green'>Matrix Green</option>
                   </select>
                 </div>
                 <div>
-                  <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-                    LANGUAGE
-                  </label>
-                  <select
-                    value={preferences.display.language}
-                    onChange={e =>
-                      setPreferences({
-                        ...preferences,
-                        display: { ...preferences.display, language: e.target.value },
-                      })
-                    }
-                    className='w-full p-4 rounded-2xl border-2 border-electric-500/30 focus:border-electric-500 bg-slate-800 text-white'
-                  >
-                    <option value='en'>English</option>
-                    <option value='es'>Español</option>
-                    <option value='fr'>Français</option>
-                    <option value='de'>Deutsch</option>
-                  </select>
-                </div>
-                <div>
-                  <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-                    CURRENCY
-                  </label>
+                  <label className='block text-sm font-bold mb-2 text-purple-400'>Currency</label>
                   <select
                     value={preferences.display.currency}
                     onChange={e =>
@@ -302,7 +317,7 @@ const UltimateSettingsPage: React.FC = () => {
                         display: { ...preferences.display, currency: e.target.value },
                       })
                     }
-                    className='w-full p-4 rounded-2xl border-2 border-electric-500/30 focus:border-electric-500 bg-slate-800 text-white'
+                    className='w-full p-3 rounded-xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
                   >
                     <option value='USD'>USD ($)</option>
                     <option value='EUR'>EUR (€)</option>
@@ -310,151 +325,69 @@ const UltimateSettingsPage: React.FC = () => {
                     <option value='BTC'>BTC (₿)</option>
                   </select>
                 </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'subscription':
+        return (
+          <div className='space-y-6'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>QUANTUM SUBSCRIPTION</h3>
+
+            <div className='quantum-card p-8 rounded-2xl border-2 border-electric-500/30'>
+              <div className='flex items-center space-x-4 mb-6'>
+                <div className='text-4xl'>{subscriptionData.planIcon}</div>
                 <div>
-                  <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-                    TIMEZONE
-                  </label>
-                  <select
-                    value={profileData.timezone}
-                    onChange={e => setProfileData({ ...profileData, timezone: e.target.value })}
-                    className='w-full p-4 rounded-2xl border-2 border-electric-500/30 focus:border-electric-500 bg-slate-800 text-white'
-                  >
-                    <option value='PST'>Pacific (PST)</option>
-                    <option value='EST'>Eastern (EST)</option>
-                    <option value='UTC'>UTC</option>
-                    <option value='CET'>Central European (CET)</option>
-                  </select>
+                  <h4 className={`text-2xl font-bold ${subscriptionData.planColor} font-cyber`}>
+                    {subscriptionData.currentPlan}
+                  </h4>
+                  <p className='text-gray-400 font-mono'>
+                    Next billing: {subscriptionData.nextBilling}
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Notification Preferences */}
-            <div className='quantum-card rounded-3xl p-10'>
-              <h3 className='text-2xl font-bold text-electric-400 holographic mb-8 font-cyber'>
-                NOTIFICATION PREFERENCES
-              </h3>
-              <div className='space-y-6'>
-                <div className='flex items-center justify-between p-6 quantum-card rounded-2xl'>
-                  <div>
-                    <div className='font-bold text-white font-cyber flex items-center space-x-3'>
-                      <i className='fas fa-envelope text-blue-400' />
-                      <span>Email Notifications</span>
-                    </div>
-                    <div className='text-sm text-gray-400 font-mono mt-1'>
-                      Receive updates via email
-                    </div>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                <div>
+                  <h5 className='text-lg font-bold text-white mb-4'>Features</h5>
+                  <div className='space-y-2'>
+                    {subscriptionData.features.map((feature, index) => (
+                      <div key={index} className='flex items-center space-x-2'>
+                        <div className='w-2 h-2 bg-green-400 rounded-full'></div>
+                        <span className='text-gray-300 font-mono'>{feature}</span>
+                      </div>
+                    ))}
                   </div>
-                  <input
-                    type='checkbox'
-                    checked={preferences.notifications.email}
-                    onChange={e =>
-                      setPreferences({
-                        ...preferences,
-                        notifications: { ...preferences.notifications, email: e.target.checked },
-                      })
-                    }
-                    className='w-6 h-6 text-electric-500'
-                  />
                 </div>
 
-                <div className='flex items-center justify-between p-6 quantum-card rounded-2xl'>
-                  <div>
-                    <div className='font-bold text-white font-cyber flex items-center space-x-3'>
-                      <i className='fas fa-bell text-green-400' />
-                      <span>Push Notifications</span>
-                    </div>
-                    <div className='text-sm text-gray-400 font-mono mt-1'>
-                      Browser push notifications
-                    </div>
+                <div>
+                  <h5 className='text-lg font-bold text-white mb-4'>Usage</h5>
+                  <div className='space-y-3'>
+                    {Object.entries(subscriptionData.usage).map(([key, data]) => (
+                      <div key={key}>
+                        <div className='flex justify-between text-sm mb-1'>
+                          <span className='text-gray-400 capitalize'>
+                            {key.replace(/([A-Z])/g, ' $1')}
+                          </span>
+                          <span className='text-electric-400'>
+                            {data.used} / {data.limit}
+                          </span>
+                        </div>
+                        <div className='w-full bg-gray-700 rounded-full h-2'>
+                          <div
+                            className='bg-electric-400 h-2 rounded-full'
+                            style={{
+                              width:
+                                data.limit === 'Unlimited'
+                                  ? '100%'
+                                  : `${(data.used / data.limit) * 100}%`,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <input
-                    type='checkbox'
-                    checked={preferences.notifications.push}
-                    onChange={e =>
-                      setPreferences({
-                        ...preferences,
-                        notifications: { ...preferences.notifications, push: e.target.checked },
-                      })
-                    }
-                    className='w-6 h-6 text-electric-500'
-                  />
-                </div>
-
-                <div className='flex items-center justify-between p-6 quantum-card rounded-2xl'>
-                  <div>
-                    <div className='font-bold text-white font-cyber flex items-center space-x-3'>
-                      <i className='fab fa-discord text-purple-400' />
-                      <span>Discord Notifications</span>
-                    </div>
-                    <div className='text-sm text-gray-400 font-mono mt-1'>
-                      Discord bot notifications
-                    </div>
-                  </div>
-                  <input
-                    type='checkbox'
-                    checked={preferences.notifications.discord}
-                    onChange={e =>
-                      setPreferences({
-                        ...preferences,
-                        notifications: { ...preferences.notifications, discord: e.target.checked },
-                      })
-                    }
-                    className='w-6 h-6 text-electric-500'
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Neural AI Preferences */}
-            <div className='quantum-card rounded-3xl p-10'>
-              <h3 className='text-2xl font-bold text-electric-400 holographic mb-8 font-cyber'>
-                NEURAL AI PREFERENCES
-              </h3>
-              <div className='space-y-6'>
-                <div className='flex items-center justify-between p-6 quantum-card rounded-2xl'>
-                  <div>
-                    <div className='font-bold text-white font-cyber flex items-center space-x-3'>
-                      <i className='fas fa-brain text-purple-400' />
-                      <span>Auto-Optimize Models</span>
-                    </div>
-                    <div className='text-sm text-gray-400 font-mono mt-1'>
-                      Automatically optimize neural networks
-                    </div>
-                  </div>
-                  <input
-                    type='checkbox'
-                    checked={preferences.neural.autoOptimize}
-                    onChange={e =>
-                      setPreferences({
-                        ...preferences,
-                        neural: { ...preferences.neural, autoOptimize: e.target.checked },
-                      })
-                    }
-                    className='w-6 h-6 text-electric-500'
-                  />
-                </div>
-
-                <div className='flex items-center justify-between p-6 quantum-card rounded-2xl'>
-                  <div>
-                    <div className='font-bold text-white font-cyber flex items-center space-x-3'>
-                      <i className='fas fa-share text-cyan-400' />
-                      <span>Data Sharing</span>
-                    </div>
-                    <div className='text-sm text-gray-400 font-mono mt-1'>
-                      Share anonymized data to improve models
-                    </div>
-                  </div>
-                  <input
-                    type='checkbox'
-                    checked={preferences.neural.dataSharing}
-                    onChange={e =>
-                      setPreferences({
-                        ...preferences,
-                        neural: { ...preferences.neural, dataSharing: e.target.checked },
-                      })
-                    }
-                    className='w-6 h-6 text-electric-500'
-                  />
                 </div>
               </div>
             </div>
@@ -463,27 +396,25 @@ const UltimateSettingsPage: React.FC = () => {
 
       case 'achievements':
         return (
-          <div className='quantum-card rounded-3xl p-10'>
-            <h3 className='text-2xl font-bold text-electric-400 holographic mb-8 font-cyber'>
-              QUANTUM ACHIEVEMENTS
-            </h3>
+          <div className='space-y-6'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>QUANTUM ACHIEVEMENTS</h3>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {achievements.map(achievement => (
                 <motion.div
                   key={achievement.id}
-                  className='quantum-card p-6 rounded-2xl text-center hover:shadow-neon transition-all duration-300'
+                  className='quantum-card p-6 rounded-2xl text-center'
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className='text-4xl mb-4'>{achievement.icon}</div>
-                  <h4 className={`font-bold ${achievement.color} mb-2 font-cyber`}>
+                  <div className='text-4xl mb-3'>{achievement.icon}</div>
+                  <h4 className={`text-lg font-bold ${achievement.color} font-cyber`}>
                     {achievement.name}
                   </h4>
-                  <p className='text-sm text-gray-400 mb-3'>{achievement.description}</p>
-                  <span
-                    className={`text-xs px-3 py-1 rounded-full ${achievement.color} bg-opacity-20`}
+                  <p className='text-gray-400 text-sm mt-2'>{achievement.description}</p>
+                  <div
+                    className={`mt-3 text-xs font-bold uppercase tracking-wider ${achievement.color}`}
                   >
-                    {achievement.rarity.toUpperCase()}
-                  </span>
+                    {achievement.rarity}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -502,54 +433,90 @@ const UltimateSettingsPage: React.FC = () => {
   };
 
   return (
-    <div className='space-y-8 animate-slide-in-up'>
-      {/* Enhanced Header - Exact match to HTML */}
-      <div className='text-center mb-12'>
-        <div className='relative mb-8'>
-          <div className='absolute inset-0 bg-electric-400/20 blur-3xl rounded-full' />
-          <div className='relative text-8xl text-electric-400 mb-6 animate-float'>⚙️</div>
-          <h1 className='holographic text-6xl font-black mb-4 font-cyber'>QUANTUM USER CONTROL</h1>
-          <p className='text-2xl text-gray-400 font-mono'>
-            Advanced profile management and system preferences
-          </p>
+    <motion.div
+      className='space-y-8'
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Header */}
+      <div className='text-center'>
+        <h1 className='text-4xl font-bold text-white mb-4 animate-cyber-pulse holographic font-cyber'>
+          QUANTUM SETTINGS CONTROL
+        </h1>
+        <p className='text-electric-400 text-lg font-mono'>Configure Your Neural Interface</p>
+      </div>
+
+      {/* Navigation Tabs */}
+      <div className='flex justify-center'>
+        <div className='grid grid-cols-4 gap-2 p-2 quantum-card rounded-2xl'>
+          {tabs.map(tab => {
+            const Icon = tab.icon;
+            return (
+              <motion.button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex flex-col items-center space-y-2 px-4 py-3 rounded-xl transition-all ${
+                  activeTab === tab.id
+                    ? `bg-electric-500/20 ${tab.color} border-2 border-electric-500/40`
+                    : 'text-gray-400 hover:text-gray-300'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Icon className='w-5 h-5' />
+                <span className='text-xs font-bold font-cyber'>{tab.name}</span>
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Enhanced Navigation Tabs - Exact match to HTML */}
-      <div className='quantum-card rounded-3xl p-6 mb-10'>
-        <div className='flex flex-wrap gap-4'>
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center space-x-3 px-6 py-4 rounded-2xl transition-all duration-300 font-bold font-cyber ${
-                activeTab === tab.id
-                  ? 'bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 shadow-neon transform scale-105'
-                  : `bg-gray-800/30 hover:bg-gray-800/50 text-gray-300 border-2 border-transparent hover:border-gray-600 ${tab.color}`
-              }`}
-            >
-              <i className={`${tab.icon} text-lg`} />
-              <span>{tab.name}</span>
-            </button>
-          ))}
-        </div>
+      {/* Content */}
+      <div className='quantum-card rounded-3xl p-8'>
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {renderTabContent()}
+        </motion.div>
       </div>
 
-      {/* Tab Content */}
-      <div className='min-h-96'>{renderTabContent()}</div>
+      {/* Action Buttons */}
+      <div className='flex justify-center space-x-6'>
+        <motion.button
+          onClick={() => console.log('Saving settings...')}
+          className='flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-green-500 to-electric-500 text-black font-bold rounded-xl hover:from-green-400 hover:to-electric-400 transition-all duration-300'
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Save className='w-5 h-5' />
+          <span>SAVE QUANTUM CONFIG</span>
+        </motion.button>
 
-      {/* Action Buttons - Exact match to HTML */}
-      <div className='flex justify-between items-center quantum-card rounded-3xl p-8'>
-        <div className='flex space-x-4'>
-          <Button label='EXPORT DATA' variant='secondary' icon='fa-download' onClick={exportData} />
-          <Button label='RESET SETTINGS' variant='danger' icon='fa-undo' />
-        </div>
-        <div className='flex space-x-4'>
-          <Button label='CANCEL' variant='secondary' />
-          <Button label='SAVE CHANGES' variant='primary' icon='fa-save' />
-        </div>
+        <motion.button
+          onClick={exportData}
+          className='flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-400 hover:to-purple-400 transition-all duration-300'
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Download className='w-5 h-5' />
+          <span>EXPORT DATA</span>
+        </motion.button>
+
+        <motion.button
+          onClick={() => console.log('Resetting settings...')}
+          className='flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold rounded-xl hover:from-red-400 hover:to-pink-400 transition-all duration-300'
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Undo className='w-5 h-5' />
+          <span>RESET SETTINGS</span>
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
