@@ -29,105 +29,8 @@ import UniversalAnalytics from './analytics/UniversalAnalytics';
 import SavedLineups from './lineups/SavedLineups';
 import '../styles/quantum-dashboard.css';
 
-// Create functional dashboard inline to avoid syntax errors
-const WorkingDashboard: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }) => {
-  const { realTimeData } = useContext(AppContext);
-
-  return (
-    <div className='p-8 space-y-6'>
-      <div className='text-center mb-8'>
-        <h1 className='text-4xl font-bold text-white mb-4 animate-cyber-pulse'>
-          Quantum Intelligence Dashboard
-        </h1>
-        <p className='text-electric-400 text-lg'>Real-time Sports Betting AI Platform</p>
-      </div>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
-        <div className='quantum-card p-6 rounded-2xl'>
-          <h3 className='text-lg font-bold text-white mb-2'>Live Games</h3>
-          <div className='text-3xl font-bold text-green-400'>{realTimeData.liveGames}</div>
-          <p className='text-gray-300 text-sm'>Currently monitored</p>
-        </div>
-        <div className='quantum-card p-6 rounded-2xl'>
-          <h3 className='text-lg font-bold text-white mb-2'>Predictions Today</h3>
-          <div className='text-3xl font-bold text-electric-400'>{realTimeData.predictions}</div>
-          <p className='text-gray-300 text-sm'>Neural processed</p>
-        </div>
-        <div className='quantum-card p-6 rounded-2xl'>
-          <h3 className='text-lg font-bold text-white mb-2'>Accuracy</h3>
-          <div className='text-3xl font-bold text-cyan-400'>
-            {(realTimeData.accuracy || 87.3).toFixed(1)}%
-          </div>
-          <p className='text-gray-300 text-sm'>This week</p>
-        </div>
-        <div className='quantum-card p-6 rounded-2xl'>
-          <h3 className='text-lg font-bold text-white mb-2'>Profit</h3>
-          <div className='text-3xl font-bold text-yellow-400'>
-            +${realTimeData.profit?.toLocaleString() || '24,750'}
-          </div>
-          <p className='text-gray-300 text-sm'>Total returns</p>
-        </div>
-      </div>
-
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-        <div className='quantum-card p-6 rounded-2xl'>
-          <h3 className='text-xl font-bold text-white mb-4'>Neural Activity</h3>
-          <div className='space-y-3'>
-            <div className='flex justify-between items-center'>
-              <span className='text-gray-300'>Processing Speed</span>
-              <span className='text-electric-400 font-bold'>
-                {realTimeData.processingSpeed || 12}ms avg
-              </span>
-            </div>
-            <div className='flex justify-between items-center'>
-              <span className='text-gray-300'>Active Bots</span>
-              <span className='text-green-400 font-bold'>{realTimeData.activeBots || 47}/47</span>
-            </div>
-            <div className='flex justify-between items-center'>
-              <span className='text-gray-300'>Quantum Coherence</span>
-              <span className='text-cyan-400 font-bold'>
-                {(realTimeData.quantumCoherence || 99.97).toFixed(2)}%
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className='quantum-card p-6 rounded-2xl'>
-          <h3 className='text-xl font-bold text-white mb-4'>Quick Actions</h3>
-          <div className='space-y-3'>
-            <button
-              onClick={() => onNavigate('money-maker')}
-              className='w-full text-left p-3 rounded-lg bg-green-500/20 hover:bg-green-500/30 border border-green-500/30 transition-all'
-            >
-              <div className='flex justify-between items-center'>
-                <span className='text-green-400 font-bold'>💰 Money Maker</span>
-                <span className='text-green-300'>→</span>
-              </div>
-            </button>
-            <button
-              onClick={() => onNavigate('propollama')}
-              className='w-full text-left p-3 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 transition-all'
-            >
-              <div className='flex justify-between items-center'>
-                <span className='text-purple-400 font-bold'>🤖 PropOllama AI</span>
-                <span className='text-purple-300'>→</span>
-              </div>
-            </button>
-            <button
-              onClick={() => onNavigate('prizepicks')}
-              className='w-full text-left p-3 rounded-lg bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/30 transition-all'
-            >
-              <div className='flex justify-between items-center'>
-                <span className='text-yellow-400 font-bold'>🏆 PrizePicks Pro</span>
-                <span className='text-yellow-300'>→</span>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+// Import enhanced WorkingDashboard
+import EnhancedWorkingDashboard from './WorkingDashboard';
 
 // Create working real-time monitor inline
 const WorkingRealTimeMonitor: React.FC = () => {
@@ -754,7 +657,7 @@ const PageRenderer: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <WorkingDashboard onNavigate={setCurrentPage} />;
+        return <EnhancedWorkingDashboard onNavigate={setCurrentPage} />;
       case 'money-maker':
         return <MoneyMakerPro />;
       case 'prizepicks':
