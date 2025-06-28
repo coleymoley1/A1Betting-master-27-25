@@ -344,6 +344,7 @@ const QuantumSportsPlatform: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [theme, setTheme] = useState('quantum-dark');
 
   // Real data hooks
   const { user } = useAuth();
@@ -377,6 +378,34 @@ const QuantumSportsPlatform: React.FC = () => {
     };
   }, []);
 
+  // Theme functionality
+  const toggleTheme = () => {
+    const themes = ['quantum-dark', 'neural-purple', 'cyber-blue', 'quantum-light'];
+    const currentIndex = themes.indexOf(theme);
+    const nextTheme = themes[(currentIndex + 1) % themes.length];
+    setTheme(nextTheme);
+
+    // Apply theme to document body
+    document.body.className = document.body.className.replace(/theme-\w+/g, '');
+    document.body.classList.add(`theme-${nextTheme}`);
+
+    // Handle light theme
+    if (nextTheme === 'quantum-light') {
+      document.documentElement.classList.remove('dark');
+      document.body.style.background =
+        'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)';
+    } else {
+      document.documentElement.classList.add('dark');
+      document.body.style.background = '';
+    }
+  };
+
+  // Initialize theme on mount
+  useEffect(() => {
+    document.body.classList.add('theme-quantum-dark');
+    document.documentElement.classList.add('dark');
+  }, []);
+
   // Toast functionality
   const store = useStore();
   console.log('Store:', store);
@@ -408,6 +437,9 @@ const QuantumSportsPlatform: React.FC = () => {
       activeBots: 47,
     },
     notifications: notifications || [],
+    theme,
+    setTheme,
+    toggleTheme,
   };
 
   return (
