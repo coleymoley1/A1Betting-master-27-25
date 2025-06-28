@@ -49,6 +49,53 @@
     dark:from-gray-800/95 dark:to-gray-800/85 dark:border-white/10 dark:text-white;
   }
 
+  /* Slider Styling for Fluent Filters */
+  .slider-thumb {
+    appearance: none;
+    background: linear-gradient(90deg, #1f2937 0%, #6b7280 50%, #00ff88 100%);
+    background-size: 200% 100%;
+    background-position: left center;
+    transition: background-position 0.3s ease;
+  }
+
+  .slider-thumb::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.6), 0 0 20px rgba(0, 255, 136, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .slider-thumb::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 255, 136, 0.5);
+  }
+
+  .slider-thumb::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.6), 0 0 20px rgba(0, 255, 136, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .slider-thumb::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 255, 136, 0.5);
+  }
+
+  .slider-thumb:focus {
+    outline: none;
+    background-position: right center;
+  }
+  }
+
   /* Badge Variants */
   .badge-glass {
     @apply px-3 py-1 bg-white/80 backdrop-blur-lg border border-white/20 rounded-full text-sm font-medium text-gray-800 shadow-soft
@@ -144,7 +191,7 @@
 }
 
 @keyframes fadeIn {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(20px);
   }
@@ -197,4 +244,4 @@
 
 .animate-odds-flash {
   animation: oddsFlash 0.5s ease-in-out;
-} 
+}
