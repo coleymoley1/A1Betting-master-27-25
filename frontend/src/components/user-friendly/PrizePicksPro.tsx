@@ -452,12 +452,48 @@ const PrizePicksPro: React.FC = () => {
             })}
           </div>
 
-          {selectedProps.size < 2 && (
+          {selectedProps.size < 2 ? (
             <div className='text-center mt-4 p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20'>
               <div className='text-yellow-400 font-mono text-sm'>
                 ⚠️ Add {2 - selectedProps.size} more pick{2 - selectedProps.size !== 1 ? 's' : ''}{' '}
                 to submit lineup
               </div>
+            </div>
+          ) : (
+            <div className='flex justify-center space-x-4 mt-6'>
+              <motion.button
+                onClick={() => setShowSaveModal(true)}
+                className='flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-400 hover:to-purple-400 transition-all duration-300 font-cyber'
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Save className='w-5 h-5' />
+                <span>SAVE LINEUP</span>
+              </motion.button>
+
+              <motion.button
+                onClick={submitLineup}
+                disabled={isSubmitting || validationErrors.length > 0}
+                className={`flex items-center space-x-2 px-12 py-4 ${
+                  isSubmitting || validationErrors.length > 0
+                    ? 'bg-gray-600 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-electric-500 to-green-500 hover:from-electric-400 hover:to-green-400'
+                } text-white font-bold text-xl rounded-xl transition-all duration-300 font-cyber`}
+                whileHover={!isSubmitting && validationErrors.length === 0 ? { scale: 1.05 } : {}}
+                whileTap={!isSubmitting && validationErrors.length === 0 ? { scale: 0.95 } : {}}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className='w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin' />
+                    <span>SUBMITTING...</span>
+                  </>
+                ) : (
+                  <>
+                    <Zap className='w-6 h-6' />
+                    <span>SUBMIT QUANTUM ENTRY</span>
+                  </>
+                )}
+              </motion.button>
             </div>
           )}
         </motion.div>
