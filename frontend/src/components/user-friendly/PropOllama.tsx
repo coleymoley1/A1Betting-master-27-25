@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Send, Zap, Eye, Target, TrendingUp } from 'lucide-react';
+import { Brain, Send, Zap, Eye, Target, TrendingUp, Save } from 'lucide-react';
+import { lineupTracker } from '../../services/lineupTrackingService';
+import toast from 'react-hot-toast';
 
 // ============================================================================
 // INTERFACES & TYPES
@@ -33,6 +35,47 @@ const PropOllama: React.FC = () => {
     () => `conv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
   );
   const [isTyping, setIsTyping] = useState(false);
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [lineupName, setLineupName] = useState('');
+  const [lastRecommendations, setLastRecommendations] = useState<string[]>([]);
+
+  const saveConversationAsLineup = () => {
+    if (!lineupName.trim()) {
+      toast.error('Please enter a lineup name');
+      return;
+    }
+
+    if (lastRecommendations.length === 0) {
+      toast.error('No AI recommendations to save');
+      return;
+    }
+
+    const picks = lastRecommendations.map((rec, index) => ({
+      id: `ai_pick_${index}`,
+      description: rec,
+      confidence: 85 + Math.random() * 10, // AI confidence
+    }));
+
+    const lineupId = lineupTracker.savePropOllamaLineup(
+      lineupName,
+      picks,
+      100, // Default entry amount
+      500, // Estimated payout
+      85 + Math.random() * 10 // AI confidence
+    );
+
+    toast.success(`🤖 PropOllama lineup "${lineupName}" saved!`, {
+      duration: 3000,
+      style: {
+        background: '#1f2937',
+        color: '#3b82f6',
+        border: '1px solid #3b82f6',
+      },
+    });
+
+    setShowSaveModal(false);
+    setLineupName('');
+  };
 
   const sendMessage = async () => {
     if (!input.trim()) return;
