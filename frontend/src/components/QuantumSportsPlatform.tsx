@@ -275,19 +275,29 @@ const QuantumSportsPlatform: React.FC = () => {
 
   return (
     <AppContext.Provider value={contextValue}>
-      <div className='min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden relative'>
-        {/* Quantum background effects */}
-        <div className='fixed inset-0 bg-quantum-grid opacity-20 pointer-events-none' />
-        <div className='fixed inset-0 bg-neural-network opacity-10 pointer-events-none' />
+      <div className='quantum-bg text-white font-sans min-h-screen overflow-x-hidden'>
+        {/* Particle Background */}
+        <div id='particles' className='fixed inset-0 pointer-events-none z-0'></div>
 
         {/* Main layout */}
-        <div className='flex h-screen'>
+        <div className='flex min-h-screen'>
           <Sidebar />
-          <div className='flex-1 flex flex-col overflow-hidden'>
+          <div className='flex-1 flex flex-col transition-all duration-500'>
             <Header />
-            <main className='flex-1 overflow-y-auto p-8'>
+            <main className='flex-1 p-10'>
               <PageRenderer />
             </main>
+            <footer className='ultra-glass border-t border-white/10 py-8'>
+              <div className='text-center'>
+                <div className='holographic font-bold mb-2 text-lg font-cyber'>
+                  A1BETTING ULTIMATE QUANTUM INTELLIGENCE
+                </div>
+                <div className='text-sm text-gray-400 font-mono'>
+                  © 2024 Neural Sports Intelligence Platform • 47 AI Agents • 1024 Qubits • Quantum
+                  Enhanced • 🧠 Brain Status: OPTIMAL
+                </div>
+              </div>
+            </footer>
           </div>
         </div>
       </div>
@@ -299,105 +309,151 @@ const Header: React.FC = () => {
   const context = useContext(AppContext);
   if (!context) return null;
 
-  const { user, notifications, sidebarCollapsed, setSidebarCollapsed } = context;
+  const { user, realTimeData, notifications, sidebarCollapsed, setSidebarCollapsed } = context;
   const [showNotifications, setShowNotifications] = useState(false);
-  const store = useStore();
-  console.log('Header Store:', store);
-  // const { addToast } = store;
+  const [theme, setTheme] = useState('quantum-dark');
 
-  // Test function for toast
-  const testToast = () => {
-    // addToast('success', 'Toast system is working! 🎉');
-    console.log('Test toast called');
+  const toggleTheme = () => {
+    const themes = ['quantum-dark', 'neural-purple', 'cyber-blue', 'quantum-light'];
+    const currentIndex = themes.indexOf(theme);
+    const nextTheme = themes[(currentIndex + 1) % themes.length];
+    setTheme(nextTheme);
   };
 
   return (
-    <header className='border-b border-white/10 backdrop-blur-xl bg-black/20'>
-      <div className='flex items-center justify-between px-8 py-6'>
-        <div className='flex items-center space-x-6'>
-          <motion.button
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className='p-3 rounded-xl bg-electric-500/20 hover:bg-electric-500/30 transition-colors'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {sidebarCollapsed ? <Menu className='w-6 h-6' /> : <X className='w-6 h-6' />}
-          </motion.button>
-
-          <div className='hidden md:block'>
-            <h1 className='holographic text-2xl font-black font-cyber'>QUANTUM INTELLIGENCE</h1>
-            <p className='text-sm text-gray-400 font-mono'>Real-time Neural Processing Engine</p>
-          </div>
-        </div>
-
-        <div className='flex items-center space-x-6'>
-          {/* Notifications */}
-          <div className='relative'>
+    <header className='ultra-glass border-b border-white/10 sticky top-0 z-50 backdrop-blur-30'>
+      <div className='max-w-full mx-auto px-6 py-4'>
+        <div className='flex justify-between items-center'>
+          <div className='flex items-center space-x-6'>
             <motion.button
-              onClick={() => setShowNotifications(!showNotifications)}
-              className='relative p-3 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-colors'
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              className='lg:hidden p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300'
               whileHover={{ scale: 1.05 }}
-            >
-              <Bell className='w-6 h-6' />
-              {notifications.length > 0 && (
-                <div className='absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold'>
-                  {notifications.length}
-                </div>
-              )}
-            </motion.button>
-
-            {showNotifications && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className='absolute right-0 top-full mt-2 w-80 ultra-glass rounded-2xl border border-white/10 z-50'
-              >
-                <div className='p-6'>
-                  <h3 className='font-bold text-white mb-4'>Live Notifications</h3>
-                  <div className='space-y-3 max-h-64 overflow-y-auto'>
-                    {notifications.length > 0 ? (
-                      notifications.map((notif: any, index: number) => (
-                        <div key={index} className='p-3 bg-white/5 rounded-xl'>
-                          <div className='text-sm text-white'>{notif.message}</div>
-                          <div className='text-xs text-gray-400 mt-1'>{notif.time}</div>
-                        </div>
-                      ))
-                    ) : (
-                      <div className='text-center text-gray-400 py-4'>No new notifications</div>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </div>
-
-          {/* Test Toast Button */}
-          <motion.button
-            onClick={testToast}
-            className='px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium transition-colors'
-            whileHover={{ scale: 1.05 }}
-          >
-            Test Toast
-          </motion.button>
-
-          {/* User Profile */}
-          <div className='flex items-center space-x-4'>
-            <div className='hidden md:block text-right'>
-              <div className='font-bold text-white'>{user.name}</div>
-              <div className='text-xs text-electric-400 font-mono'>
-                {user.tier} • LVL {user.level}
-              </div>
-            </div>
-            <motion.button
-              className='relative w-12 h-12 bg-gradient-to-br from-electric-400 via-neon-blue to-neon-purple rounded-xl flex items-center justify-center'
-              whileHover={{ scale: 1.05, rotate: 3 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className='text-black font-black text-lg font-cyber'>
-                {user.name.charAt(0)}
-              </span>
-              <div className='absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-black animate-pulse' />
+              <Menu className='w-6 h-6 text-gray-300' />
             </motion.button>
+
+            <div className='flex items-center space-x-4'>
+              <div className='relative float-element'>
+                <div className='absolute inset-0 bg-gradient-to-r from-electric-400 via-neon-blue to-neon-purple rounded-2xl blur-xl opacity-75' />
+                <div className='relative w-12 h-12 bg-gradient-to-br from-electric-400 via-neon-blue to-neon-purple rounded-2xl flex items-center justify-center transform rotate-3'>
+                  <Brain className='text-black text-xl font-bold animate-neural-pulse' />
+                </div>
+              </div>
+              <div>
+                <div className='holographic text-2xl font-black tracking-tight font-cyber'>
+                  A1BETTING
+                </div>
+                <div className='text-xs text-gray-400 uppercase tracking-widest font-mono'>
+                  Ultimate Brain 🧠 QUANTUM ACTIVE
+                </div>
+              </div>
+            </div>
+
+            <div className='hidden xl:flex items-center space-x-3 bg-gradient-to-r from-green-500/10 to-electric-500/10 rounded-xl px-4 py-2 border border-green-500/20'>
+              <div className='w-3 h-3 bg-green-400 rounded-full animate-pulse' />
+              <span className='text-green-400 text-sm font-bold font-cyber'>NEURAL OPTIMAL</span>
+              <span className='text-green-300 text-sm font-mono'>
+                {realTimeData.accuracy.toFixed(1)}% ACC
+              </span>
+              <div className='w-px h-4 bg-green-400/30' />
+              <span className='text-blue-400 text-sm font-mono'>
+                {realTimeData.quantumCoherence}% COHERENCE
+              </span>
+            </div>
+          </div>
+
+          <div className='flex items-center space-x-4'>
+            <div className='hidden lg:flex items-center space-x-6 text-sm'>
+              <div className='flex items-center space-x-2'>
+                <Zap className='text-electric-400 animate-pulse w-4 h-4' />
+                <span className='text-gray-400'>Processing:</span>
+                <span className='text-electric-400 font-mono font-bold'>
+                  {realTimeData.processingSpeed}ms
+                </span>
+              </div>
+              <div className='flex items-center space-x-2'>
+                <Brain className='text-purple-400 animate-pulse w-4 h-4' />
+                <span className='text-gray-400'>Bots:</span>
+                <span className='text-purple-400 font-mono font-bold'>
+                  {realTimeData.activeBots}/47
+                </span>
+              </div>
+            </div>
+
+            <motion.button
+              onClick={toggleTheme}
+              className='p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300 hover:shadow-neon'
+              whileHover={{ scale: 1.05 }}
+            >
+              <Eye className='text-electric-400 text-lg w-5 h-5' />
+            </motion.button>
+
+            <motion.button
+              className='p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300 hover:shadow-neon'
+              whileHover={{ scale: 1.05 }}
+            >
+              <Activity className='text-gray-400 w-5 h-5' />
+            </motion.button>
+
+            <div className='relative'>
+              <motion.button
+                onClick={() => setShowNotifications(!showNotifications)}
+                className='relative p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300 hover:shadow-neon'
+                whileHover={{ scale: 1.05 }}
+              >
+                <Bell className='text-gray-400 w-5 h-5' />
+                {notifications.length > 0 && (
+                  <div className='absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse'>
+                    <span className='text-white text-xs font-bold'>{notifications.length}</span>
+                  </div>
+                )}
+              </motion.button>
+
+              {showNotifications && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className='absolute right-0 top-full mt-2 w-80 ultra-glass rounded-2xl border border-white/10 overflow-hidden z-50'
+                >
+                  <div className='p-4 border-b border-white/10'>
+                    <h3 className='font-bold text-white'>Notifications</h3>
+                    <p className='text-sm text-gray-400'>{notifications.length} new alerts</p>
+                  </div>
+                  <div className='max-h-64 overflow-y-auto'>
+                    {notifications.map((notif: any, index: number) => (
+                      <div
+                        key={index}
+                        className='p-4 hover:bg-white/5 border-b border-white/5 last:border-b-0'
+                      >
+                        <div className='text-sm text-white mb-1'>{notif.message}</div>
+                        <div className='text-xs text-gray-400'>{notif.time}</div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </div>
+
+            <div className='flex items-center space-x-4'>
+              <div className='hidden md:block text-right'>
+                <div className='font-bold text-white text-sm'>{user.name}</div>
+                <div className='text-xs text-electric-400 font-mono'>
+                  {user.tier} • LVL {user.level}
+                </div>
+              </div>
+              <motion.button
+                className='relative w-12 h-12 bg-gradient-to-br from-electric-400 via-neon-blue to-neon-purple rounded-xl flex items-center justify-center hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:rotate-3'
+                whileHover={{ scale: 1.05, rotate: 3 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className='text-black font-black text-lg font-cyber'>
+                  {user.name.charAt(0)}
+                </span>
+                <div className='absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-black animate-pulse' />
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>
@@ -413,9 +469,9 @@ const Sidebar: React.FC = () => {
 
   const navigation = [
     {
-      name: 'Quantum Dashboard',
+      name: 'Ultimate Dashboard',
       key: 'dashboard',
-      icon: Home,
+      icon: 'fa-home',
       category: 'main',
       indicator: '🧠',
       color: 'text-electric-400',
@@ -423,7 +479,7 @@ const Sidebar: React.FC = () => {
     {
       name: 'Money Maker',
       key: 'money-maker',
-      icon: DollarSign,
+      icon: 'fa-dollar-sign',
       category: 'main',
       indicator: '💰',
       color: 'text-green-400',
@@ -431,15 +487,15 @@ const Sidebar: React.FC = () => {
     {
       name: 'PrizePicks Pro',
       key: 'prizepicks',
-      icon: Trophy,
+      icon: 'fa-trophy',
       category: 'main',
       indicator: '🏆',
       color: 'text-yellow-400',
     },
     {
-      name: 'PropOllama',
+      name: 'PropGPT',
       key: 'propollama',
-      icon: MessageCircle,
+      icon: 'fa-comments',
       category: 'ai',
       indicator: '🤖',
       color: 'text-blue-400',
@@ -447,7 +503,7 @@ const Sidebar: React.FC = () => {
     {
       name: 'ML Center',
       key: 'ml-center',
-      icon: Brain,
+      icon: 'fa-brain',
       category: 'ai',
       indicator: '🧠',
       color: 'text-purple-400',
@@ -455,7 +511,7 @@ const Sidebar: React.FC = () => {
     {
       name: 'Quantum Predictions',
       key: 'quantum',
-      icon: Atom,
+      icon: 'fa-atom',
       category: 'ai',
       indicator: '⚛️',
       color: 'text-cyan-400',
@@ -463,7 +519,7 @@ const Sidebar: React.FC = () => {
     {
       name: 'Neural Analytics',
       key: 'analytics',
-      icon: BarChart3,
+      icon: 'fa-chart-line',
       category: 'insights',
       indicator: '📊',
       color: 'text-indigo-400',
@@ -471,22 +527,30 @@ const Sidebar: React.FC = () => {
     {
       name: 'Real-time Monitor',
       key: 'realtime',
-      icon: Eye,
+      icon: 'fa-eye',
       category: 'insights',
       indicator: '👁️',
       color: 'text-orange-400',
     },
     {
+      name: 'Market Intelligence',
+      key: 'market',
+      icon: 'fa-chart-bar',
+      category: 'insights',
+      indicator: '📈',
+      color: 'text-pink-400',
+    },
+    {
       name: 'Settings',
       key: 'settings',
-      icon: Settings,
+      icon: 'fa-cog',
       category: 'account',
       color: 'text-gray-400',
     },
     {
       name: 'Admin Quantum',
       key: 'admin',
-      icon: Shield,
+      icon: 'fa-shield-alt',
       category: 'account',
       indicator: '🛡️',
       color: 'text-red-400',
@@ -500,22 +564,18 @@ const Sidebar: React.FC = () => {
     account: 'System Control',
   };
 
-  const groupedNav = navigation.reduce(
-    (acc, item) => {
-      if (!acc[item.category]) acc[item.category] = [];
-      acc[item.category].push(item);
-      return acc;
-    },
-    {} as Record<string, typeof navigation>
-  );
+  const groupedNav = navigation.reduce((acc: any, item) => {
+    if (!acc[item.category]) acc[item.category] = [];
+    acc[item.category].push(item);
+    return acc;
+  }, {});
 
   return (
     <motion.div
-      className={`${sidebarCollapsed ? 'w-20' : 'w-96'} ultra-glass border-r border-white/10 flex flex-col transition-all duration-500`}
+      className={`${sidebarCollapsed ? 'w-20' : 'w-96'} ultra-glass h-screen border-r border-white/10 flex flex-col transition-all duration-500 ease-in-out`}
       initial={false}
       animate={{ width: sidebarCollapsed ? 80 : 384 }}
     >
-      {/* Header */}
       <div className='p-6 border-b border-white/10'>
         {!sidebarCollapsed && (
           <motion.div
@@ -524,7 +584,7 @@ const Sidebar: React.FC = () => {
             className='flex items-center space-x-4 mb-8'
           >
             <div className='w-12 h-12 bg-gradient-to-br from-electric-400 via-neon-blue to-neon-purple rounded-2xl flex items-center justify-center animate-quantum-spin'>
-              <Brain className='text-black text-xl font-bold' />
+              <i className='fas fa-brain text-black text-xl font-bold' />
             </div>
             <div>
               <h2 className='holographic text-xl font-black font-cyber'>QUANTUM NAV</h2>
@@ -532,48 +592,61 @@ const Sidebar: React.FC = () => {
             </div>
           </motion.div>
         )}
+
+        <nav className='space-y-3'>
+          <motion.button
+            onClick={() => setCurrentPage('dashboard')}
+            className={`nav-item w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 rounded-2xl transition-all duration-300 ${
+              currentPage === 'dashboard'
+                ? 'bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 shadow-neon'
+                : 'bg-gray-800/30 hover:bg-gray-800/50 text-gray-300 border-2 border-transparent hover:border-gray-600'
+            }`}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <div className={`flex items-center ${sidebarCollapsed ? '' : 'space-x-4'}`}>
+              <i className='fas fa-home text-xl' />
+              {!sidebarCollapsed && <span className='font-bold font-cyber'>QUANTUM DASHBOARD</span>}
+              {!sidebarCollapsed && <span className='text-lg animate-bounce'>🧠</span>}
+            </div>
+            {!sidebarCollapsed && <div className='text-electric-400 font-bold'>→</div>}
+          </motion.button>
+        </nav>
       </div>
 
-      {/* Navigation */}
-      <div className='flex-1 p-6 overflow-y-auto'>
+      <div className='flex-1 p-6 overflow-y-auto custom-scrollbar'>
         <nav className='space-y-8'>
-          {Object.entries(groupedNav).map(([category, items]) => (
+          {Object.entries(groupedNav).map(([category, items]: [string, any]) => (
             <div key={category} className='space-y-3'>
               {!sidebarCollapsed && (
                 <h3 className='text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 font-cyber'>
-                  {categories[category]}
+                  {categories[category as keyof typeof categories]}
                 </h3>
               )}
               <ul className='space-y-2'>
-                {items.map(item => {
-                  const Icon = item.icon;
+                {items.map((item: any) => {
                   const isActive = currentPage === item.key;
-
                   return (
                     <li key={item.key}>
                       <motion.button
                         onClick={() => setCurrentPage(item.key)}
-                        className={`w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 rounded-2xl transition-all duration-400 ${
+                        className={`nav-item w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 text-left text-sm font-bold transition-all duration-400 rounded-2xl ${
                           isActive
-                            ? 'bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 shadow-neon'
-                            : `bg-gray-800/30 hover:bg-gray-800/50 text-gray-300 border-2 border-transparent hover:border-gray-600 ${item.color}`
+                            ? 'active text-electric-400'
+                            : `text-gray-300 hover:text-white ${item.color}`
                         }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
                         <div className={`flex items-center ${sidebarCollapsed ? '' : 'space-x-4'}`}>
-                          <Icon className='w-5 h-5' />
-                          {!sidebarCollapsed && (
-                            <>
-                              <span className='font-bold font-cyber'>{item.name}</span>
-                              {item.indicator && (
-                                <span className='text-sm animate-pulse'>{item.indicator}</span>
-                              )}
-                            </>
+                          <i className={`fas ${item.icon} text-xl`} />
+                          {!sidebarCollapsed && <span className='font-cyber'>{item.name}</span>}
+                          {!sidebarCollapsed && item.indicator && (
+                            <span className='text-lg'>{item.indicator}</span>
                           )}
                         </div>
                         {!sidebarCollapsed && isActive && (
-                          <div className='text-electric-400 text-sm font-bold'>→</div>
+                          <div className='text-electric-400 font-bold'>→</div>
                         )}
                       </motion.button>
                     </li>
@@ -585,7 +658,6 @@ const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-      {/* Neural Status Footer */}
       {!sidebarCollapsed && (
         <motion.div
           initial={{ opacity: 0 }}
