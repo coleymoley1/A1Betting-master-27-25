@@ -30,12 +30,13 @@ import { ultimateBrainCentralNervousSystem } from '@/core/UltimateBrainCentralNe
 import MoneyMakerPro from './MoneyMakerPro.ts';
 import PrizePicksPro from './PrizePicksPro.ts';
 import PropOllama from './PropOllama.ts';
-import UserFriendlyDashboard from './UserFriendlyDashboard.ts';
-import SimpleSettings from './SimpleSettings.ts';
-
-// Import Intelligence Hub;
-import { AdvancedIntelligenceHub } from '@/intelligence/AdvancedIntelligenceHub.ts';
-
+import UserFriendlyDashboard from "./UserFriendlyDashboard";
+import MoneyMakerPro from './MoneyMakerPro.ts';
+import PrizePicksPro from './PrizePicksPro.ts';
+import PropOllama from './PropOllama.ts';
+import SavedLineups from '../lineups/SavedLineups';
+import AdvancedIntelligenceHub from '../intelligence/AdvancedIntelligenceHub.ts';
+import SimpleSettings from './SimpleSettings';
 // Modal components;
 import SearchModal from '@/modals/SearchModal.ts';
 import NotificationsModal from '@/modals/NotificationsModal.ts';
@@ -138,10 +139,17 @@ const UserFriendlyApp: React.FC = () => {
       },
       {
         id: "propollama",
-        label: "propOllama",
+        label: "PropOllama",
         icon: <Brain className="w-5 h-5" / key={358560}>,
         component: PropOllama,
         badge: "🤖",
+      },
+      {
+        id: "saved-lineups",
+        label: "Saved Lineups",
+        icon: <BookmarkIcon className="w-5 h-5" / key={123456}>,
+        component: SavedLineups,
+        badge: "📋",
       },
       {
         id: "intelligence",
