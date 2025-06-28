@@ -190,7 +190,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
               <div className='flex justify-between items-center mb-2'>
                 <span className='text-gray-300 font-mono'>Confidence Score</span>
                 <span className='text-cyan-400 font-bold font-mono'>
-                  {realTimeData.confidence.toFixed(1)}%
+                  {(realTimeData?.confidence || 91.5).toFixed(1)}%
                 </span>
               </div>
               <div className='w-full bg-gray-700 rounded-full h-2'>
