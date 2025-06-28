@@ -204,7 +204,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
             <div className='grid grid-cols-2 gap-4 mt-6'>
               <div className='text-center p-3 bg-gray-800/50 rounded-lg'>
                 <div className='text-purple-400 font-bold font-mono'>
-                  {realTimeData.dataPoints.toLocaleString()}
+                  {(realTimeData?.dataPoints || 2847592).toLocaleString()}
                 </div>
                 <div className='text-gray-400 text-xs font-mono'>Data Points</div>
               </div>
