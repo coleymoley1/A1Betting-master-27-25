@@ -136,6 +136,10 @@ export const useBettingData = ({
     fetchData();
 
     if (autoRefresh) {
+      const interval = setInterval(() => {
+        fetchData();
+      }, refreshInterval);
+
       return () => clearInterval(interval);
     }
   }, [fetchData, autoRefresh, refreshInterval]);
