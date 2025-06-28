@@ -510,6 +510,10 @@ const Header: React.FC = () => {
   } = context;
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSystemMonitor, setShowSystemMonitor] = useState(false);
+
+  // Refs for click outside functionality
+  const notificationsRef = useClickOutside(() => setShowNotifications(false));
+  const systemMonitorRef = useClickOutside(() => setShowSystemMonitor(false));
   return (
     <header className='ultra-glass border-b border-white/10 sticky top-0 z-50 backdrop-blur-30'>
       <div className='max-w-full mx-auto px-6 py-4'>
