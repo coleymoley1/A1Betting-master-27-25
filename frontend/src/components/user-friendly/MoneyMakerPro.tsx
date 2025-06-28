@@ -118,7 +118,6 @@ const MoneyMakerPro: React.FC = () => {
             </div>
           </div>
         </div>
-        )}
 
       {/* Enhanced Configuration Panel */}
       <div className="quantum-card rounded-3xl p-10 border border-electric-500/30">
