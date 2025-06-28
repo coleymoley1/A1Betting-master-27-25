@@ -457,7 +457,16 @@ const MoneyMakerPro: React.FC = () => {
             ))}
           </div>
 
-          <div className='mt-8 text-center'>
+          <div className='mt-8 flex justify-center space-x-4'>
+            <motion.button
+              onClick={() => setShowSaveModal(true)}
+              className='flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-400 hover:to-purple-400 transition-all duration-300'
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Save className='w-5 h-5' />
+              <span>SAVE LINEUP</span>
+            </motion.button>
             <motion.button
               className='px-8 py-4 bg-gradient-to-r from-green-500 to-yellow-500 text-black font-bold rounded-xl hover:from-green-400 hover:to-yellow-400 transition-all duration-300'
               whileHover={{ scale: 1.05 }}
@@ -466,6 +475,53 @@ const MoneyMakerPro: React.FC = () => {
               EXECUTE NEURAL STRATEGY
             </motion.button>
           </div>
+        </motion.div>
+      )}
+
+      {/* Save Lineup Modal */}
+      {showSaveModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'
+          onClick={() => setShowSaveModal(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className='quantum-card rounded-2xl p-8 max-w-md w-full'
+            onClick={e => e.stopPropagation()}
+          >
+            <h3 className='text-2xl font-bold text-electric-400 mb-6 font-cyber'>
+              SAVE MONEY MAKER LINEUP
+            </h3>
+            <div className='space-y-4'>
+              <div>
+                <label className='block text-sm font-bold mb-2 text-gray-300'>Lineup Name</label>
+                <input
+                  type='text'
+                  value={lineupName}
+                  onChange={e => setLineupName(e.target.value)}
+                  placeholder='Enter lineup name...'
+                  className='w-full p-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white placeholder-gray-400 focus:border-electric-400 focus:outline-none'
+                />
+              </div>
+              <div className='flex space-x-4 pt-4'>
+                <button
+                  onClick={saveLineup}
+                  className='flex-1 py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-400 transition-all'
+                >
+                  Save Lineup
+                </button>
+                <button
+                  onClick={() => setShowSaveModal(false)}
+                  className='flex-1 py-3 bg-gray-600 text-white font-bold rounded-lg hover:bg-gray-500 transition-all'
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       )}
     </motion.div>
