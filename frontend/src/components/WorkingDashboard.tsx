@@ -518,7 +518,7 @@ const WorkingDashboard: React.FC<WorkingDashboardProps> = ({ onNavigate }) => {
               variant='ghost'
               className='w-full'
               size='lg'
-              onClick={() => onNavigate('propgpt')}
+              onClick={() => onNavigate('propollama')}
             />
           </div>
         </Card>
