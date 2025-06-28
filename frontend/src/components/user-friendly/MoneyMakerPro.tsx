@@ -139,48 +139,36 @@ const MoneyMakerPro: React.FC = () => {
         timeFrameBonus *
         neuralBonus;
 
+      // Use quantum predictions for picks
+      const selectedPredictions = quantumPredictions
+        .filter(
+          pred => fluentFilters.sport === 'all' || pred.sport.toLowerCase() === fluentFilters.sport
+        )
+        .sort((a, b) => b.confidence - a.confidence)
+        .slice(0, config.portfolio);
+
+      const quantumPicks = selectedPredictions.map(pred => ({
+        game: pred.game,
+        pick: pred.player ? `${pred.player} ${pred.prediction}` : pred.prediction,
+        confidence: pred.confidence,
+        odds: pred.odds
+          ? pred.odds.current > 2.0
+            ? `+${Math.round((pred.odds.current - 1) * 100)}`
+            : `-${Math.round(100 / (pred.odds.current - 1))}`
+          : '-110',
+        neural: pred.neuralNetwork,
+        reason: getQuantumInsight(pred),
+      }));
+
       setResults({
         investment: config.investment,
         multiplier: multiplier,
         payout: config.investment * multiplier,
-        accuracy: 94.7 + Math.random() * 4,
-        picks: [
-          {
-            game: 'Lakers vs Warriors',
-            pick: 'LeBron Over 25.5 Points',
-            confidence: 96.2,
-            odds: '-110',
-            neural: 'Quantum Network #23',
-            reason: 'Neural matrix analysis: Weather optimal, no injuries, line moved 2pts',
-          },
-          {
-            game: 'Chiefs vs Bills',
-            pick: 'Mahomes Over 275.5 Yards',
-            confidence: 93.7,
-            odds: '-105',
-            neural: 'Neural Core #15',
-            reason: 'Bills defense allows 12% more vs elite QBs, quantum confidence boost applied',
-          },
-          {
-            game: 'Celtics vs Heat',
-            pick: 'Tatum Over 27.5 Points',
-            confidence: 91.8,
-            odds: '-115',
-            neural: 'Deep Learning #41',
-            reason: 'Miami missing key defender, pace increase, filter matrix enhancement',
-          },
-          {
-            game: 'Rams vs 49ers',
-            pick: 'Kupp Over 6.5 Receptions',
-            confidence: 89.4,
-            odds: '-120',
-            neural: 'Predictive AI #07',
-            reason: 'Slot coverage weakness, injury report clean, neural enhancement active',
-          },
-        ].slice(0, config.portfolio),
-        quantumBoost: true,
+        accuracy: quantumState.accuracy,
+        picks: quantumPicks,
+        quantumBoost: quantumState.quantumBoostActive,
         processingTime: `${Math.floor(500 + Math.random() * 500)}ms`,
-        neuralNetworks: 47 + (fluentFilters.sport === 'all' ? 36 : 12),
+        neuralNetworks: quantumState.activeNetworks + (fluentFilters.sport === 'all' ? 36 : 12),
         filters: config,
       });
       setLoading(false);
