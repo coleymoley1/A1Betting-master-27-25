@@ -669,49 +669,7 @@ const PageRenderer: React.FC = () => {
       case 'ml-center':
         return <MLModelDashboard />;
       case 'quantum':
-        return (
-          <div className='space-y-10 animate-slide-in-up'>
-            <div className='text-center'>
-              <div className='relative mb-10'>
-                <div className='absolute inset-0 bg-cyan-400/20 blur-3xl rounded-full' />
-                <div className='relative text-8xl text-cyan-400 float-element'>⚛️</div>
-              </div>
-              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>
-                QUANTUM PREDICTIONS
-              </h1>
-              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>
-                Quantum-enhanced prediction engine with 1024 qubits, superposition algorithms, and
-                neural-quantum hybrid processing
-              </p>
-            </div>
-
-            <div className='quantum-card rounded-3xl p-10 text-center'>
-              <div className='text-gray-500 mb-8 text-xl font-mono'>
-                Advanced quantum feature interface coming soon...
-              </div>
-              <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-10'>
-                <div className='text-center'>
-                  <div className='text-4xl mb-4 text-electric-400'>🧠</div>
-                  <div className='font-bold text-white font-cyber'>Neural Networks</div>
-                  <div className='text-gray-400 text-sm font-mono'>47 AI agents ready</div>
-                </div>
-                <div className='text-center'>
-                  <div className='text-4xl mb-4 text-purple-400'>⚛️</div>
-                  <div className='font-bold text-white font-cyber'>Quantum Processing</div>
-                  <div className='text-gray-400 text-sm font-mono'>1024 qubits active</div>
-                </div>
-                <div className='text-center'>
-                  <div className='text-4xl mb-4 text-blue-400'>📊</div>
-                  <div className='font-bold text-white font-cyber'>Real-time Analysis</div>
-                  <div className='text-gray-400 text-sm font-mono'>Live data processing</div>
-                </div>
-              </div>
-              <button className='px-12 py-6 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-xl rounded-2xl hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 font-cyber'>
-                INITIALIZE QUANTUM INTERFACE
-              </button>
-            </div>
-          </div>
-        );
+        return <QuantumPredictionsInterface />;
       case 'analytics':
         return <UniversalAnalytics />;
       case 'realtime':
