@@ -50,59 +50,50 @@ interface QuantumFiltersProps {
 }
 
 const SPORTS_OPTIONS: SportOption[] = [
-  // Major Sports
-  { id: 'nba', name: 'NBA Basketball', icon: '🏀', color: 'text-orange-400', category: 'major' },
-  { id: 'nfl', name: 'NFL Football', icon: '🏈', color: 'text-green-400', category: 'major' },
-  { id: 'mlb', name: 'MLB Baseball', icon: '⚾', color: 'text-blue-400', category: 'major' },
-  { id: 'nhl', name: 'NHL Hockey', icon: '🏒', color: 'text-cyan-400', category: 'major' },
+  // Primary Eleven (PrizePicks Core Sports)
+  { id: 'nba', name: 'NBA Basketball', icon: '🏀', color: 'text-orange-400', category: 'primary' },
+  {
+    id: 'wnba',
+    name: 'WNBA Basketball',
+    icon: '🏀',
+    color: 'text-orange-300',
+    category: 'primary',
+  },
+  { id: 'mlb', name: 'MLB Baseball', icon: '⚾', color: 'text-blue-400', category: 'primary' },
+  { id: 'nfl', name: 'NFL Football', icon: '🏈', color: 'text-green-400', category: 'primary' },
+  { id: 'nhl', name: 'NHL Hockey', icon: '🏒', color: 'text-cyan-400', category: 'primary' },
+  { id: 'soccer', name: 'Soccer/Football', icon: '⚽', color: 'text-white', category: 'primary' },
+  { id: 'pga', name: 'PGA Golf', icon: '⛳', color: 'text-emerald-400', category: 'primary' },
+  { id: 'mma', name: 'MMA/UFC', icon: '🥊', color: 'text-red-400', category: 'primary' },
+  { id: 'boxing', name: 'Boxing', icon: '🥊', color: 'text-yellow-500', category: 'primary' },
+  { id: 'tennis', name: 'Tennis', icon: '🎾', color: 'text-green-400', category: 'primary' },
+  { id: 'esports', name: 'Esports', icon: '🎮', color: 'text-purple-500', category: 'primary' },
 
-  // Secondary Sports
+  // Misc Sports (Everything Else)
   {
     id: 'ncaab',
     name: 'College Basketball',
     icon: '🎓',
     color: 'text-purple-400',
-    category: 'secondary',
+    category: 'misc',
   },
-  {
-    id: 'ncaaf',
-    name: 'College Football',
-    icon: '🎓',
-    color: 'text-yellow-400',
-    category: 'secondary',
-  },
-  { id: 'tennis', name: 'Tennis', icon: '🎾', color: 'text-green-400', category: 'secondary' },
-  { id: 'golf', name: 'Golf', icon: '⛳', color: 'text-emerald-400', category: 'secondary' },
-
-  // International Sports
-  {
-    id: 'soccer',
-    name: 'Soccer/Football',
-    icon: '⚽',
-    color: 'text-white',
-    category: 'international',
-  },
-  {
-    id: 'cricket',
-    name: 'Cricket',
-    icon: '🏏',
-    color: 'text-amber-400',
-    category: 'international',
-  },
-  { id: 'rugby', name: 'Rugby', icon: '🏉', color: 'text-red-400', category: 'international' },
-  { id: 'f1', name: 'Formula 1', icon: '🏎️', color: 'text-red-500', category: 'international' },
-
-  // Combat Sports
-  { id: 'ufc', name: 'UFC/MMA', icon: '🥊', color: 'text-red-400', category: 'combat' },
-  { id: 'boxing', name: 'Boxing', icon: '🥊', color: 'text-yellow-500', category: 'combat' },
-
-  // Esports
-  { id: 'lol', name: 'League of Legends', icon: '🎮', color: 'text-blue-500', category: 'esports' },
-  { id: 'csgo', name: 'CS:GO', icon: '🎯', color: 'text-orange-500', category: 'esports' },
-  { id: 'dota', name: 'Dota 2', icon: '⚔️', color: 'text-purple-500', category: 'esports' },
+  { id: 'ncaaf', name: 'College Football', icon: '🎓', color: 'text-yellow-400', category: 'misc' },
+  { id: 'cricket', name: 'Cricket', icon: '🏏', color: 'text-amber-400', category: 'misc' },
+  { id: 'rugby', name: 'Rugby', icon: '🏉', color: 'text-red-400', category: 'misc' },
+  { id: 'f1', name: 'Formula 1', icon: '🏎️', color: 'text-red-500', category: 'misc' },
+  { id: 'motorsports', name: 'Motorsports', icon: '🏁', color: 'text-gray-400', category: 'misc' },
+  { id: 'lol', name: 'League of Legends', icon: '🎮', color: 'text-blue-500', category: 'misc' },
+  { id: 'csgo', name: 'CS:GO', icon: '🎯', color: 'text-orange-500', category: 'misc' },
+  { id: 'dota', name: 'Dota 2', icon: '⚔️', color: 'text-purple-500', category: 'misc' },
+  { id: 'valorant', name: 'Valorant', icon: '🔫', color: 'text-red-300', category: 'misc' },
+  { id: 'cycling', name: 'Cycling', icon: '🚴', color: 'text-yellow-300', category: 'misc' },
+  { id: 'swimming', name: 'Swimming', icon: '🏊', color: 'text-blue-300', category: 'misc' },
+  { id: 'track', name: 'Track & Field', icon: '🏃', color: 'text-green-300', category: 'misc' },
+  { id: 'olympics', name: 'Olympics', icon: '🏅', color: 'text-gold-400', category: 'misc' },
 ];
 
 const TIME_FRAME_OPTIONS: TimeFrameOption[] = [
+  // Live & Real-Time
   {
     id: 'live',
     name: 'Live Now',
@@ -112,12 +103,226 @@ const TIME_FRAME_OPTIONS: TimeFrameOption[] = [
     value: 0,
   },
   {
+    id: 'pre-game',
+    name: 'Pre-Game',
+    description: 'Starting within 2 hours',
+    icon: '⏰',
+    color: 'text-orange-400',
+    value: 2,
+  },
+  {
+    id: 'in-game',
+    name: 'In-Game',
+    description: 'Games in progress',
+    icon: '🎯',
+    color: 'text-red-500',
+    value: 0.5,
+  },
+
+  // Quarter/Period Specific (Basketball/Football)
+  {
+    id: '1st-quarter',
+    name: '1st Quarter',
+    description: 'First quarter bets',
+    icon: '1️⃣',
+    color: 'text-blue-400',
+    value: 0.25,
+  },
+  {
+    id: '2nd-quarter',
+    name: '2nd Quarter',
+    description: 'Second quarter bets',
+    icon: '2️⃣',
+    color: 'text-blue-500',
+    value: 0.25,
+  },
+  {
+    id: '3rd-quarter',
+    name: '3rd Quarter',
+    description: 'Third quarter bets',
+    icon: '3️⃣',
+    color: 'text-blue-600',
+    value: 0.25,
+  },
+  {
+    id: '4th-quarter',
+    name: '4th Quarter',
+    description: 'Fourth quarter bets',
+    icon: '4️⃣',
+    color: 'text-blue-700',
+    value: 0.25,
+  },
+
+  // Half-Time Specific
+  {
+    id: '1st-half',
+    name: '1st Half',
+    description: 'First half bets',
+    icon: '🥅',
+    color: 'text-green-400',
+    value: 0.5,
+  },
+  {
+    id: '2nd-half',
+    name: '2nd Half',
+    description: 'Second half bets',
+    icon: '🎯',
+    color: 'text-green-500',
+    value: 0.5,
+  },
+  {
+    id: 'halftime',
+    name: 'Halftime',
+    description: 'Halftime break bets',
+    icon: '⏸️',
+    color: 'text-yellow-400',
+    value: 0.02,
+  },
+
+  // Hockey Periods
+  {
+    id: '1st-period',
+    name: '1st Period',
+    description: 'First period (Hockey)',
+    icon: '🏒',
+    color: 'text-cyan-400',
+    value: 0.33,
+  },
+  {
+    id: '2nd-period',
+    name: '2nd Period',
+    description: 'Second period (Hockey)',
+    icon: '🏒',
+    color: 'text-cyan-500',
+    value: 0.33,
+  },
+  {
+    id: '3rd-period',
+    name: '3rd Period',
+    description: 'Third period (Hockey)',
+    icon: '🏒',
+    color: 'text-cyan-600',
+    value: 0.33,
+  },
+  {
+    id: 'overtime',
+    name: 'Overtime',
+    description: 'Overtime periods',
+    icon: '⏱️',
+    color: 'text-purple-400',
+    value: 0.08,
+  },
+
+  // Baseball Innings
+  {
+    id: 'early-innings',
+    name: 'Early Innings',
+    description: 'Innings 1-3',
+    icon: '⚾',
+    color: 'text-blue-300',
+    value: 0.33,
+  },
+  {
+    id: 'middle-innings',
+    name: 'Middle Innings',
+    description: 'Innings 4-6',
+    icon: '⚾',
+    color: 'text-blue-400',
+    value: 0.33,
+  },
+  {
+    id: 'late-innings',
+    name: 'Late Innings',
+    description: 'Innings 7-9',
+    icon: '⚾',
+    color: 'text-blue-500',
+    value: 0.33,
+  },
+  {
+    id: 'extra-innings',
+    name: 'Extra Innings',
+    description: 'Beyond 9th inning',
+    icon: '⚾',
+    color: 'text-blue-600',
+    value: 0.2,
+  },
+
+  // Soccer Specific
+  {
+    id: 'first-45',
+    name: 'First 45min',
+    description: 'First half (Soccer)',
+    icon: '⚽',
+    color: 'text-green-300',
+    value: 0.75,
+  },
+  {
+    id: 'second-45',
+    name: 'Second 45min',
+    description: 'Second half (Soccer)',
+    icon: '⚽',
+    color: 'text-green-400',
+    value: 0.75,
+  },
+  {
+    id: 'stoppage-time',
+    name: 'Stoppage Time',
+    description: 'Added time',
+    icon: '⏱️',
+    color: 'text-yellow-500',
+    value: 0.08,
+  },
+
+  // Tennis Specific
+  {
+    id: '1st-set',
+    name: '1st Set',
+    description: 'First set (Tennis)',
+    icon: '🎾',
+    color: 'text-yellow-300',
+    value: 0.5,
+  },
+  {
+    id: '2nd-set',
+    name: '2nd Set',
+    description: 'Second set (Tennis)',
+    icon: '🎾',
+    color: 'text-yellow-400',
+    value: 0.5,
+  },
+  {
+    id: '3rd-set',
+    name: '3rd Set',
+    description: 'Third set (Tennis)',
+    icon: '🎾',
+    color: 'text-yellow-500',
+    value: 0.5,
+  },
+
+  // Standard Time Frames
+  {
+    id: 'next-hour',
+    name: 'Next Hour',
+    description: 'Starting within 1 hour',
+    icon: '⏰',
+    color: 'text-orange-300',
+    value: 1,
+  },
+  {
     id: 'today',
     name: 'Today',
-    description: 'Next 24 hours',
+    description: 'Rest of today',
     icon: '📅',
     color: 'text-electric-400',
     value: 24,
+  },
+  {
+    id: 'tonight',
+    name: 'Tonight',
+    description: '6 PM - Midnight',
+    icon: '🌙',
+    color: 'text-purple-300',
+    value: 6,
   },
   {
     id: 'tomorrow',
@@ -239,11 +444,8 @@ const QuantumFilters: React.FC<QuantumFiltersProps> = ({
 
   const CategoryIcon = ({ category }: { category: string }) => {
     const icons = {
-      major: '⭐',
-      secondary: '🎯',
-      international: '🌍',
-      combat: '🥊',
-      esports: '🎮',
+      primary: '⭐',
+      misc: '📂',
     };
     return <span className='text-lg'>{icons[category as keyof typeof icons] || '📊'}</span>;
   };

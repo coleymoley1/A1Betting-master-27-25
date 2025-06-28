@@ -15,15 +15,25 @@ const QUICK_SPORTS = [
   { id: 'nfl', name: 'NFL', icon: '🏈', color: 'text-green-400' },
   { id: 'mlb', name: 'MLB', icon: '⚾', color: 'text-blue-400' },
   { id: 'nhl', name: 'NHL', icon: '🏒', color: 'text-cyan-400' },
+  { id: 'wnba', name: 'WNBA', icon: '🏀', color: 'text-orange-300' },
   { id: 'soccer', name: 'Soccer', icon: '⚽', color: 'text-white' },
-  { id: 'ufc', name: 'UFC', icon: '🥊', color: 'text-red-400' },
+  { id: 'pga', name: 'PGA', icon: '⛳', color: 'text-emerald-400' },
+  { id: 'mma', name: 'MMA', icon: '🥊', color: 'text-red-400' },
+  { id: 'boxing', name: 'Boxing', icon: '🥊', color: 'text-yellow-500' },
+  { id: 'tennis', name: 'Tennis', icon: '🎾', color: 'text-green-400' },
+  { id: 'esports', name: 'Esports', icon: '🎮', color: 'text-purple-500' },
 ];
 
 const QUICK_TIMEFRAMES = [
   { id: 'live', name: 'Live', icon: '🔴' },
+  { id: 'pre-game', name: 'Pre-Game', icon: '⏰' },
+  { id: 'in-game', name: 'In-Game', icon: '🎯' },
+  { id: '2nd-half', name: '2nd Half', icon: '🎯' },
   { id: 'today', name: 'Today', icon: '📅' },
+  { id: 'tonight', name: 'Tonight', icon: '🌙' },
+  { id: 'tomorrow', name: 'Tomorrow', icon: '🌅' },
   { id: 'week', name: 'Week', icon: '📊' },
-  { id: 'month', name: 'Month', icon: '📈' },
+  { id: 'weekend', name: 'Weekend', icon: '🎉' },
 ];
 
 const CompactFilterBar: React.FC<CompactFilterBarProps> = ({

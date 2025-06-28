@@ -3,7 +3,7 @@ import type { FilterState } from '../components/filters/QuantumFilters';
 
 // Default filter state
 const DEFAULT_FILTERS: FilterState = {
-  sports: ['nba', 'nfl', 'mlb', 'nhl'], // Default major sports
+  sports: ['nba', 'wnba', 'nfl', 'mlb', 'nhl'], // PrizePicks primary sports
   timeFrame: 'today',
   regions: ['us'],
   advanced: {
