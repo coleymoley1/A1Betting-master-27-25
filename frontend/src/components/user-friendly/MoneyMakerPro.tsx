@@ -351,9 +351,24 @@ const MoneyMakerPro: React.FC = () => {
               <div className='space-y-3'>
                 <div className='flex flex-wrap gap-2'>
                   {filters.sports.slice(0, 4).map(sportId => {
-                    const sport = ['NBA', 'NFL', 'MLB', 'NHL', 'Soccer', 'WNBA', 'PGA', 'MMA', 'Boxing', 'Tennis', 'Esports'].find(s => s.toLowerCase() === sportId);
+                    const sport = [
+                      'NBA',
+                      'NFL',
+                      'MLB',
+                      'NHL',
+                      'Soccer',
+                      'WNBA',
+                      'PGA',
+                      'MMA',
+                      'Boxing',
+                      'Tennis',
+                      'Esports',
+                    ].find(s => s.toLowerCase() === sportId);
                     return sport ? (
-                      <div key={sportId} className='px-3 py-1 bg-electric-500/20 text-electric-400 rounded-full text-sm font-mono border border-electric-500/30'>
+                      <div
+                        key={sportId}
+                        className='px-3 py-1 bg-electric-500/20 text-electric-400 rounded-full text-sm font-mono border border-electric-500/30'
+                      >
                         {sport}
                       </div>
                     ) : null;
@@ -366,11 +381,15 @@ const MoneyMakerPro: React.FC = () => {
                 </div>
                 <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
                   <span className='text-gray-300 font-mono text-sm'>Time Frame</span>
-                  <span className='text-electric-400 font-cyber font-bold'>{filters.timeFrame.toUpperCase()}</span>
+                  <span className='text-electric-400 font-cyber font-bold'>
+                    {filters.timeFrame.toUpperCase()}
+                  </span>
                 </div>
                 <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
                   <span className='text-gray-300 font-mono text-sm'>Min Confidence</span>
-                  <span className='text-electric-400 font-cyber font-bold'>{filters.advanced.minConfidence}%</span>
+                  <span className='text-electric-400 font-cyber font-bold'>
+                    {filters.advanced.minConfidence}%
+                  </span>
                 </div>
               </div>
             </div>
@@ -447,7 +466,9 @@ const MoneyMakerPro: React.FC = () => {
           >
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
               <div className='quantum-card p-6 rounded-2xl border border-purple-500/30'>
-                <h4 className='text-lg font-bold text-purple-400 font-cyber mb-4'>NEURAL NETWORKS</h4>
+                <h4 className='text-lg font-bold text-purple-400 font-cyber mb-4'>
+                  NEURAL NETWORKS
+                </h4>
                 <div className='space-y-3'>
                   <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
                     <span className='text-gray-300 font-mono text-sm'>Active Networks</span>
@@ -475,7 +496,9 @@ const MoneyMakerPro: React.FC = () => {
               </div>
 
               <div className='quantum-card p-6 rounded-2xl border border-yellow-500/30'>
-                <h4 className='text-lg font-bold text-yellow-400 font-cyber mb-4'>QUANTUM STATUS</h4>
+                <h4 className='text-lg font-bold text-yellow-400 font-cyber mb-4'>
+                  QUANTUM STATUS
+                </h4>
                 <div className='space-y-3'>
                   <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
                     <span className='text-gray-300 font-mono text-sm'>Entanglement</span>
@@ -492,11 +515,11 @@ const MoneyMakerPro: React.FC = () => {
         )}
 
         {/* Quantum Activation Button */}
-        <div className='text-center'>
+        <div className='text-center mt-8 pt-8 border-t border-electric-500/30'>
           <motion.button
             onClick={activateQuantumAI}
             disabled={loading}
-            className={`px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-300 ${
+            className={`px-16 py-6 rounded-2xl font-bold text-2xl transition-all duration-300 ${
               loading
                 ? 'bg-gray-600 cursor-not-allowed'
                 : 'bg-gradient-to-r from-green-500 to-electric-500 hover:from-green-400 hover:to-electric-400 text-black shadow-neon'
@@ -505,19 +528,19 @@ const MoneyMakerPro: React.FC = () => {
             whileTap={!loading ? { scale: 0.95 } : {}}
           >
             {loading ? (
-              <div className='flex items-center space-x-3'>
-                <RefreshCw className='w-6 h-6 animate-spin' />
-                <span>QUANTUM PROCESSING...</span>
+              <div className='flex items-center space-x-4'>
+                <RefreshCw className='w-7 h-7 animate-spin' />
+                <span className='font-cyber'>QUANTUM PROCESSING...</span>
               </div>
             ) : (
-              <div className='flex items-center space-x-3'>
-                <Zap className='w-6 h-6' />
-                <span>ACTIVATE QUANTUM AI</span>
+              <div className='flex items-center space-x-4'>
+                <Zap className='w-7 h-7' />
+                <span className='font-cyber'>ACTIVATE QUANTUM AI</span>
               </div>
             )}
           </motion.button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Results Section */}
       {results && (
