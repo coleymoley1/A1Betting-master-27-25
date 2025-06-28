@@ -603,40 +603,74 @@ const PageRenderer: React.FC = () => {
           </div>
         );
       case 'analytics':
-        return <WorkingAnalytics />;
-      case 'realtime':
         return (
           <div className='p-8 space-y-6'>
-            <div className='text-center'>
-              <h2 className='text-3xl font-bold text-white mb-4 animate-cyber-pulse'>
-                Real-Time Monitor
-              </h2>
-              <p className='text-orange-400 text-lg'>Live Data Intelligence Center</p>
+            <div className='text-center mb-8'>
+              <h1 className='text-4xl font-bold text-white mb-4 animate-cyber-pulse'>
+                Advanced Analytics Hub
+              </h1>
+              <p className='text-purple-400 text-lg'>Deep Learning Performance Metrics</p>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
-              <div className='quantum-card p-4 rounded-xl text-center'>
-                <div className='text-green-400 text-2xl font-bold'>{realTimeData.liveGames}</div>
-                <div className='text-gray-300 text-sm'>Live Games</div>
-              </div>
-              <div className='quantum-card p-4 rounded-xl text-center'>
-                <div className='text-electric-400 text-2xl font-bold'>
-                  {realTimeData.predictions}
+
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-white mb-4'>Model Performance</h3>
+                <div className='space-y-3'>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>XGBoost</span>
+                    <span className='text-green-400'>89.2%</span>
+                  </div>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>Neural Net</span>
+                    <span className='text-electric-400'>91.7%</span>
+                  </div>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>Ensemble</span>
+                    <span className='text-cyan-400'>94.1%</span>
+                  </div>
                 </div>
-                <div className='text-gray-300 text-sm'>Predictions</div>
               </div>
-              <div className='quantum-card p-4 rounded-xl text-center'>
-                <div className='text-cyan-400 text-2xl font-bold'>{realTimeData.activeBots}</div>
-                <div className='text-gray-300 text-sm'>Active Bots</div>
-              </div>
-              <div className='quantum-card p-4 rounded-xl text-center'>
-                <div className='text-purple-400 text-2xl font-bold'>
-                  {realTimeData.processingSpeed}ms
+
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-white mb-4'>Data Processing</h3>
+                <div className='space-y-3'>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>Data Points</span>
+                    <span className='text-white'>2.8M</span>
+                  </div>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>Features</span>
+                    <span className='text-electric-400'>847</span>
+                  </div>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>Quality Score</span>
+                    <span className='text-green-400'>98.3%</span>
+                  </div>
                 </div>
-                <div className='text-gray-300 text-sm'>Response Time</div>
+              </div>
+
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-white mb-4'>Betting Analytics</h3>
+                <div className='space-y-3'>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>Win Rate</span>
+                    <span className='text-green-400'>73.2%</span>
+                  </div>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>ROI</span>
+                    <span className='text-yellow-400'>+247%</span>
+                  </div>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-300'>Sharpe Ratio</span>
+                    <span className='text-cyan-400'>2.84</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         );
+      case 'realtime':
+        return <RealTimeAPIIntegrationDashboard />;
       case 'settings':
         return (
           <div className='p-8 space-y-6'>
