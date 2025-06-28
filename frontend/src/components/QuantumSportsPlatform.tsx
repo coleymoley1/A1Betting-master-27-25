@@ -539,6 +539,14 @@ const Sidebar: React.FC = () => {
       color: 'text-blue-400',
     },
     {
+      name: 'Saved Lineups',
+      key: 'saved-lineups',
+      icon: 'fa-bookmark',
+      category: 'main',
+      indicator: '📋',
+      color: 'text-electric-400',
+    },
+    {
       name: 'ML Center',
       key: 'ml-center',
       icon: 'fa-brain',
