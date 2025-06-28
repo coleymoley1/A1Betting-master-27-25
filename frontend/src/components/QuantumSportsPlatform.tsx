@@ -601,7 +601,7 @@ const Header: React.FC = () => {
 
             {/* Activity Monitor Button */}
             <div className='relative' ref={systemMonitorRef}>
-              <motion.button
+              <button
                 onClick={() => setShowSystemMonitor(!showSystemMonitor)}
                 className={`relative p-3 rounded-xl transition-all duration-300 group ${
                   theme === 'neural-purple'
@@ -612,8 +612,6 @@ const Header: React.FC = () => {
                         ? 'hover:bg-gray-200 hover:shadow-lg'
                         : 'hover:bg-electric-500/20 hover:shadow-neon'
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <Activity
                   className={`w-5 h-5 transition-colors duration-300 ${
