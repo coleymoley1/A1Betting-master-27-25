@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Trophy, Target, TrendingUp, TrendingDown, Brain, Zap } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Trophy,
+  Target,
+  TrendingUp,
+  TrendingDown,
+  Brain,
+  Zap,
+  Save,
+  X,
+  CheckCircle,
+} from 'lucide-react';
 
 interface PlayerProp {
   id: number;
@@ -21,10 +31,30 @@ interface SelectedProp {
   choice: 'over' | 'under';
 }
 
+interface SavedLineup {
+  id: string;
+  name: string;
+  picks: Array<{
+    player: string;
+    stat: string;
+    line: number;
+    choice: 'over' | 'under';
+    confidence: number;
+  }>;
+  entryAmount: number;
+  projectedPayout: number;
+  savedAt: Date;
+}
+
 const PrizePicksPro: React.FC = () => {
   const [selectedProps, setSelectedProps] = useState<Map<string, SelectedProp>>(new Map());
   const [entryAmount, setEntryAmount] = useState(25);
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [lineupName, setLineupName] = useState('');
+  const [savedLineups, setSavedLineups] = useState<SavedLineup[]>([]);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const mockProps: PlayerProp[] = [
     {
@@ -105,6 +135,32 @@ const PrizePicksPro: React.FC = () => {
       trend: 'down',
       game: 'MIL vs BOS',
     },
+    {
+      id: 7,
+      player: 'Nikola Jokic',
+      team: 'DEN',
+      stat: 'Assists',
+      line: 9.5,
+      over: 1.87,
+      under: 1.93,
+      confidence: 90.5,
+      neural: 'Network #12',
+      trend: 'up',
+      game: 'DEN vs LAC',
+    },
+    {
+      id: 8,
+      player: 'Kawhi Leonard',
+      team: 'LAC',
+      stat: 'Points',
+      line: 22.5,
+      over: 1.85,
+      under: 1.95,
+      confidence: 86.1,
+      neural: 'Network #29',
+      trend: 'down',
+      game: 'DEN vs LAC',
+    },
   ];
 
   const validatePicks = (newProps: Map<string, SelectedProp>) => {
@@ -163,6 +219,56 @@ const PrizePicksPro: React.FC = () => {
       6: 'Power Play (6 picks)',
     };
     return requirements[count] || `Select ${Math.max(0, 2 - count)} more`;
+  };
+
+  const saveLineup = () => {
+    if (!lineupName.trim()) {
+      alert('Please enter a lineup name');
+      return;
+    }
+
+    const picks = Array.from(selectedProps.values()).map(pick => {
+      const prop = mockProps.find(p => p.id === pick.propId)!;
+      return {
+        player: prop.player,
+        stat: prop.stat,
+        line: prop.line,
+        choice: pick.choice,
+        confidence: prop.confidence,
+      };
+    });
+
+    const newLineup: SavedLineup = {
+      id: `lineup_${Date.now()}`,
+      name: lineupName,
+      picks,
+      entryAmount,
+      projectedPayout: calculatePayout(),
+      savedAt: new Date(),
+    };
+
+    setSavedLineups(prev => [newLineup, ...prev]);
+    setShowSaveModal(false);
+    setLineupName('');
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 3000);
+  };
+
+  const submitLineup = async () => {
+    if (validationErrors.length > 0) return;
+
+    setIsSubmitting(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+
+      // Reset form
+      setSelectedProps(new Map());
+      setEntryAmount(25);
+    }, 2000);
   };
 
   return (
@@ -240,7 +346,11 @@ const PrizePicksPro: React.FC = () => {
 
       {/* Validation Errors */}
       {validationErrors.length > 0 && (
-        <div className='quantum-card rounded-2xl p-6 border-2 border-red-500/40 bg-red-500/5'>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className='quantum-card rounded-2xl p-6 border-2 border-red-500/40 bg-red-500/5'
+        >
           <h3 className='font-bold text-red-400 text-lg mb-3'>⚠️ Validation Errors</h3>
           <ul className='space-y-1'>
             {validationErrors.map((error, index) => (
@@ -249,11 +359,11 @@ const PrizePicksPro: React.FC = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       )}
 
       {/* Props Grid */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {mockProps.map(prop => {
           const overKey = `${prop.id}_over`;
           const underKey = `${prop.id}_under`;
@@ -265,6 +375,7 @@ const PrizePicksPro: React.FC = () => {
               key={prop.id}
               className='quantum-card rounded-2xl p-6 border border-gray-700/50 hover:border-electric-500/30 transition-all'
               whileHover={{ scale: 1.02 }}
+              layout
             >
               <div className='flex justify-between items-start mb-4'>
                 <div>
@@ -357,18 +468,130 @@ const PrizePicksPro: React.FC = () => {
             </div>
           </div>
 
-          <motion.button
-            className='px-12 py-6 bg-gradient-to-r from-electric-500 to-purple-500 text-black font-bold text-xl rounded-2xl hover:from-electric-400 hover:to-purple-400 transition-all duration-300'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className='flex items-center space-x-3'>
-              <Zap className='w-6 h-6' />
-              <span>SUBMIT QUANTUM ENTRY</span>
-            </div>
-          </motion.button>
+          <div className='flex justify-center space-x-4'>
+            <motion.button
+              onClick={() => setShowSaveModal(true)}
+              className='flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-400 hover:to-purple-400 transition-all duration-300 font-cyber'
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Save className='w-5 h-5' />
+              <span>SAVE LINEUP</span>
+            </motion.button>
+
+            <motion.button
+              onClick={submitLineup}
+              disabled={isSubmitting}
+              className={`flex items-center space-x-2 px-12 py-4 ${
+                isSubmitting
+                  ? 'bg-gray-600 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-electric-500 to-green-500 hover:from-electric-400 hover:to-green-400'
+              } text-white font-bold text-xl rounded-xl transition-all duration-300 font-cyber`}
+              whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+              whileTap={!isSubmitting ? { scale: 0.95 } : {}}
+            >
+              {isSubmitting ? (
+                <>
+                  <div className='w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin' />
+                  <span>SUBMITTING...</span>
+                </>
+              ) : (
+                <>
+                  <Zap className='w-6 h-6' />
+                  <span>SUBMIT QUANTUM ENTRY</span>
+                </>
+              )}
+            </motion.button>
+          </div>
         </motion.div>
       )}
+
+      {/* Save Modal */}
+      <AnimatePresence>
+        {showSaveModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'
+            onClick={() => setShowSaveModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className='quantum-card rounded-2xl p-8 max-w-md w-full mx-4'
+              onClick={e => e.stopPropagation()}
+            >
+              <div className='flex justify-between items-center mb-6'>
+                <h3 className='text-2xl font-bold text-white font-cyber'>SAVE LINEUP</h3>
+                <button
+                  onClick={() => setShowSaveModal(false)}
+                  className='text-gray-400 hover:text-white'
+                >
+                  <X className='w-6 h-6' />
+                </button>
+              </div>
+
+              <div className='space-y-4'>
+                <div>
+                  <label className='block text-sm font-bold mb-2 text-electric-400 font-cyber'>
+                    LINEUP NAME
+                  </label>
+                  <input
+                    type='text'
+                    value={lineupName}
+                    onChange={e => setLineupName(e.target.value)}
+                    placeholder='e.g., NBA Thursday Special'
+                    className='w-full p-4 rounded-xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50 text-white'
+                  />
+                </div>
+
+                <div className='bg-electric-500/10 rounded-xl p-4 border border-electric-500/20'>
+                  <div className='text-sm text-gray-400 mb-2'>
+                    {selectedProps.size} picks • ${entryAmount} entry
+                  </div>
+                  <div className='text-lg font-bold text-green-400'>
+                    Projected: ${calculatePayout().toFixed(2)}
+                  </div>
+                </div>
+
+                <div className='flex space-x-4'>
+                  <button
+                    onClick={() => setShowSaveModal(false)}
+                    className='flex-1 px-6 py-3 border border-gray-600 text-gray-300 rounded-xl hover:bg-gray-800 transition-all'
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={saveLineup}
+                    className='flex-1 px-6 py-3 bg-gradient-to-r from-electric-500 to-green-500 text-white font-bold rounded-xl hover:from-electric-400 hover:to-green-400 transition-all'
+                  >
+                    Save Lineup
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Success Toast */}
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className='fixed bottom-8 right-8 bg-gradient-to-r from-green-500 to-electric-500 text-white px-6 py-4 rounded-xl shadow-neon z-50'
+          >
+            <div className='flex items-center space-x-3'>
+              <CheckCircle className='w-6 h-6' />
+              <span className='font-bold'>Success! Lineup processed.</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

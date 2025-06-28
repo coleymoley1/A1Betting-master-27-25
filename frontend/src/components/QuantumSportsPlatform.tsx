@@ -26,6 +26,7 @@ import MLModelDashboard from './ml/MLModelDashboard';
 import MoneyMakerPro from './user-friendly/MoneyMakerPro';
 import PrizePicksPro from './user-friendly/PrizePicksPro';
 import UniversalAnalytics from './analytics/UniversalAnalytics';
+import SavedLineups from './lineups/SavedLineups';
 
 // Create functional dashboard inline to avoid syntax errors
 const WorkingDashboard: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }) => {
@@ -846,94 +847,7 @@ const PageRenderer: React.FC = () => {
           </div>
         );
       case 'saved-lineups':
-        return (
-          <div className='space-y-10 animate-slide-in-up'>
-            <div className='text-center'>
-              <div className='relative mb-10'>
-                <div className='absolute inset-0 bg-indigo-400/20 blur-3xl rounded-full' />
-                <div className='relative text-8xl text-indigo-400 float-element'>📋</div>
-              </div>
-              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>SAVED LINEUPS</h1>
-              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>
-                Your neural-optimized betting strategies and quantum-generated lineups
-              </p>
-            </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-8'>
-              <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-green-400 font-cyber mb-4'>
-                  💰 MONEY MAKER LINEUPS
-                </h3>
-                <div className='space-y-3'>
-                  <div className='p-4 bg-green-500/10 rounded-xl border border-green-500/20'>
-                    <div className='font-bold text-white'>Quantum Strategy #1</div>
-                    <div className='text-sm text-gray-400'>4 picks • $1000 → $4,250</div>
-                    <div className='text-xs text-green-400'>Saved 2 hours ago</div>
-                  </div>
-                  <div className='p-4 bg-green-500/10 rounded-xl border border-green-500/20'>
-                    <div className='font-bold text-white'>Neural Boost #2</div>
-                    <div className='text-sm text-gray-400'>6 picks • $500 → $2,750</div>
-                    <div className='text-xs text-green-400'>Saved yesterday</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-yellow-400 font-cyber mb-4'>
-                  🏆 PRIZEPICKS LINEUPS
-                </h3>
-                <div className='space-y-3'>
-                  <div className='p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20'>
-                    <div className='font-bold text-white'>5-Pick Power Play</div>
-                    <div className='text-sm text-gray-400'>LeBron + Curry + Giannis</div>
-                    <div className='text-xs text-yellow-400'>Saved 1 hour ago</div>
-                  </div>
-                  <div className='p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20'>
-                    <div className='font-bold text-white'>Neural 6-Pick</div>
-                    <div className='text-sm text-gray-400'>NBA Props Mix</div>
-                    <div className='text-xs text-yellow-400'>Saved today</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-blue-400 font-cyber mb-4'>
-                  🤖 PROPGPT STRATEGIES
-                </h3>
-                <div className='space-y-3'>
-                  <div className='p-4 bg-blue-500/10 rounded-xl border border-blue-500/20'>
-                    <div className='font-bold text-white'>AI Analysis #47</div>
-                    <div className='text-sm text-gray-400'>Multi-sport neural picks</div>
-                    <div className='text-xs text-blue-400'>Saved 30 mins ago</div>
-                  </div>
-                  <div className='p-4 bg-blue-500/10 rounded-xl border border-blue-500/20'>
-                    <div className='font-bold text-white'>Quantum Strategy</div>
-                    <div className='text-sm text-gray-400'>Deep learning recommendations</div>
-                    <div className='text-xs text-blue-400'>Saved 3 hours ago</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className='quantum-card rounded-3xl p-8 text-center'>
-              <h3 className='text-2xl font-bold text-white font-cyber mb-4'>
-                NEURAL LINEUP MANAGER
-              </h3>
-              <p className='text-gray-400 mb-6'>
-                Manage, analyze, and optimize your saved betting strategies with quantum
-                intelligence
-              </p>
-              <div className='flex justify-center space-x-4'>
-                <button className='px-8 py-4 bg-gradient-to-r from-green-500 to-electric-500 text-black font-bold rounded-xl hover:from-green-400 hover:to-electric-400 transition-all duration-300 font-cyber'>
-                  ANALYZE ALL LINEUPS
-                </button>
-                <button className='px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold rounded-xl hover:from-purple-400 hover:to-blue-400 transition-all duration-300 font-cyber'>
-                  EXPORT STRATEGIES
-                </button>
-              </div>
-            </div>
-          </div>
-        );
+        return <SavedLineups />;
       case 'settings':
         try {
           return <UltimateSettingsPage />;
