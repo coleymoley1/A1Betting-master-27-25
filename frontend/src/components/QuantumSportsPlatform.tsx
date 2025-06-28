@@ -802,12 +802,19 @@ const PageRenderer: React.FC = () => {
                 <div className='absolute inset-0 bg-pink-400/20 blur-3xl rounded-full' />
                 <div className='relative text-8xl text-pink-400 float-element'>📈</div>
               </div>
-              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>MARKET INTELLIGENCE</h1>
-              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>Advanced market analysis with neural sentiment processing, quantum trend prediction, and real-time opportunity detection</p>
+              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>
+                MARKET INTELLIGENCE
+              </h1>
+              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>
+                Advanced market analysis with neural sentiment processing, quantum trend prediction,
+                and real-time opportunity detection
+              </p>
             </div>
 
             <div className='quantum-card rounded-3xl p-10 text-center'>
-              <div className='text-gray-500 mb-8 text-xl font-mono'>Advanced quantum feature interface coming soon...</div>
+              <div className='text-gray-500 mb-8 text-xl font-mono'>
+                Advanced quantum feature interface coming soon...
+              </div>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-10'>
                 <div className='text-center'>
                   <div className='text-4xl mb-4 text-electric-400'>🧠</div>
@@ -840,12 +847,16 @@ const PageRenderer: React.FC = () => {
                 <div className='relative text-8xl text-indigo-400 float-element'>📋</div>
               </div>
               <h1 className='holographic text-6xl font-black mb-6 font-cyber'>SAVED LINEUPS</h1>
-              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>Your neural-optimized betting strategies and quantum-generated lineups</p>
+              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>
+                Your neural-optimized betting strategies and quantum-generated lineups
+              </p>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-8'>
               <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-green-400 font-cyber mb-4'>💰 MONEY MAKER LINEUPS</h3>
+                <h3 className='text-xl font-bold text-green-400 font-cyber mb-4'>
+                  💰 MONEY MAKER LINEUPS
+                </h3>
                 <div className='space-y-3'>
                   <div className='p-4 bg-green-500/10 rounded-xl border border-green-500/20'>
                     <div className='font-bold text-white'>Quantum Strategy #1</div>
@@ -861,7 +872,9 @@ const PageRenderer: React.FC = () => {
               </div>
 
               <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-yellow-400 font-cyber mb-4'>🏆 PRIZEPICKS LINEUPS</h3>
+                <h3 className='text-xl font-bold text-yellow-400 font-cyber mb-4'>
+                  🏆 PRIZEPICKS LINEUPS
+                </h3>
                 <div className='space-y-3'>
                   <div className='p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20'>
                     <div className='font-bold text-white'>5-Pick Power Play</div>
@@ -877,7 +890,9 @@ const PageRenderer: React.FC = () => {
               </div>
 
               <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-blue-400 font-cyber mb-4'>🤖 PROPGPT STRATEGIES</h3>
+                <h3 className='text-xl font-bold text-blue-400 font-cyber mb-4'>
+                  🤖 PROPGPT STRATEGIES
+                </h3>
                 <div className='space-y-3'>
                   <div className='p-4 bg-blue-500/10 rounded-xl border border-blue-500/20'>
                     <div className='font-bold text-white'>AI Analysis #47</div>
@@ -894,8 +909,13 @@ const PageRenderer: React.FC = () => {
             </div>
 
             <div className='quantum-card rounded-3xl p-8 text-center'>
-              <h3 className='text-2xl font-bold text-white font-cyber mb-4'>NEURAL LINEUP MANAGER</h3>
-              <p className='text-gray-400 mb-6'>Manage, analyze, and optimize your saved betting strategies with quantum intelligence</p>
+              <h3 className='text-2xl font-bold text-white font-cyber mb-4'>
+                NEURAL LINEUP MANAGER
+              </h3>
+              <p className='text-gray-400 mb-6'>
+                Manage, analyze, and optimize your saved betting strategies with quantum
+                intelligence
+              </p>
               <div className='flex justify-center space-x-4'>
                 <button className='px-8 py-4 bg-gradient-to-r from-green-500 to-electric-500 text-black font-bold rounded-xl hover:from-green-400 hover:to-electric-400 transition-all duration-300 font-cyber'>
                   ANALYZE ALL LINEUPS
@@ -904,13 +924,6 @@ const PageRenderer: React.FC = () => {
                   EXPORT STRATEGIES
                 </button>
               </div>
-            </div>
-          </div>
-        );
-              </div>
-              <button className='px-12 py-6 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl rounded-2xl hover:from-pink-400 hover:to-purple-400 transition-all duration-300 font-cyber'>
-                INITIALIZE QUANTUM INTERFACE
-              </button>
             </div>
           </div>
         );
