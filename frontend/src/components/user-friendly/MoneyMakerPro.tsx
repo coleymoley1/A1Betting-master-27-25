@@ -391,8 +391,8 @@ const MoneyMakerPro: React.FC = () => {
             className='border-t border-electric-500/30 pt-8 mt-8'
           >
             <QuantumFilters
-              filters={filters}
-              onFiltersChange={updateFilters}
+              filters={oldFilters}
+              onFiltersChange={updateOldFilters}
               showAdvanced={true}
               className='border-2 border-electric-500/30 shadow-neon'
             />
