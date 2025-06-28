@@ -773,7 +773,7 @@ const PageRenderer: React.FC = () => {
           </div>
         );
       case 'analytics':
-        return <CleanAnalytics />;
+        return <WorkingAnalytics />;
       case 'realtime':
         return (
           <div className='p-8 space-y-6'>
