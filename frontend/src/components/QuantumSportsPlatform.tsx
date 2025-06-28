@@ -356,7 +356,7 @@ const Header: React.FC = () => {
           <div className='flex items-center space-x-6'>
             <motion.button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className='lg:hidden p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300'
+              className='p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -473,6 +473,7 @@ const Header: React.FC = () => {
                 </div>
               </div>
               <motion.button
+                onClick={() => setCurrentPage('settings')}
                 className='relative w-12 h-12 bg-gradient-to-br from-electric-400 via-neon-blue to-neon-purple rounded-xl flex items-center justify-center hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:rotate-3'
                 whileHover={{ scale: 1.05, rotate: 3 }}
                 whileTap={{ scale: 0.95 }}
@@ -801,19 +802,12 @@ const PageRenderer: React.FC = () => {
                 <div className='absolute inset-0 bg-pink-400/20 blur-3xl rounded-full' />
                 <div className='relative text-8xl text-pink-400 float-element'>📈</div>
               </div>
-              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>
-                MARKET INTELLIGENCE
-              </h1>
-              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>
-                Advanced market analysis with neural sentiment processing, quantum trend prediction,
-                and real-time opportunity detection
-              </p>
+              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>MARKET INTELLIGENCE</h1>
+              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>Advanced market analysis with neural sentiment processing, quantum trend prediction, and real-time opportunity detection</p>
             </div>
 
             <div className='quantum-card rounded-3xl p-10 text-center'>
-              <div className='text-gray-500 mb-8 text-xl font-mono'>
-                Advanced quantum feature interface coming soon...
-              </div>
+              <div className='text-gray-500 mb-8 text-xl font-mono'>Advanced quantum feature interface coming soon...</div>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-10'>
                 <div className='text-center'>
                   <div className='text-4xl mb-4 text-electric-400'>🧠</div>
@@ -830,6 +824,89 @@ const PageRenderer: React.FC = () => {
                   <div className='font-bold text-white font-cyber'>Real-time Analysis</div>
                   <div className='text-gray-400 text-sm font-mono'>Live data processing</div>
                 </div>
+              </div>
+              <button className='px-12 py-6 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl rounded-2xl hover:from-pink-400 hover:to-purple-400 transition-all duration-300 font-cyber'>
+                INITIALIZE QUANTUM INTERFACE
+              </button>
+            </div>
+          </div>
+        );
+      case 'saved-lineups':
+        return (
+          <div className='space-y-10 animate-slide-in-up'>
+            <div className='text-center'>
+              <div className='relative mb-10'>
+                <div className='absolute inset-0 bg-indigo-400/20 blur-3xl rounded-full' />
+                <div className='relative text-8xl text-indigo-400 float-element'>📋</div>
+              </div>
+              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>SAVED LINEUPS</h1>
+              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>Your neural-optimized betting strategies and quantum-generated lineups</p>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-8'>
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-green-400 font-cyber mb-4'>💰 MONEY MAKER LINEUPS</h3>
+                <div className='space-y-3'>
+                  <div className='p-4 bg-green-500/10 rounded-xl border border-green-500/20'>
+                    <div className='font-bold text-white'>Quantum Strategy #1</div>
+                    <div className='text-sm text-gray-400'>4 picks • $1000 → $4,250</div>
+                    <div className='text-xs text-green-400'>Saved 2 hours ago</div>
+                  </div>
+                  <div className='p-4 bg-green-500/10 rounded-xl border border-green-500/20'>
+                    <div className='font-bold text-white'>Neural Boost #2</div>
+                    <div className='text-sm text-gray-400'>6 picks • $500 → $2,750</div>
+                    <div className='text-xs text-green-400'>Saved yesterday</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-yellow-400 font-cyber mb-4'>🏆 PRIZEPICKS LINEUPS</h3>
+                <div className='space-y-3'>
+                  <div className='p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20'>
+                    <div className='font-bold text-white'>5-Pick Power Play</div>
+                    <div className='text-sm text-gray-400'>LeBron + Curry + Giannis</div>
+                    <div className='text-xs text-yellow-400'>Saved 1 hour ago</div>
+                  </div>
+                  <div className='p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20'>
+                    <div className='font-bold text-white'>Neural 6-Pick</div>
+                    <div className='text-sm text-gray-400'>NBA Props Mix</div>
+                    <div className='text-xs text-yellow-400'>Saved today</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-blue-400 font-cyber mb-4'>🤖 PROPGPT STRATEGIES</h3>
+                <div className='space-y-3'>
+                  <div className='p-4 bg-blue-500/10 rounded-xl border border-blue-500/20'>
+                    <div className='font-bold text-white'>AI Analysis #47</div>
+                    <div className='text-sm text-gray-400'>Multi-sport neural picks</div>
+                    <div className='text-xs text-blue-400'>Saved 30 mins ago</div>
+                  </div>
+                  <div className='p-4 bg-blue-500/10 rounded-xl border border-blue-500/20'>
+                    <div className='font-bold text-white'>Quantum Strategy</div>
+                    <div className='text-sm text-gray-400'>Deep learning recommendations</div>
+                    <div className='text-xs text-blue-400'>Saved 3 hours ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='quantum-card rounded-3xl p-8 text-center'>
+              <h3 className='text-2xl font-bold text-white font-cyber mb-4'>NEURAL LINEUP MANAGER</h3>
+              <p className='text-gray-400 mb-6'>Manage, analyze, and optimize your saved betting strategies with quantum intelligence</p>
+              <div className='flex justify-center space-x-4'>
+                <button className='px-8 py-4 bg-gradient-to-r from-green-500 to-electric-500 text-black font-bold rounded-xl hover:from-green-400 hover:to-electric-400 transition-all duration-300 font-cyber'>
+                  ANALYZE ALL LINEUPS
+                </button>
+                <button className='px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold rounded-xl hover:from-purple-400 hover:to-blue-400 transition-all duration-300 font-cyber'>
+                  EXPORT STRATEGIES
+                </button>
+              </div>
+            </div>
+          </div>
+        );
               </div>
               <button className='px-12 py-6 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl rounded-2xl hover:from-pink-400 hover:to-purple-400 transition-all duration-300 font-cyber'>
                 INITIALIZE QUANTUM INTERFACE
