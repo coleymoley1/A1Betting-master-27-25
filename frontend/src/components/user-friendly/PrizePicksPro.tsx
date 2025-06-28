@@ -16,7 +16,9 @@ import { lineupTracker } from '../../services/lineupTrackingService';
 import toast from 'react-hot-toast';
 import InGameTimeFilter from '../filters/InGameTimeFilter';
 import CompactFilterBar from '../filters/CompactFilterBar';
+import FluentLiveFilters from '../filters/FluentLiveFilters';
 import { useFilters } from '../../hooks/useFilters';
+import { useFluentFilters, useFilteredResults } from '../../hooks/useFluentFilters';
 
 interface PlayerProp {
   id: number;
