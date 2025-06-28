@@ -240,6 +240,33 @@ const QuantumSportsPlatform: React.FC = () => {
   const { data: realTimeData } = useRealTimeData();
   const { notifications } = useBettingData();
 
+  // Particle effects
+  useEffect(() => {
+    const createParticle = () => {
+      const particlesContainer = document.getElementById('particles');
+      if (!particlesContainer) return;
+
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDelay = Math.random() * 8 + 's';
+      particle.style.animationDuration = 8 + Math.random() * 4 + 's';
+      particlesContainer.appendChild(particle);
+
+      setTimeout(() => {
+        if (particle.parentNode) {
+          particle.remove();
+        }
+      }, 12000);
+    };
+
+    const particleInterval = setInterval(createParticle, 2000);
+
+    return () => {
+      clearInterval(particleInterval);
+    };
+  }, []);
+
   // Toast functionality
   const store = useStore();
   console.log('Store:', store);
