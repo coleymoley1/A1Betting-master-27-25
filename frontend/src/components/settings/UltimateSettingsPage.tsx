@@ -394,6 +394,431 @@ const UltimateSettingsPage: React.FC = () => {
           </div>
         );
 
+      case 'account':
+        return (
+          <div className='space-y-6'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>ACCOUNT SETTINGS</h3>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h4 className='text-lg font-bold text-blue-400 mb-4'>Contact Information</h4>
+                <div className='space-y-4'>
+                  <div>
+                    <label className='block text-sm font-bold mb-2 text-gray-300'>Phone</label>
+                    <input
+                      type='tel'
+                      value={profileData.phone}
+                      onChange={e => setProfileData({ ...profileData, phone: e.target.value })}
+                      className='w-full p-3 rounded-xl border border-gray-600 bg-gray-900/50 text-white'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-bold mb-2 text-gray-300'>Website</label>
+                    <input
+                      type='url'
+                      value={profileData.website}
+                      onChange={e => setProfileData({ ...profileData, website: e.target.value })}
+                      className='w-full p-3 rounded-xl border border-gray-600 bg-gray-900/50 text-white'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-bold mb-2 text-gray-300'>Location</label>
+                    <input
+                      type='text'
+                      value={profileData.location}
+                      onChange={e => setProfileData({ ...profileData, location: e.target.value })}
+                      className='w-full p-3 rounded-xl border border-gray-600 bg-gray-900/50 text-white'
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h4 className='text-lg font-bold text-blue-400 mb-4'>Social Connections</h4>
+                <div className='space-y-4'>
+                  <div>
+                    <label className='block text-sm font-bold mb-2 text-gray-300'>Twitter</label>
+                    <input
+                      type='text'
+                      value={profileData.social.twitter}
+                      onChange={e =>
+                        setProfileData({
+                          ...profileData,
+                          social: { ...profileData.social, twitter: e.target.value },
+                        })
+                      }
+                      className='w-full p-3 rounded-xl border border-gray-600 bg-gray-900/50 text-white'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-bold mb-2 text-gray-300'>LinkedIn</label>
+                    <input
+                      type='text'
+                      value={profileData.social.linkedin}
+                      onChange={e =>
+                        setProfileData({
+                          ...profileData,
+                          social: { ...profileData.social, linkedin: e.target.value },
+                        })
+                      }
+                      className='w-full p-3 rounded-xl border border-gray-600 bg-gray-900/50 text-white'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-bold mb-2 text-gray-300'>Discord</label>
+                    <input
+                      type='text'
+                      value={profileData.social.discord}
+                      onChange={e =>
+                        setProfileData({
+                          ...profileData,
+                          social: { ...profileData.social, discord: e.target.value },
+                        })
+                      }
+                      className='w-full p-3 rounded-xl border border-gray-600 bg-gray-900/50 text-white'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'neural':
+        return (
+          <div className='space-y-6'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>NEURAL AI CONFIGURATION</h3>
+
+            <div className='quantum-card p-6 rounded-2xl border border-purple-500/20'>
+              <h4 className='text-lg font-bold text-purple-400 mb-6'>Neural Network Settings</h4>
+              <div className='space-y-6'>
+                <div className='flex items-center justify-between p-4 bg-gray-800/40 rounded-xl'>
+                  <div>
+                    <div className='font-bold text-white'>Auto-Optimization</div>
+                    <div className='text-sm text-gray-400'>
+                      Automatically optimize neural parameters
+                    </div>
+                  </div>
+                  <label className='relative inline-flex items-center cursor-pointer'>
+                    <input
+                      type='checkbox'
+                      checked={preferences.neural.autoOptimize}
+                      onChange={e =>
+                        setPreferences({
+                          ...preferences,
+                          neural: { ...preferences.neural, autoOptimize: e.target.checked },
+                        })
+                      }
+                      className='sr-only peer'
+                    />
+                    <div className='w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600'></div>
+                  </label>
+                </div>
+
+                <div className='flex items-center justify-between p-4 bg-gray-800/40 rounded-xl'>
+                  <div>
+                    <div className='font-bold text-white'>Custom Models</div>
+                    <div className='text-sm text-gray-400'>Enable custom neural model training</div>
+                  </div>
+                  <label className='relative inline-flex items-center cursor-pointer'>
+                    <input
+                      type='checkbox'
+                      checked={preferences.neural.customModels}
+                      onChange={e =>
+                        setPreferences({
+                          ...preferences,
+                          neural: { ...preferences.neural, customModels: e.target.checked },
+                        })
+                      }
+                      className='sr-only peer'
+                    />
+                    <div className='w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600'></div>
+                  </label>
+                </div>
+
+                <div className='flex items-center justify-between p-4 bg-gray-800/40 rounded-xl'>
+                  <div>
+                    <div className='font-bold text-white'>Data Sharing</div>
+                    <div className='text-sm text-gray-400'>
+                      Share anonymized data to improve models
+                    </div>
+                  </div>
+                  <label className='relative inline-flex items-center cursor-pointer'>
+                    <input
+                      type='checkbox'
+                      checked={preferences.neural.dataSharing}
+                      onChange={e =>
+                        setPreferences({
+                          ...preferences,
+                          neural: { ...preferences.neural, dataSharing: e.target.checked },
+                        })
+                      }
+                      className='sr-only peer'
+                    />
+                    <div className='w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600'></div>
+                  </label>
+                </div>
+
+                <div className='flex items-center justify-between p-4 bg-gray-800/40 rounded-xl'>
+                  <div>
+                    <div className='font-bold text-white'>Advanced Metrics</div>
+                    <div className='text-sm text-gray-400'>
+                      Show detailed neural network metrics
+                    </div>
+                  </div>
+                  <label className='relative inline-flex items-center cursor-pointer'>
+                    <input
+                      type='checkbox'
+                      checked={preferences.neural.advancedMetrics}
+                      onChange={e =>
+                        setPreferences({
+                          ...preferences,
+                          neural: { ...preferences.neural, advancedMetrics: e.target.checked },
+                        })
+                      }
+                      className='sr-only peer'
+                    />
+                    <div className='w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600'></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className='quantum-card p-6 rounded-2xl'>
+              <h4 className='text-lg font-bold text-purple-400 mb-4'>Neural Performance</h4>
+              <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
+                <div className='text-center p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='text-2xl font-bold text-electric-400'>47</div>
+                  <div className='text-sm text-gray-400'>Active Models</div>
+                </div>
+                <div className='text-center p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='text-2xl font-bold text-green-400'>94.7%</div>
+                  <div className='text-sm text-gray-400'>Avg Accuracy</div>
+                </div>
+                <div className='text-center p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='text-2xl font-bold text-cyan-400'>12ms</div>
+                  <div className='text-sm text-gray-400'>Response Time</div>
+                </div>
+                <div className='text-center p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='text-2xl font-bold text-purple-400'>2.4M</div>
+                  <div className='text-sm text-gray-400'>Predictions</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'security':
+        return (
+          <div className='space-y-6'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>SECURITY SETTINGS</h3>
+
+            <div className='quantum-card p-6 rounded-2xl border border-red-500/20'>
+              <h4 className='text-lg font-bold text-red-400 mb-6'>Authentication & Access</h4>
+              <div className='space-y-6'>
+                <div className='p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='flex items-center justify-between mb-4'>
+                    <div>
+                      <div className='font-bold text-white'>Two-Factor Authentication</div>
+                      <div className='text-sm text-gray-400'>Add an extra layer of security</div>
+                    </div>
+                    <button className='px-4 py-2 bg-green-500/20 text-green-400 border border-green-500/40 rounded-lg hover:bg-green-500/30'>
+                      Enable 2FA
+                    </button>
+                  </div>
+                </div>
+
+                <div className='p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='flex items-center justify-between mb-4'>
+                    <div>
+                      <div className='font-bold text-white'>API Key Management</div>
+                      <div className='text-sm text-gray-400'>Manage your API access keys</div>
+                    </div>
+                    <button className='px-4 py-2 bg-blue-500/20 text-blue-400 border border-blue-500/40 rounded-lg hover:bg-blue-500/30'>
+                      Manage Keys
+                    </button>
+                  </div>
+                </div>
+
+                <div className='p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='flex items-center justify-between mb-4'>
+                    <div>
+                      <div className='font-bold text-white'>Session Management</div>
+                      <div className='text-sm text-gray-400'>View and manage active sessions</div>
+                    </div>
+                    <button className='px-4 py-2 bg-yellow-500/20 text-yellow-400 border border-yellow-500/40 rounded-lg hover:bg-yellow-500/30'>
+                      View Sessions
+                    </button>
+                  </div>
+                </div>
+
+                <div className='p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='flex items-center justify-between mb-4'>
+                    <div>
+                      <div className='font-bold text-white'>Change Password</div>
+                      <div className='text-sm text-gray-400'>Update your account password</div>
+                    </div>
+                    <button className='px-4 py-2 bg-purple-500/20 text-purple-400 border border-purple-500/40 rounded-lg hover:bg-purple-500/30'>
+                      Change Password
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='quantum-card p-6 rounded-2xl'>
+              <h4 className='text-lg font-bold text-red-400 mb-4'>Privacy Controls</h4>
+              <div className='space-y-4'>
+                {Object.entries(preferences.privacy).map(([key, value]) => (
+                  <div
+                    key={key}
+                    className='flex items-center justify-between p-3 bg-gray-800/40 rounded-lg'
+                  >
+                    <div>
+                      <div className='font-bold text-white capitalize'>
+                        {key.replace(/([A-Z])/g, ' $1')}
+                      </div>
+                      <div className='text-sm text-gray-400'>
+                        {key === 'profileVisible' && 'Make your profile visible to other users'}
+                        {key === 'showStats' && 'Display your statistics publicly'}
+                        {key === 'shareAchievements' && 'Share achievements with the community'}
+                        {key === 'allowAnalytics' && 'Allow anonymous usage analytics'}
+                      </div>
+                    </div>
+                    <label className='relative inline-flex items-center cursor-pointer'>
+                      <input
+                        type='checkbox'
+                        checked={value}
+                        onChange={e =>
+                          setPreferences({
+                            ...preferences,
+                            privacy: { ...preferences.privacy, [key]: e.target.checked },
+                          })
+                        }
+                        className='sr-only peer'
+                      />
+                      <div className='w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600'></div>
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'api':
+        return (
+          <div className='space-y-6'>
+            <h3 className='text-2xl font-bold text-white font-cyber'>API ACCESS CONTROL</h3>
+
+            <div className='quantum-card p-6 rounded-2xl border border-cyan-500/20'>
+              <h4 className='text-lg font-bold text-cyan-400 mb-6'>API Configuration</h4>
+              <div className='space-y-6'>
+                <div className='p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='mb-4'>
+                    <div className='font-bold text-white mb-2'>Primary API Key</div>
+                    <div className='flex items-center space-x-4'>
+                      <input
+                        type='text'
+                        value='qnt_1234567890abcdef...'
+                        readOnly
+                        className='flex-1 p-3 rounded-lg bg-gray-900 border border-gray-600 text-gray-300 font-mono'
+                      />
+                      <button className='px-4 py-2 bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 rounded-lg hover:bg-cyan-500/30'>
+                        Copy
+                      </button>
+                      <button className='px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/40 rounded-lg hover:bg-red-500/30'>
+                        Regenerate
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                  <div className='p-4 bg-gray-800/40 rounded-xl'>
+                    <div className='font-bold text-white mb-4'>Rate Limits</div>
+                    <div className='space-y-3'>
+                      <div className='flex justify-between'>
+                        <span className='text-gray-400'>Requests/Hour</span>
+                        <span className='text-cyan-400 font-mono'>10,000</span>
+                      </div>
+                      <div className='flex justify-between'>
+                        <span className='text-gray-400'>Requests/Day</span>
+                        <span className='text-cyan-400 font-mono'>100,000</span>
+                      </div>
+                      <div className='flex justify-between'>
+                        <span className='text-gray-400'>Concurrent</span>
+                        <span className='text-cyan-400 font-mono'>50</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className='p-4 bg-gray-800/40 rounded-xl'>
+                    <div className='font-bold text-white mb-4'>Usage Statistics</div>
+                    <div className='space-y-3'>
+                      <div className='flex justify-between'>
+                        <span className='text-gray-400'>This Hour</span>
+                        <span className='text-green-400 font-mono'>247</span>
+                      </div>
+                      <div className='flex justify-between'>
+                        <span className='text-gray-400'>Today</span>
+                        <span className='text-green-400 font-mono'>8,934</span>
+                      </div>
+                      <div className='flex justify-between'>
+                        <span className='text-gray-400'>This Month</span>
+                        <span className='text-green-400 font-mono'>234,567</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='p-4 bg-gray-800/40 rounded-xl'>
+                  <div className='font-bold text-white mb-4'>Endpoint Access</div>
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                    {[
+                      'Predictions API',
+                      'Market Data API',
+                      'Neural Models API',
+                      'Real-time Feed',
+                      'Analytics API',
+                      'Quantum Engine',
+                    ].map((endpoint, idx) => (
+                      <div
+                        key={idx}
+                        className='flex items-center justify-between p-3 bg-gray-900/50 rounded-lg'
+                      >
+                        <span className='text-gray-300 font-mono'>{endpoint}</span>
+                        <div className='w-3 h-3 bg-green-400 rounded-full animate-pulse'></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='quantum-card p-6 rounded-2xl'>
+              <h4 className='text-lg font-bold text-cyan-400 mb-4'>API Documentation</h4>
+              <div className='space-y-4'>
+                <p className='text-gray-300'>
+                  Access comprehensive API documentation and code examples to integrate our neural
+                  sports intelligence platform into your applications.
+                </p>
+                <div className='flex space-x-4'>
+                  <button className='flex items-center space-x-2 px-6 py-3 bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 rounded-lg hover:bg-cyan-500/30'>
+                    <span>View Docs</span>
+                  </button>
+                  <button className='flex items-center space-x-2 px-6 py-3 bg-purple-500/20 text-purple-400 border border-purple-500/40 rounded-lg hover:bg-purple-500/30'>
+                    <span>Code Examples</span>
+                  </button>
+                  <button className='flex items-center space-x-2 px-6 py-3 bg-green-500/20 text-green-400 border border-green-500/40 rounded-lg hover:bg-green-500/30'>
+                    <span>SDKs</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
       case 'achievements':
         return (
           <div className='space-y-6'>
