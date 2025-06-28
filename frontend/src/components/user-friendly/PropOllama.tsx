@@ -347,6 +347,54 @@ const PropOllama: React.FC = () => {
           );
         })}
       </div>
+
+      {/* Save Lineup Modal */}
+      {showSaveModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'
+          onClick={() => setShowSaveModal(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className='quantum-card rounded-2xl p-8 max-w-md w-full'
+            onClick={e => e.stopPropagation()}
+          >
+            <h3 className='text-2xl font-bold text-blue-400 mb-6 font-cyber'>SAVE AI ANALYSIS</h3>
+            <div className='space-y-4'>
+              <div>
+                <label className='block text-sm font-bold mb-2 text-gray-300'>Analysis Name</label>
+                <input
+                  type='text'
+                  value={lineupName}
+                  onChange={e => setLineupName(e.target.value)}
+                  placeholder='Enter analysis name...'
+                  className='w-full p-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none'
+                />
+              </div>
+              <div className='text-sm text-gray-400'>
+                This will save your current AI conversation as a lineup for tracking.
+              </div>
+              <div className='flex space-x-4 pt-4'>
+                <button
+                  onClick={saveConversationAsLineup}
+                  className='flex-1 py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-400 transition-all'
+                >
+                  Save Analysis
+                </button>
+                <button
+                  onClick={() => setShowSaveModal(false)}
+                  className='flex-1 py-3 bg-gray-600 text-white font-bold rounded-lg hover:bg-gray-500 transition-all'
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </motion.div>
   );
 };
