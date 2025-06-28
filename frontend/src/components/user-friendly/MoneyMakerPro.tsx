@@ -138,7 +138,7 @@ const MoneyMakerPro: React.FC = () => {
             confidence: 96.2,
             odds: '-110',
             neural: 'Quantum Network #23',
-            reason: `Neural matrix analysis: ${config.weatherFilter ? 'Weather optimal, ' : ''}${config.injuryFilter ? 'no injuries, ' : ''}line moved 2pts`,
+            reason: 'Neural matrix analysis: Weather optimal, no injuries, line moved 2pts',
           },
           {
             game: 'Chiefs vs Bills',
@@ -162,7 +162,7 @@ const MoneyMakerPro: React.FC = () => {
             confidence: 89.4,
             odds: '-120',
             neural: 'Predictive AI #07',
-            reason: `Slot coverage weakness, ${config.injuryFilter ? 'injury report clean, ' : ''}neural enhancement active`,
+            reason: 'Slot coverage weakness, injury report clean, neural enhancement active',
           },
         ].slice(0, config.portfolio),
         quantumBoost: true,
@@ -243,15 +243,6 @@ const MoneyMakerPro: React.FC = () => {
             >
               <Filter className={`w-4 h-4 ${showQuantumFilters ? 'animate-pulse' : ''}`} />
               <span>FILTERS</span>
-            </motion.button>
-            <motion.button
-              onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-              className='flex items-center space-x-2 px-4 py-2 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-400 hover:bg-purple-500/30 transition-all font-cyber font-bold text-sm'
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Zap className={`w-4 h-4 ${showAdvancedFilters ? 'animate-neural-pulse' : ''}`} />
-              <span>NEURAL</span>
             </motion.button>
           </div>
         </div>
@@ -350,33 +341,41 @@ const MoneyMakerPro: React.FC = () => {
               </h3>
               <div className='space-y-3'>
                 <div className='flex flex-wrap gap-2'>
-                  {filters.sports.slice(0, 4).map(sportId => {
-                    const sport = [
-                      'NBA',
-                      'NFL',
-                      'MLB',
-                      'NHL',
-                      'Soccer',
-                      'WNBA',
-                      'PGA',
-                      'MMA',
-                      'Boxing',
-                      'Tennis',
-                      'Esports',
-                    ].find(s => s.toLowerCase() === sportId);
-                    return sport ? (
-                      <div
-                        key={sportId}
-                        className='px-3 py-1 bg-electric-500/20 text-electric-400 rounded-full text-sm font-mono border border-electric-500/30'
-                      >
-                        {sport}
-                      </div>
-                    ) : null;
-                  })}
-                  {filters.sports.length > 4 && (
-                    <div className='px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-sm font-mono'>
-                      +{filters.sports.length - 4}
+                  {filters.sports.length === 0 ? (
+                    <div className='px-4 py-2 bg-electric-500/20 text-electric-400 rounded-full text-sm font-cyber font-bold border border-electric-500/30'>
+                      ALL SPORTS
                     </div>
+                  ) : (
+                    <>
+                      {filters.sports.slice(0, 4).map(sportId => {
+                        const sport = [
+                          'NBA',
+                          'NFL',
+                          'MLB',
+                          'NHL',
+                          'Soccer',
+                          'WNBA',
+                          'PGA',
+                          'MMA',
+                          'Boxing',
+                          'Tennis',
+                          'Esports',
+                        ].find(s => s.toLowerCase() === sportId);
+                        return sport ? (
+                          <div
+                            key={sportId}
+                            className='px-3 py-1 bg-electric-500/20 text-electric-400 rounded-full text-sm font-mono border border-electric-500/30'
+                          >
+                            {sport}
+                          </div>
+                        ) : null;
+                      })}
+                      {filters.sports.length > 4 && (
+                        <div className='px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-sm font-mono'>
+                          +{filters.sports.length - 4}
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
                 <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
@@ -396,43 +395,33 @@ const MoneyMakerPro: React.FC = () => {
 
             <div className='quantum-card p-6 rounded-2xl border border-purple-500/30'>
               <h3 className='text-lg font-bold text-purple-400 font-cyber mb-4 flex items-center space-x-2'>
-                <Brain className='w-5 h-5' />
-                <span>NEURAL MODULES</span>
+                <TrendingUp className='w-5 h-5' />
+                <span>QUICK SETTINGS</span>
               </h3>
-              <div className='grid grid-cols-2 gap-3'>
-                <label className='flex items-center justify-between p-3 quantum-card rounded-lg cursor-pointer hover:bg-purple-500/10 transition-all'>
-                  <span className='text-gray-300 font-mono text-sm'>Weather</span>
-                  <input
-                    type='checkbox'
-                    checked={config.weatherFilter}
-                    onChange={e => setConfig({ ...config, weatherFilter: e.target.checked })}
-                    className='w-4 h-4 text-purple-400'
-                  />
-                </label>
-                <label className='flex items-center justify-between p-3 quantum-card rounded-lg cursor-pointer hover:bg-purple-500/10 transition-all'>
-                  <span className='text-gray-300 font-mono text-sm'>Injury Intel</span>
-                  <input
-                    type='checkbox'
-                    checked={config.injuryFilter}
-                    onChange={e => setConfig({ ...config, injuryFilter: e.target.checked })}
-                    className='w-4 h-4 text-purple-400'
-                  />
-                </label>
-              </div>
-              <div className='mt-4'>
-                <label className='block text-sm font-bold mb-2 text-cyan-400 font-cyber'>
-                  RISK PROTOCOL
-                </label>
-                <select
-                  value={config.riskLevel}
-                  onChange={e => setConfig({ ...config, riskLevel: e.target.value })}
-                  className='w-full p-3 rounded-xl border-2 border-cyan-500/30 focus:border-cyan-500 bg-gray-900/50 text-white font-cyber'
-                >
-                  <option value='conservative'>Conservative</option>
-                  <option value='moderate'>Balanced</option>
-                  <option value='aggressive'>Aggressive</option>
-                  <option value='maximum'>Maximum</option>
-                </select>
+              <div className='space-y-4'>
+                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                  <span className='text-gray-300 font-mono text-sm'>Neural Enhancement</span>
+                  <span className='text-green-400 font-cyber font-bold text-sm'>AUTO</span>
+                </div>
+                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                  <span className='text-gray-300 font-mono text-sm'>Risk Protocol</span>
+                  <select
+                    value={config.riskLevel}
+                    onChange={e => setConfig({ ...config, riskLevel: e.target.value })}
+                    className='bg-gray-900/50 text-white text-sm rounded px-2 py-1 border border-gray-600 font-cyber'
+                  >
+                    <option value='conservative'>Conservative</option>
+                    <option value='moderate'>Balanced</option>
+                    <option value='aggressive'>Aggressive</option>
+                    <option value='maximum'>Maximum</option>
+                  </select>
+                </div>
+                <div className='text-center p-3 bg-purple-500/10 rounded-lg border border-purple-500/30'>
+                  <div className='text-xs text-purple-400 font-mono mb-1'>
+                    Advanced Neural Modules
+                  </div>
+                  <div className='text-sm text-gray-300'>Configure in Admin Panel</div>
+                </div>
               </div>
             </div>
           </div>

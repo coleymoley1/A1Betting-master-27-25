@@ -20,6 +20,9 @@ interface AdminConfig {
   quantumProcessing: boolean;
   neuralDepth: string;
   learningRate: string;
+  weatherFilter: boolean;
+  injuryFilter: boolean;
+  lineMovement: boolean;
 }
 
 const AdminPanel: React.FC = () => {
@@ -32,6 +35,9 @@ const AdminPanel: React.FC = () => {
     quantumProcessing: true,
     neuralDepth: 'deep',
     learningRate: 'adaptive',
+    weatherFilter: true,
+    injuryFilter: true,
+    lineMovement: true,
   });
 
   // Mock real-time data - would come from actual services
@@ -172,7 +178,7 @@ const AdminPanel: React.FC = () => {
           QUANTUM SYSTEM CONFIGURATION
         </h2>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           {/* Neural Engine Controls */}
           <div>
             <h3 className='font-bold text-white mb-6 text-xl font-cyber'>NEURAL ENGINE CONTROLS</h3>
@@ -238,6 +244,72 @@ const AdminPanel: React.FC = () => {
                 <option value='deep'>Deep Networks (Accurate)</option>
                 <option value='quantum'>Quantum Networks (Maximum)</option>
               </select>
+            </div>
+          </div>
+
+          {/* Neural Analysis Modules */}
+          <div>
+            <h3 className='font-bold text-white mb-6 text-xl font-cyber'>
+              NEURAL ANALYSIS MODULES
+            </h3>
+
+            {/* Weather Matrix Module */}
+            <div className='flex items-center justify-between mb-6 p-6 quantum-card rounded-2xl border border-blue-500/30'>
+              <div>
+                <div className='font-bold text-white font-cyber'>Weather Matrix</div>
+                <div className='text-sm text-gray-400 font-mono'>
+                  Real-time weather impact analysis
+                </div>
+              </div>
+              <div className='relative'>
+                <input
+                  type='checkbox'
+                  checked={adminConfig.weatherFilter || true}
+                  onChange={e =>
+                    setAdminConfig({ ...adminConfig, weatherFilter: e.target.checked })
+                  }
+                  className='w-6 h-6 text-blue-500'
+                />
+                <div className='absolute inset-0 bg-blue-400/50 rounded blur-sm' />
+              </div>
+            </div>
+
+            {/* Injury Intelligence Module */}
+            <div className='flex items-center justify-between mb-6 p-6 quantum-card rounded-2xl border border-red-500/30'>
+              <div>
+                <div className='font-bold text-white font-cyber'>Injury Intelligence</div>
+                <div className='text-sm text-gray-400 font-mono'>
+                  Advanced injury report processing
+                </div>
+              </div>
+              <div className='relative'>
+                <input
+                  type='checkbox'
+                  checked={adminConfig.injuryFilter || true}
+                  onChange={e => setAdminConfig({ ...adminConfig, injuryFilter: e.target.checked })}
+                  className='w-6 h-6 text-red-500'
+                />
+                <div className='absolute inset-0 bg-red-400/50 rounded blur-sm' />
+              </div>
+            </div>
+
+            {/* Line Movement Module */}
+            <div className='flex items-center justify-between mb-6 p-6 quantum-card rounded-2xl border border-yellow-500/30'>
+              <div>
+                <div className='font-bold text-white font-cyber'>Line Movement Tracker</div>
+                <div className='text-sm text-gray-400 font-mono'>
+                  Real-time betting line analysis
+                </div>
+              </div>
+              <div className='relative'>
+                <input
+                  type='checkbox'
+                  checked={adminConfig.lineMovement || true}
+                  onChange={e => setAdminConfig({ ...adminConfig, lineMovement: e.target.checked })}
+                  className='w-6 h-6 text-yellow-500'
+                />
+                <div className='absolute inset-0 bg-yellow-400/50 rounded blur-sm' />
+              </div>
             </div>
           </div>
 

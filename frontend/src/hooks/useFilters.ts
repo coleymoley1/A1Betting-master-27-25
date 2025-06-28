@@ -3,7 +3,7 @@ import type { FilterState } from '../components/filters/QuantumFilters';
 
 // Default filter state
 const DEFAULT_FILTERS: FilterState = {
-  sports: ['nba', 'wnba', 'nfl', 'mlb', 'nhl'], // PrizePicks primary sports
+  sports: [], // Empty array means "All Sports"
   timeFrame: 'today',
   regions: ['us'],
   advanced: {
@@ -86,7 +86,7 @@ export const useFilteredData = <
   const activeFilters = filters || filterContext?.filters || DEFAULT_FILTERS;
 
   return data.filter(item => {
-    // Sport filter
+    // Sport filter - empty array means "All Sports"
     if (activeFilters.sports.length > 0 && item.sport) {
       if (!activeFilters.sports.includes(item.sport)) return false;
     }
@@ -189,6 +189,8 @@ export const getFilterSummary = (filters: FilterState): string => {
     } else {
       parts.push(`${filters.sports.length} sports selected`);
     }
+  } else {
+    parts.push('All Sports');
   }
 
   if (filters.timeFrame !== 'today') {
