@@ -18,6 +18,9 @@ import {
   Globe,
   Shield,
 } from 'lucide-react';
+import CompactFilterBar from './filters/CompactFilterBar';
+import QuantumFilters from './filters/QuantumFilters';
+import { useFilters, useFilterStats } from '../hooks/useFilters';
 
 interface AppContextType {
   realTimeData: {
@@ -60,6 +63,13 @@ interface WorkingDashboardProps {
 
 const WorkingDashboard: React.FC<WorkingDashboardProps> = ({ onNavigate }) => {
   const { realTimeData, setRealTimeData, marketData } = useContext(AppContext);
+  const { filters, updateFilters, resetFilters, isFiltering } = useFilters();
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+
+  // Mock data for filter stats
+  const totalGames = 147;
+  const filteredGames = Math.floor(totalGames * 0.7); // Simulate filtering
+  const filterStats = useFilterStats(totalGames, filteredGames);
 
   // Enhanced real-time data updates to match HTML reference exactly
   useEffect(() => {
@@ -219,6 +229,76 @@ const WorkingDashboard: React.FC<WorkingDashboardProps> = ({ onNavigate }) => {
             {realTimeData.activeBots} AI agents active
           </motion.div>
         </div>
+      </motion.div>
+
+      {/* Quantum Filters Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
+        className='space-y-4'
+      >
+        {/* Compact Filter Bar */}
+        <div className='quantum-card rounded-2xl p-4'>
+          <div className='flex items-center justify-between mb-4'>
+            <h3 className='text-lg font-bold text-electric-400 font-cyber'>LIVE FILTERS</h3>
+            <div className='flex items-center space-x-3'>
+              <div className='text-sm text-gray-400 font-mono'>
+                {filteredGames}/{totalGames} games • {filterStats.reductionPercent}% filtered
+              </div>
+              {isFiltering && (
+                <div className='w-4 h-4 border-2 border-electric-400 border-t-transparent rounded-full animate-spin' />
+              )}
+            </div>
+          </div>
+          <CompactFilterBar
+            filters={filters}
+            onFiltersChange={updateFilters}
+            onOpenFullFilters={() => setShowAdvancedFilters(true)}
+          />
+        </div>
+
+        {/* Advanced Filters Modal */}
+        <AnimatePresence>
+          {showAdvancedFilters && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'
+              onClick={() => setShowAdvancedFilters(false)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className='w-full max-w-4xl max-h-[90vh] overflow-auto'
+                onClick={e => e.stopPropagation()}
+              >
+                <QuantumFilters
+                  filters={filters}
+                  onFiltersChange={updateFilters}
+                  showAdvanced={true}
+                  className='border border-electric-500/30'
+                />
+                <div className='flex justify-end space-x-4 mt-4'>
+                  <button
+                    onClick={resetFilters}
+                    className='px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition-all'
+                  >
+                    Reset All
+                  </button>
+                  <button
+                    onClick={() => setShowAdvancedFilters(false)}
+                    className='px-6 py-2 bg-electric-500/20 text-electric-400 border border-electric-500/40 rounded-lg hover:bg-electric-500/30 transition-all'
+                  >
+                    Apply Filters
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* Enhanced Real-Time Metrics Grid - Exact HTML Match */}
