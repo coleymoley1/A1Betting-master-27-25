@@ -651,9 +651,9 @@ const PageRenderer: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <CleanDashboard />;
+        return <WorkingDashboard />;
       case 'money-maker':
-        return <UnifiedMoneyMaker />;
+        return <WorkingMoneyMaker />;
       case 'prizepicks':
         return (
           <div className='p-8 space-y-6'>
