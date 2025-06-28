@@ -102,14 +102,14 @@ interface SystemHealthMetrics {
   responseTime: number;
   throughput: number;
   lastHealthCheck: string;
-  services: Record<string, string key={248182}>;
+  services: Record<string, string;
   alerts: Array<{ level: string; message: string; timestamp: string }>;
 }
 
 interface UnifiedPredictionRequest {
   event_id: string;
   sport: string;
-  features: Record<string, number key={817366}>;
+  features: Record<string, number;
   processing_level: string;
 }
 
@@ -131,7 +131,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
     autoRefresh: true,
     isLoading: false,
   });
-  const [livePredictions, setLivePredictions] = useState<LivePrediction[] key={426456}>([]);
+  const [livePredictions, setLivePredictions] = useState<LivePrediction[]([]);
 
   // Real-time data fetching with React Query - all with error handling;
   const {
@@ -586,55 +586,55 @@ const UltraAdvancedMLDashboard: React.FC = () => {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-auto" key={11185}>
+    <div className="w-full h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-auto"
       {/* Offline Indicator */}
       <OfflineIndicator;
         show={!!isOffline}
         service="ML Backend APIs"
         onRetry={handleRetry}
-      / key={960331}>
+      /
 
       {/* Sidebar */}
       <div;
         className={`${sidebarCollapsed ? "w-16" : "w-64"} bg-slate-900/50 backdrop-blur-xl border-r border-slate-700/50 flex flex-col transition-all duration-300`}
-       key={381158}>
+      
         {/* Sidebar Header */}
-        <div className="p-4 border-b border-slate-700/50" key={601653}>
-          <div className="flex items-center gap-3" key={443099}>
-            <div className="relative" key={579431}>
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center" key={10693}>
-                <Brain className="w-5 h-5 text-white" / key={132703}>
+        <div className="p-4 border-b border-slate-700/50"
+          <div className="flex items-center gap-3"
+            <div className="relative"
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center"
+                <Brain className="w-5 h-5 text-white" /
               </div>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse" key={747861}></div>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse"</div>
             </div>
             {!sidebarCollapsed && (
-              <div key={241917}>
-                <h2 className="text-white font-semibold text-sm" key={885835}>ML Admin</h2>
-                <p className="text-slate-200 text-xs" key={56005}>Development Console</p>
+              <div
+                <h2 className="text-white font-semibold text-sm"ML Admin</h2>
+                <p className="text-slate-200 text-xs"Development Console</p>
               </div>
             )}
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4" key={96157}>
-          <div className="space-y-2" key={725977}>
+        <nav className="flex-1 p-4"
+          <div className="space-y-2"
             {sidebarItems.map((item) => (
               <button;
                 key={item.id}
-                onClick={() = key={897422}> setSelectedView(item.id)}
+                onClick={() = setSelectedView(item.id)}
                 className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                   item.active;
                     ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
                     : "text-slate-200 hover:text-white hover:bg-slate-700/50"
                 }`}
               >
-                <item.icon className="w-5 h-5 flex-shrink-0" / key={700126}>
+                <item.icon className="w-5 h-5 flex-shrink-0" /
                 {!sidebarCollapsed && (
-                  <span className="text-sm font-medium" key={318054}>{item.label}</span>
+                  <span className="text-sm font-medium"{item.label}</span>
                 )}
                 {!sidebarCollapsed && item.active && (
-                  <div className="ml-auto w-2 h-2 bg-blue-400 rounded-full" key={243751}></div>
+                  <div className="ml-auto w-2 h-2 bg-blue-400 rounded-full"</div>
                 )}
               </button>
             ))}
@@ -642,36 +642,36 @@ const UltraAdvancedMLDashboard: React.FC = () => {
         </nav>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-slate-700/50" key={790837}>
+        <div className="p-4 border-t border-slate-700/50"
           <button;
-            onClick={() = key={919301}> setSidebarCollapsed(!sidebarCollapsed)}
+            onClick={() = setSidebarCollapsed(!sidebarCollapsed)}
             className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-slate-700/50 transition-all duration-200"
           >
             <ChevronRight;
               className={`w-4 h-4 transition-transform duration-200 ${sidebarCollapsed ? "" : "rotate-180"}`}
-            / key={480576}>
-            {!sidebarCollapsed && <span className="text-sm" key={887361}>Collapse</span>}
+            /
+            {!sidebarCollapsed && <span className="text-sm"Collapse</span>}
           </button>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden" key={257996}>
+      <div className="flex-1 flex flex-col overflow-hidden"
         {/* Top Header */}
-        <header className="bg-slate-900/30 backdrop-blur-xl border-b border-slate-700/50 px-6 py-4" key={824861}>
-          <div className="flex items-center justify-between" key={96335}>
+        <header className="bg-slate-900/30 backdrop-blur-xl border-b border-slate-700/50 px-6 py-4"
+          <div className="flex items-center justify-between"
             {/* Header Left */}
-            <div key={241917}>
-              <h1 className="text-2xl font-bold text-white mb-1" key={518152}>
+            <div
+              <h1 className="text-2xl font-bold text-white mb-1"
                 ML Development Dashboard;
               </h1>
-              <p className="text-slate-200 text-sm" key={171708}>
+              <p className="text-slate-200 text-sm"
                 Real-time monitoring of enhanced mathematical ML systems;
               </p>
             </div>
 
             {/* Header Actions */}
-            <div className="flex items-center gap-3" key={443099}>
+            <div className="flex items-center gap-3"
               <Button;
                 variant="outline"
                 size="sm"
@@ -681,11 +681,11 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                     ? "bg-green-500/20 border-green-500/50 text-green-400 hover:bg-green-500/30"
                     : "border-slate-600 text-slate-200 hover:text-white hover:border-slate-500"
                 }`}
-               key={25810}>
+              
                 {dashboardState.autoRefresh ? (
-                  <Pause className="w-4 h-4 mr-2" / key={772621}>
+                  <Pause className="w-4 h-4 mr-2" /
                 ) : (
-                  <Play className="w-4 h-4 mr-2" / key={998132}>
+                  <Play className="w-4 h-4 mr-2" /
                 )}
                 Auto Refresh;
               </Button>
@@ -696,10 +696,10 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 onClick={refreshDashboardData}
                 disabled={dashboardState.isLoading}
                 className="border-slate-600 text-slate-200 hover:text-white hover:border-slate-500"
-               key={343784}>
+              
                 <RefreshCw;
                   className={`w-4 h-4 mr-2 ${dashboardState.isLoading ? "animate-spin" : ""}`}
-                / key={646390}>
+                /
                 Refresh;
               </Button>
 
@@ -707,38 +707,38 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 size="sm"
                 onClick={executeLivePrediction}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25"
-               key={627197}>
-                <Sparkles className="w-4 h-4 mr-2" / key={200545}>
+              
+                <Sparkles className="w-4 h-4 mr-2" /
                 Live Prediction;
               </Button>
             </div>
           </div>
 
           {/* Status Metrics */}
-          <div className="grid grid-cols-4 gap-4 mt-6" key={700323}>
+          <div className="grid grid-cols-4 gap-4 mt-6"
             {statusMetrics.map((metric, index) => (
               <div;
                 key={index}
                 className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-4 border border-slate-700/30"
-               key={84068}>
-                <div className="flex items-center justify-between" key={96335}>
-                  <div key={241917}>
-                    <p className="text-slate-200 text-xs font-medium uppercase tracking-wider" key={862523}>
+              
+                <div className="flex items-center justify-between"
+                  <div
+                    <p className="text-slate-200 text-xs font-medium uppercase tracking-wider"
                       {metric.label}
                     </p>
-                    <p className={`text-xl font-bold ${metric.color} mt-1`} key={480123}>
+                    <p className={`text-xl font-bold ${metric.color} mt-1`}
                       {metric.value}
                     </p>
                   </div>
-                  <div className="flex items-center" key={520222}>
+                  <div className="flex items-center"
                     {metric.trend === "up" && (
-                      <ArrowUp className="w-4 h-4 text-green-400" / key={395813}>
+                      <ArrowUp className="w-4 h-4 text-green-400" /
                     )}
                     {metric.trend === "down" && (
-                      <ArrowDown className="w-4 h-4 text-red-400" / key={729009}>
+                      <ArrowDown className="w-4 h-4 text-red-400" /
                     )}
                     {metric.trend === "stable" && (
-                      <Minus className="w-4 h-4 text-yellow-400" / key={657295}>
+                      <Minus className="w-4 h-4 text-yellow-400" /
                     )}
                   </div>
                 </div>
@@ -748,22 +748,22 @@ const UltraAdvancedMLDashboard: React.FC = () => {
         </header>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-auto p-6" key={164175}>
+        <main className="flex-1 overflow-auto p-6"
           {/* Overview */}
           {selectedView === "overview" && (
-            <div className="space-y-6" key={501869}>
+            <div className="space-y-6"
               {/* Performance Charts */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" key={813322}>
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center text-blue-400" key={383316}>
-                      <BarChart3 className="w-5 h-5 mr-2" / key={411468}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center text-blue-400"
+                      <BarChart3 className="w-5 h-5 mr-2" /
                       Model Performance;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
+                  <CardContent
                     {modelPerformanceChartData && (
-                      <div className="h-64" key={118048}>
+                      <div className="h-64"
                         <SafeChart;
                           type="bar"
                           chartId="model-performance-overview"
@@ -776,22 +776,22 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                               y: { beginAtZero: true, max: 100 },
                             },
                           }}
-                        / key={219560}>
+                        /
                       </div>
                     )}
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center text-green-400" key={145955}>
-                      <Radar className="w-5 h-5 mr-2" / key={198054}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center text-green-400"
+                      <Radar className="w-5 h-5 mr-2" /
                       System Health;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
+                  <CardContent
                     {systemHealthRadarData && (
-                      <div className="h-64" key={118048}>
+                      <div className="h-64"
                         <SafeChart;
                           type="radar"
                           data={systemHealthRadarData}
@@ -862,7 +862,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                               },
                             },
                           }}
-                        / key={765913}>
+                        /
                       </div>
                     )}
                   </CardContent>
@@ -870,45 +870,45 @@ const UltraAdvancedMLDashboard: React.FC = () => {
               </div>
 
               {/* Component Status Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" key={696568}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
                 {/* ML Pipeline Components */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader className="pb-2" key={21346}>
-                    <CardTitle className="text-sm font-medium text-white flex items-center" key={462909}>
-                      <Brain className="w-4 h-4 mr-2 text-purple-400" / key={777312}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader className="pb-2"
+                    <CardTitle className="text-sm font-medium text-white flex items-center"
+                      <Brain className="w-4 h-4 mr-2 text-purple-400" /
                       ML Pipeline Status;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3" key={445386}>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>
+                  <CardContent className="space-y-3"
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"
                         Feature Engineering;
                       </span>
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30" key={69337}>
+                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30"
                         Active;
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"
                         Model Training;
                       </span>
-                      <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30" key={847037}>
+                      <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30"
                         Running;
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"
                         Inference Engine;
                       </span>
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30" key={69337}>
+                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30"
                         Optimal;
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"
                         Model Validation;
                       </span>
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30" key={69337}>
+                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30"
                         Passed;
                       </Badge>
                     </div>
@@ -916,41 +916,41 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 </Card>
 
                 {/* Data Sources */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader className="pb-2" key={21346}>
-                    <CardTitle className="text-sm font-medium text-white flex items-center" key={462909}>
-                      <Database className="w-4 h-4 mr-2 text-cyan-400" / key={362835}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader className="pb-2"
+                    <CardTitle className="text-sm font-medium text-white flex items-center"
+                      <Database className="w-4 h-4 mr-2 text-cyan-400" /
                       Data Sources;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3" key={445386}>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>ESPN API</span>
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30" key={69337}>
+                  <CardContent className="space-y-3"
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"ESPN API</span>
+                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30"
                         Connected;
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"
                         Sports Radar;
                       </span>
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30" key={69337}>
+                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30"
                         Connected;
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"
                         PrizePicks API;
                       </span>
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30" key={69337}>
+                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30"
                         Synced;
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between" key={96335}>
-                      <span className="text-sm text-slate-200" key={588541}>
+                    <div className="flex items-center justify-between"
+                      <span className="text-sm text-slate-200"
                         Historical Data;
                       </span>
-                      <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30" key={847037}>
+                      <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30"
                         Updating;
                       </Badge>
                     </div>
@@ -958,18 +958,18 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 </Card>
 
                 {/* System Resources */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader className="pb-2" key={21346}>
-                    <CardTitle className="text-sm font-medium text-white flex items-center" key={462909}>
-                      <Server className="w-4 h-4 mr-2 text-orange-400" / key={313780}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader className="pb-2"
+                    <CardTitle className="text-sm font-medium text-white flex items-center"
+                      <Server className="w-4 h-4 mr-2 text-orange-400" /
                       System Resources;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3" key={445386}>
-                    <div className="space-y-2" key={725977}>
-                      <div className="flex justify-between text-sm" key={353204}>
-                        <span className="text-slate-200" key={536982}>CPU Usage</span>
-                        <span className="text-orange-400" key={32665}>
+                  <CardContent className="space-y-3"
+                    <div className="space-y-2"
+                      <div className="flex justify-between text-sm"
+                        <span className="text-slate-200"CPU Usage</span>
+                        <span className="text-orange-400"
                           {systemResources;
                             ? `${systemResources.cpu_usage.toFixed(1)}%`
                             : "Loading..."}
@@ -978,12 +978,12 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                       <Progress;
                         value={systemResources?.cpu_usage || 0}
                         className="h-2 bg-slate-700"
-                      / key={42682}>
+                      /
                     </div>
-                    <div className="space-y-2" key={725977}>
-                      <div className="flex justify-between text-sm" key={353204}>
-                        <span className="text-slate-200" key={536982}>Memory</span>
-                        <span className="text-blue-400" key={510194}>
+                    <div className="space-y-2"
+                      <div className="flex justify-between text-sm"
+                        <span className="text-slate-200"Memory</span>
+                        <span className="text-blue-400"
                           {systemResources;
                             ? `${systemResources.memory_usage.toFixed(1)}%`
                             : "Loading..."}
@@ -992,12 +992,12 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                       <Progress;
                         value={systemResources?.memory_usage || 0}
                         className="h-2 bg-slate-700"
-                      / key={872109}>
+                      /
                     </div>
-                    <div className="space-y-2" key={725977}>
-                      <div className="flex justify-between text-sm" key={353204}>
-                        <span className="text-slate-200" key={536982}>Disk</span>
-                        <span className="text-purple-400" key={846332}>
+                    <div className="space-y-2"
+                      <div className="flex justify-between text-sm"
+                        <span className="text-slate-200"Disk</span>
+                        <span className="text-purple-400"
                           {systemResources;
                             ? `${systemResources.disk_usage.toFixed(1)}%`
                             : "Loading..."}
@@ -1006,7 +1006,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                       <Progress;
                         value={systemResources?.disk_usage || 0}
                         className="h-2 bg-slate-700"
-                      / key={627802}>
+                      /
                     </div>
                   </CardContent>
                 </Card>
@@ -1016,112 +1016,112 @@ const UltraAdvancedMLDashboard: React.FC = () => {
 
           {/* ML Models View */}
           {selectedView === "models" && (
-            <div className="space-y-6" key={501869}>
-              <div className="flex items-center justify-between" key={96335}>
-                <h2 className="text-xl font-semibold text-white" key={718182}>
+            <div className="space-y-6"
+              <div className="flex items-center justify-between"
+                <h2 className="text-xl font-semibold text-white"
                   Active ML Models;
                 </h2>
-                <div className="flex gap-2" key={15266}>
+                <div className="flex gap-2"
                   <Button;
                     variant="outline"
                     size="sm"
                     className="border-slate-600 text-slate-200"
-                   key={677133}>
-                    <Filter className="w-4 h-4 mr-2" / key={813376}>
+                  
+                    <Filter className="w-4 h-4 mr-2" /
                     Filter;
                   </Button>
                   <Button;
                     variant="outline"
                     size="sm"
                     className="border-slate-600 text-slate-200"
-                   key={677133}>
-                    <Download className="w-4 h-4 mr-2" / key={53813}>
+                  
+                    <Download className="w-4 h-4 mr-2" /
                     Export;
                   </Button>
                 </div>
               </div>
 
               {/* Model Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" key={813322}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6"
                 {(ensembleCandidates?.candidate_models || [])
                   .filter((model) => model && model.model_id)
                   .map((model) => (
                     <Card;
                       key={model.model_id}
                       className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600/50 transition-all duration-200"
-                     key={690085}>
-                      <CardHeader key={236869}>
-                        <div className="flex items-center justify-between" key={96335}>
-                          <CardTitle className="flex items-center text-white" key={135325}>
-                            <Brain className="w-5 h-5 mr-2 text-purple-400" / key={986823}>
+                    
+                      <CardHeader
+                        <div className="flex items-center justify-between"
+                          <CardTitle className="flex items-center text-white"
+                            <Brain className="w-5 h-5 mr-2 text-purple-400" /
                             {model.model_name || "Unnamed Model"}
                           </CardTitle>
-                          <div className="flex gap-2" key={15266}>
+                          <div className="flex gap-2"
                             <Badge;
                               variant={
-                                model.accuracy  key={939087}> 0.9 ? "default" : "outline"
+                                model.accuracy  0.9 ? "default" : "outline"
                               }
                               className="bg-green-500/20 text-green-400 border-green-500/50"
                             >
                               {model.accuracy > 0.9 ? "Verified" : "Testing"}
                             </Badge>
-                            <Button variant="ghost" size="sm" key={537837}>
-                              <MoreVertical className="w-4 h-4" / key={642291}>
+                            <Button variant="ghost" size="sm"
+                              <MoreVertical className="w-4 h-4" /
                             </Button>
                           </div>
                         </div>
                       </CardHeader>
-                      <CardContent key={452065}>
+                      <CardContent
                         {/* Performance Metrics */}
-                        <div className="grid grid-cols-2 gap-4 mb-4" key={267621}>
-                          <div className="text-center" key={120206}>
-                            <p className="text-2xl font-bold text-blue-400" key={641115}>
+                        <div className="grid grid-cols-2 gap-4 mb-4"
+                          <div className="text-center"
+                            <p className="text-2xl font-bold text-blue-400"
                               {(model.accuracy * 100).toFixed(1)}%
                             </p>
-                            <p className="text-xs text-slate-200 uppercase tracking-wide" key={857704}>
+                            <p className="text-xs text-slate-200 uppercase tracking-wide"
                               Accuracy;
                             </p>
                           </div>
-                          <div className="text-center" key={120206}>
-                            <p className="text-2xl font-bold text-green-400" key={176412}>
+                          <div className="text-center"
+                            <p className="text-2xl font-bold text-green-400"
                               {(model.precision * 100).toFixed(1)}%
                             </p>
-                            <p className="text-xs text-slate-200 uppercase tracking-wide" key={857704}>
+                            <p className="text-xs text-slate-200 uppercase tracking-wide"
                               Precision;
                             </p>
                           </div>
-                          <div className="text-center" key={120206}>
-                            <p className="text-2xl font-bold text-purple-400" key={603662}>
+                          <div className="text-center"
+                            <p className="text-2xl font-bold text-purple-400"
                               {(model.f1Score * 100).toFixed(1)}%
                             </p>
-                            <p className="text-xs text-slate-200 uppercase tracking-wide" key={857704}>
+                            <p className="text-xs text-slate-200 uppercase tracking-wide"
                               F1 Score;
                             </p>
                           </div>
-                          <div className="text-center" key={120206}>
-                            <p className="text-2xl font-bold text-yellow-400" key={755072}>
+                          <div className="text-center"
+                            <p className="text-2xl font-bold text-yellow-400"
                               {model.inferenceTime.toFixed(1)}ms;
                             </p>
-                            <p className="text-xs text-slate-200 uppercase tracking-wide" key={857704}>
+                            <p className="text-xs text-slate-200 uppercase tracking-wide"
                               Inference;
                             </p>
                           </div>
                         </div>
 
                         {/* Model Status */}
-                        <div className="flex items-center justify-between pt-4 border-t border-slate-700/50" key={424343}>
-                          <div className="flex items-center gap-2" key={100294}>
-                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" key={866883}></div>
-                            <span className="text-sm text-slate-200" key={588541}>
+                        <div className="flex items-center justify-between pt-4 border-t border-slate-700/50"
+                          <div className="flex items-center gap-2"
+                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"</div>
+                            <span className="text-sm text-slate-200"
                               Training Complete;
                             </span>
                           </div>
-                          <div className="flex gap-1" key={165062}>
+                          <div className="flex gap-1"
                             {model.accuracy > 0.9 && (
                               <Badge;
                                 size="sm"
                                 className="bg-green-500/20 text-green-400 border-green-500/30"
-                               key={905384}>
+                              
                                 Stable;
                               </Badge>
                             )}
@@ -1129,7 +1129,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                               <Badge;
                                 size="sm"
                                 className="bg-blue-500/20 text-blue-400 border-blue-500/30"
-                               key={126823}>
+                              
                                 Optimal;
                               </Badge>
                             )}
@@ -1144,40 +1144,40 @@ const UltraAdvancedMLDashboard: React.FC = () => {
 
           {/* Live Predictions View */}
           {selectedView === "predictions" && (
-            <div className="space-y-6" key={501869}>
-              <div className="flex items-center justify-between" key={96335}>
-                <h2 className="text-xl font-semibold text-white" key={718182}>
+            <div className="space-y-6"
+              <div className="flex items-center justify-between"
+                <h2 className="text-xl font-semibold text-white"
                   Live Prediction Stream;
                 </h2>
                 <Button;
                   onClick={executeLivePrediction}
                   className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white"
-                 key={875245}>
-                  <Sparkles className="w-4 h-4 mr-2" / key={200545}>
+                
+                  <Sparkles className="w-4 h-4 mr-2" /
                   Execute Prediction;
                 </Button>
               </div>
 
-              <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                <CardContent className="p-6" key={184394}>
+              <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                <CardContent className="p-6"
                   {livePredictions.length === 0 ? (
-                    <div className="text-center py-12" key={752807}>
-                      <Activity className="w-16 h-16 mx-auto mb-4 text-slate-300" / key={968481}>
-                      <h3 className="text-lg font-medium text-white mb-2" key={765990}>
+                    <div className="text-center py-12"
+                      <Activity className="w-16 h-16 mx-auto mb-4 text-slate-300" /
+                      <h3 className="text-lg font-medium text-white mb-2"
                         No Live Predictions;
                       </h3>
-                      <p className="text-slate-200" key={234428}>
+                      <p className="text-slate-200"
                         Execute a prediction to see real-time processing status;
                       </p>
                     </div>
                   ) : (
-                    <div className="space-y-4" key={160407}>
+                    <div className="space-y-4"
                       {livePredictions.map((prediction) => (
                         <div;
                           key={prediction.id}
                           className="flex items-center justify-between p-4 bg-slate-700/30 rounded-lg border border-slate-600/30"
-                         key={90568}>
-                          <div className="flex items-center gap-4" key={782146}>
+                        
+                          <div className="flex items-center gap-4"
                             <div;
                               className={`w-3 h-3 rounded-full ${
                                 prediction.status === "completed"
@@ -1186,13 +1186,13 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                                     ? "bg-yellow-400 animate-pulse"
                                     : "bg-red-400"
                               }`}
-                             key={681478}></div>
-                            <div key={241917}>
-                              <p className="text-white font-medium" key={873883}>
+                            </div>
+                            <div
+                              <p className="text-white font-medium"
                                 {prediction.sport.toUpperCase()} -{" "}
                                 {prediction.event_id}
                               </p>
-                              <p className="text-sm text-slate-200" key={651836}>
+                              <p className="text-sm text-slate-200"
                                 {prediction.status === "completed" &&
                                   prediction.confidence &&
                                   `Confidence: ${(prediction.confidence * 100).toFixed(1)}%`}
@@ -1203,12 +1203,12 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="text-right" key={144468}>
-                            <p className="text-sm text-slate-200" key={651836}>
+                          <div className="text-right"
+                            <p className="text-sm text-slate-200"
                               {prediction.created_at.toLocaleTimeString()}
                             </p>
                             {prediction.processing_time && (
-                              <p className="text-xs text-slate-500" key={786786}>
+                              <p className="text-xs text-slate-500"
                                 {prediction.processing_time}ms;
                               </p>
                             )}
@@ -1224,66 +1224,66 @@ const UltraAdvancedMLDashboard: React.FC = () => {
 
           {/* System Health View */}
           {selectedView === "health" && (
-            <div className="space-y-6" key={501869}>
-              <h2 className="text-xl font-semibold text-white" key={718182}>
+            <div className="space-y-6"
+              <h2 className="text-xl font-semibold text-white"
                 System Health Monitoring;
               </h2>
 
               {/* Health Overview Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6" key={852085}>
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center text-green-400" key={145955}>
-                      <CheckCircle className="w-5 h-5 mr-2" / key={876698}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center text-green-400"
+                      <CheckCircle className="w-5 h-5 mr-2" /
                       Overall Health;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="text-center" key={120206}>
-                      <p className="text-4xl font-bold text-green-400 mb-2" key={416862}>
+                  <CardContent
+                    <div className="text-center"
+                      <p className="text-4xl font-bold text-green-400 mb-2"
                         {systemHealth;
                           ? `${(systemHealth.overallHealth * 100).toFixed(0)}%`
                           : "Loading..."}
                       </p>
-                      <p className="text-slate-200" key={234428}>All systems operational</p>
+                      <p className="text-slate-200"All systems operational</p>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center text-blue-400" key={383316}>
-                      <Clock className="w-5 h-5 mr-2" / key={244145}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center text-blue-400"
+                      <Clock className="w-5 h-5 mr-2" /
                       Uptime;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="text-center" key={120206}>
-                      <p className="text-4xl font-bold text-blue-400 mb-2" key={696755}>
+                  <CardContent
+                    <div className="text-center"
+                      <p className="text-4xl font-bold text-blue-400 mb-2"
                         {systemHealth;
                           ? `${systemHealth.uptime.toFixed(1)}%`
                           : "Loading..."}
                       </p>
-                      <p className="text-slate-200" key={234428}>System availability</p>
+                      <p className="text-slate-200"System availability</p>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center text-purple-400" key={264035}>
-                      <Zap className="w-5 h-5 mr-2" / key={409281}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center text-purple-400"
+                      <Zap className="w-5 h-5 mr-2" /
                       Response Time;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="text-center" key={120206}>
-                      <p className="text-4xl font-bold text-purple-400 mb-2" key={412030}>
+                  <CardContent
+                    <div className="text-center"
+                      <p className="text-4xl font-bold text-purple-400 mb-2"
                         {systemHealth;
                           ? `${systemHealth.responseTime}ms`
                           : "Loading..."}
                       </p>
-                      <p className="text-slate-200" key={234428}>Average response</p>
+                      <p className="text-slate-200"Average response</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -1291,15 +1291,15 @@ const UltraAdvancedMLDashboard: React.FC = () => {
 
               {/* Detailed Health Radar */}
               {systemHealthRadarData && (
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center text-green-400" key={145955}>
-                      <Radar className="w-5 h-5 mr-2" / key={198054}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center text-green-400"
+                      <Radar className="w-5 h-5 mr-2" /
                       System Health Radar;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="h-96" key={705391}>
+                  <CardContent
+                    <div className="h-96"
                       <SafeChart;
                         type="radar"
                         data={systemHealthRadarData}
@@ -1370,7 +1370,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                             },
                           },
                         }}
-                      / key={341466}>
+                      /
                     </div>
                   </CardContent>
                 </Card>
@@ -1380,48 +1380,48 @@ const UltraAdvancedMLDashboard: React.FC = () => {
 
           {/* Research View */}
           {selectedView === "research" && (
-            <div className="space-y-6" key={501869}>
-              <h2 className="text-xl font-semibold text-white" key={718182}>
+            <div className="space-y-6"
+              <h2 className="text-xl font-semibold text-white"
                 Mathematical Research Foundations;
               </h2>
 
               {/* Mathematical Foundations Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" key={813322}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6"
                 {mathematicalFoundations.map((foundation, index) => (
                   <Card;
                     key={index}
                     className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
-                   key={463584}>
-                    <CardHeader key={236869}>
-                      <CardTitle className="text-blue-400" key={465013}>
+                  
+                    <CardHeader
+                      <CardTitle className="text-blue-400"
                         {foundation.metric_type}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent key={452065}>
-                      <div className="space-y-4" key={160407}>
-                        <div className="text-center" key={120206}>
-                          <p className="text-3xl font-bold text-green-400 mb-1" key={383925}>
+                    <CardContent
+                      <div className="space-y-4"
+                        <div className="text-center"
+                          <p className="text-3xl font-bold text-green-400 mb-1"
                             {foundation.value}%
                           </p>
-                          <p className="text-slate-200 text-sm" key={171708}>
+                          <p className="text-slate-200 text-sm"
                             Current Performance;
                           </p>
                         </div>
 
-                        <div key={241917}>
-                          <h4 className="text-white font-medium mb-2" key={767866}>
+                        <div
+                          <h4 className="text-white font-medium mb-2"
                             Theoretical Basis;
                           </h4>
-                          <p className="text-slate-300 text-sm leading-relaxed" key={972740}>
+                          <p className="text-slate-300 text-sm leading-relaxed"
                             {foundation.theoretical_basis}
                           </p>
                         </div>
 
-                        <div key={241917}>
-                          <h4 className="text-white font-medium mb-2" key={767866}>
+                        <div
+                          <h4 className="text-white font-medium mb-2"
                             Computational Complexity;
                           </h4>
-                          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 font-mono text-xs" key={343409}>
+                          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 font-mono text-xs"
                             {foundation.computational_complexity}
                           </Badge>
                         </div>
@@ -1432,15 +1432,15 @@ const UltraAdvancedMLDashboard: React.FC = () => {
               </div>
 
               {/* Advanced Research Libraries */}
-              <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                <CardHeader key={236869}>
-                  <CardTitle className="flex items-center text-cyan-400" key={88919}>
-                    <Atom className="w-5 h-5 mr-2" / key={103607}>
+              <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                <CardHeader
+                  <CardTitle className="flex items-center text-cyan-400"
+                    <Atom className="w-5 h-5 mr-2" /
                     Advanced Mathematical Libraries;
                   </CardTitle>
                 </CardHeader>
-                <CardContent key={452065}>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4" key={223180}>
+                <CardContent
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4"
                     {[
                       {
                         name: "Neural Computation",
@@ -1476,18 +1476,18 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                       <div;
                         key={index}
                         className={`text-center p-4 border rounded-lg border-${lib.color}-500/30 bg-${lib.color}-500/10`}
-                       key={164832}>
+                      
                         <div;
                           className={`w-8 h-8 mx-auto mb-2 text-${lib.color}-400`}
-                         key={518143}>
-                          <Hexagon className="w-full h-full" / key={455309}>
+                        
+                          <Hexagon className="w-full h-full" /
                         </div>
                         <h5;
                           className={`font-medium mb-1 text-${lib.color}-400`}
-                         key={631984}>
+                        
                           {lib.name}
                         </h5>
-                        <p className="text-sm text-slate-200" key={651836}>{lib.tech}</p>
+                        <p className="text-sm text-slate-200"{lib.tech}</p>
                       </div>
                     ))}
                   </div>
@@ -1498,31 +1498,31 @@ const UltraAdvancedMLDashboard: React.FC = () => {
 
           {/* Backend Connection View */}
           {selectedView === "backend" && (
-            <div className="space-y-6" key={501869}>
-              <div className="flex items-center justify-between mb-6" key={530716}>
-                <div key={241917}>
-                  <h2 className="text-2xl font-bold text-white mb-2" key={958765}>
+            <div className="space-y-6"
+              <div className="flex items-center justify-between mb-6"
+                <div
+                  <h2 className="text-2xl font-bold text-white mb-2"
                     Backend Connection Management;
                   </h2>
-                  <p className="text-slate-300" key={302023}>
+                  <p className="text-slate-300"
                     Monitor and control all backend services, APIs, and data;
                     connections;
                   </p>
                 </div>
-                <div className="flex items-center gap-3" key={443099}>
+                <div className="flex items-center gap-3"
                   <div;
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${
                       isOffline;
                         ? "bg-red-500/10 border-red-500/30 text-red-400"
                         : "bg-green-500/10 border-green-500/30 text-green-400"
                     }`}
-                   key={500462}>
+                  
                     <div;
                       className={`w-2 h-2 rounded-full ${
                         isOffline ? "bg-red-400" : "bg-green-400 animate-pulse"
                       }`}
-                    / key={147636}>
-                    <span className="text-sm font-semibold" key={547411}>
+                    /
+                    <span className="text-sm font-semibold"
                       {isOffline ? "Services Offline" : "All Systems Online"}
                     </span>
                   </div>
@@ -1530,7 +1530,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
               </div>
 
               {/* Connection Status Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" key={663071}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
                 {[
                   {
                     name: "Main API",
@@ -1560,36 +1560,36 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                   <Card;
                     key={index}
                     className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
-                   key={463584}>
-                    <CardContent className="p-4" key={706827}>
-                      <div className="flex items-center justify-between mb-3" key={56204}>
-                        <h3 className="text-white font-semibold text-sm" key={417269}>
+                  
+                    <CardContent className="p-4"
+                      <div className="flex items-center justify-between mb-3"
+                        <h3 className="text-white font-semibold text-sm"
                           {service.name}
                         </h3>
                         <div;
                           className={`w-3 h-3 rounded-full ${
                             service.status ? "bg-green-400" : "bg-red-400"
                           } ${service.status ? "animate-pulse" : ""}`}
-                        / key={783310}>
+                        /
                       </div>
-                      <div className="space-y-2 text-xs" key={270907}>
-                        <div className="flex justify-between" key={588832}>
-                          <span className="text-slate-400" key={337023}>Latency:</span>
+                      <div className="space-y-2 text-xs"
+                        <div className="flex justify-between"
+                          <span className="text-slate-400"Latency:</span>
                           <span;
                             className={
                               service.status ? "text-green-400" : "text-red-400"
                             }
-                           key={177977}>
+                          
                             {service.status ? service.latency : "N/A"}
                           </span>
                         </div>
-                        <div className="flex justify-between" key={588832}>
-                          <span className="text-slate-400" key={337023}>Uptime:</span>
+                        <div className="flex justify-between"
+                          <span className="text-slate-400"Uptime:</span>
                           <span;
                             className={
                               service.status ? "text-green-400" : "text-red-400"
                             }
-                           key={177977}>
+                          
                             {service.status ? service.uptime : "0%"}
                           </span>
                         </div>
@@ -1600,49 +1600,49 @@ const UltraAdvancedMLDashboard: React.FC = () => {
               </div>
 
               {/* Main Backend Control Panel */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" key={813322}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6"
                 {/* Connection Controls */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center gap-2 text-cyan-400" key={414203}>
-                      <Server className="w-5 h-5" / key={297115}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center gap-2 text-cyan-400"
+                      <Server className="w-5 h-5" /
                       Connection Controls;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4" key={796196}>
-                    <div className="grid grid-cols-2 gap-3" key={437166}>
+                  <CardContent className="space-y-4"
+                    <div className="grid grid-cols-2 gap-3"
                       <Button;
                         onClick={handleRetry}
                         className="bg-green-500/20 hover:bg-green-500/30 border border-green-500/40 text-green-400"
                         disabled={!isOffline}
-                       key={895667}>
-                        <RefreshCw className="w-4 h-4 mr-2" / key={480811}>
+                      
+                        <RefreshCw className="w-4 h-4 mr-2" /
                         Reconnect All;
                       </Button>
                       <Button;
                         variant="outline"
                         className="border-yellow-500/40 text-yellow-400 hover:bg-yellow-500/10"
-                       key={752138}>
-                        <Wifi className="w-4 h-4 mr-2" / key={433690}>
+                      
+                        <Wifi className="w-4 h-4 mr-2" /
                         Test Connection;
                       </Button>
                     </div>
 
-                    <div className="space-y-3" key={186520}>
-                      <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg" key={993218}>
-                        <span className="text-slate-300" key={303349}>Auto-Reconnect</span>
-                        <button className="w-10 h-6 bg-green-500 rounded-full relative" key={85618}>
-                          <div className="w-4 h-4 bg-white rounded-full absolute top-1 right-1 transition-all" key={239423}></div>
+                    <div className="space-y-3"
+                      <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg"
+                        <span className="text-slate-300"Auto-Reconnect</span>
+                        <button className="w-10 h-6 bg-green-500 rounded-full relative"
+                          <div className="w-4 h-4 bg-white rounded-full absolute top-1 right-1 transition-all"</div>
                         </button>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg" key={993218}>
-                        <span className="text-slate-300" key={303349}>
+                      <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg"
+                        <span className="text-slate-300"
                           Health Check Interval;
                         </span>
-                        <select className="bg-slate-600 text-white px-3 py-1 rounded text-sm" key={888711}>
-                          <option key={528566}>30 seconds</option>
-                          <option key={528566}>1 minute</option>
-                          <option key={528566}>5 minutes</option>
+                        <select className="bg-slate-600 text-white px-3 py-1 rounded text-sm"
+                          <option30 seconds</option>
+                          <option1 minute</option>
+                          <option5 minutes</option>
                         </select>
                       </div>
                     </div>
@@ -1650,15 +1650,15 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 </Card>
 
                 {/* API Endpoints Status */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="flex items-center gap-2 text-purple-400" key={831595}>
-                      <Network className="w-5 h-5" / key={766227}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="flex items-center gap-2 text-purple-400"
+                      <Network className="w-5 h-5" /
                       API Endpoints;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="space-y-3" key={186520}>
+                  <CardContent
+                    <div className="space-y-3"
                       {[
                         {
                           endpoint: "/api/health",
@@ -1694,26 +1694,26 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                         <div;
                           key={index}
                           className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg"
-                         key={56714}>
-                          <div className="flex items-center gap-3" key={443099}>
+                        
+                          <div className="flex items-center gap-3"
                             <Badge;
                               className={`text-xs ${api.method === "GET" ? "bg-blue-500/20 text-blue-400" : "bg-green-500/20 text-green-400"}`}
-                             key={345398}>
+                            
                               {api.method}
                             </Badge>
-                            <code className="text-slate-300 text-sm" key={992353}>
+                            <code className="text-slate-300 text-sm"
                               {api.endpoint}
                             </code>
                           </div>
-                          <div className="flex items-center gap-2" key={100294}>
+                          <div className="flex items-center gap-2"
                             <span;
                               className={`text-xs ${api.status ? "text-green-400" : "text-red-400"}`}
-                             key={236824}>
+                            
                               {api.status ? api.response : "Failed"}
                             </span>
                             <div;
                               className={`w-2 h-2 rounded-full ${api.status ? "bg-green-400" : "bg-red-400"}`}
-                            / key={862204}>
+                            /
                           </div>
                         </div>
                       ))}
@@ -1723,15 +1723,15 @@ const UltraAdvancedMLDashboard: React.FC = () => {
               </div>
 
               {/* Real-time Connection Logs */}
-              <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                <CardHeader key={236869}>
-                  <CardTitle className="flex items-center gap-2 text-orange-400" key={984684}>
-                    <Monitor className="w-5 h-5" / key={759285}>
+              <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                <CardHeader
+                  <CardTitle className="flex items-center gap-2 text-orange-400"
+                    <Monitor className="w-5 h-5" /
                     Real-time Connection Logs;
                   </CardTitle>
                 </CardHeader>
-                <CardContent key={452065}>
-                  <div className="bg-slate-900/80 rounded-lg p-4 font-mono text-sm max-h-60 overflow-y-auto" key={607460}>
+                <CardContent
+                  <div className="bg-slate-900/80 rounded-lg p-4 font-mono text-sm max-h-60 overflow-y-auto"
                     {[
                       {
                         time: "14:23:45",
@@ -1771,8 +1771,8 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                         status: "error",
                       },
                     ].map((log, index) => (
-                      <div key={index} className="flex items-center gap-3 py-1" key={405148}>
-                        <span className="text-slate-500 text-xs" key={539023}>
+                      <div key={index} className="flex items-center gap-3 py-1"
+                        <span className="text-slate-500 text-xs"
                           {log.time}
                         </span>
                         <Badge;
@@ -1783,7 +1783,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                                 ? "bg-yellow-500/20 text-yellow-400"
                                 : "bg-green-500/20 text-green-400"
                           }`}
-                         key={677012}>
+                        
                           {log.level}
                         </Badge>
                         <span;
@@ -1794,7 +1794,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                                 ? "text-yellow-300"
                                 : "text-slate-300"
                           }`}
-                         key={490544}>
+                        
                           {log.message}
                         </span>
                       </div>
@@ -1804,30 +1804,30 @@ const UltraAdvancedMLDashboard: React.FC = () => {
               </Card>
 
               {/* Connection Statistics */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6" key={852085}>
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="text-blue-400 text-lg" key={482924}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="text-blue-400 text-lg"
                       Connection Stats;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="space-y-3" key={186520}>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Total Requests</span>
-                        <span className="text-blue-400 font-semibold" key={278924}>
+                  <CardContent
+                    <div className="space-y-3"
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Total Requests</span>
+                        <span className="text-blue-400 font-semibold"
                           24,891;
                         </span>
                       </div>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Success Rate</span>
-                        <span className="text-green-400 font-semibold" key={426839}>
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Success Rate</span>
+                        <span className="text-green-400 font-semibold"
                           99.2%
                         </span>
                       </div>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Avg Response</span>
-                        <span className="text-cyan-400 font-semibold" key={350846}>
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Avg Response</span>
+                        <span className="text-cyan-400 font-semibold"
                           34ms;
                         </span>
                       </div>
@@ -1835,29 +1835,29 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="text-green-400 text-lg" key={621014}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="text-green-400 text-lg"
                       Performance;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="space-y-3" key={186520}>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Uptime</span>
-                        <span className="text-green-400 font-semibold" key={426839}>
+                  <CardContent
+                    <div className="space-y-3"
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Uptime</span>
+                        <span className="text-green-400 font-semibold"
                           99.8%
                         </span>
                       </div>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Load Average</span>
-                        <span className="text-yellow-400 font-semibold" key={633761}>
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Load Average</span>
+                        <span className="text-yellow-400 font-semibold"
                           0.42;
                         </span>
                       </div>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Memory Usage</span>
-                        <span className="text-orange-400 font-semibold" key={334425}>
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Memory Usage</span>
+                        <span className="text-orange-400 font-semibold"
                           67%
                         </span>
                       </div>
@@ -1865,29 +1865,29 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50" key={256225}>
-                  <CardHeader key={236869}>
-                    <CardTitle className="text-purple-400 text-lg" key={506835}>
+                <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
+                  <CardHeader
+                    <CardTitle className="text-purple-400 text-lg"
                       Security;
                     </CardTitle>
                   </CardHeader>
-                  <CardContent key={452065}>
-                    <div className="space-y-3" key={186520}>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>SSL Status</span>
-                        <span className="text-green-400 font-semibold" key={426839}>
+                  <CardContent
+                    <div className="space-y-3"
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"SSL Status</span>
+                        <span className="text-green-400 font-semibold"
                           Active;
                         </span>
                       </div>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Auth Token</span>
-                        <span className="text-green-400 font-semibold" key={426839}>
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Auth Token</span>
+                        <span className="text-green-400 font-semibold"
                           Valid;
                         </span>
                       </div>
-                      <div className="flex justify-between" key={588832}>
-                        <span className="text-slate-400" key={337023}>Rate Limit</span>
-                        <span className="text-cyan-400 font-semibold" key={350846}>
+                      <div className="flex justify-between"
+                        <span className="text-slate-400"Rate Limit</span>
+                        <span className="text-cyan-400 font-semibold"
                           120/min;
                         </span>
                       </div>
@@ -1900,15 +1900,15 @@ const UltraAdvancedMLDashboard: React.FC = () => {
 
           {/* Admin Settings View */}
           {selectedView === "admin" && (
-            <div className="space-y-6" key={501869}>
-              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6" key={9886}>
-                <div className="flex items-center gap-3" key={443099}>
-                  <Shield className="w-6 h-6 text-red-400" / key={88204}>
-                  <div key={241917}>
-                    <h3 className="text-red-400 font-semibold" key={572766}>
+            <div className="space-y-6"
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6"
+                <div className="flex items-center gap-3"
+                  <Shield className="w-6 h-6 text-red-400" /
+                  <div
+                    <h3 className="text-red-400 font-semibold"
                       Administrator Access;
                     </h3>
-                    <p className="text-red-300 text-sm" key={887666}>
+                    <p className="text-red-300 text-sm"
                       You are accessing advanced system configuration. Changes;
                       can affect system stability.
                     </p>
@@ -1916,7 +1916,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <AdminSettings / key={364820}>
+              <AdminSettings /
             </div>
           )}
 
@@ -1930,12 +1930,12 @@ const UltraAdvancedMLDashboard: React.FC = () => {
             "backend",
             "admin",
           ].includes(selectedView) && (
-            <div className="text-center py-12" key={752807}>
-              <h2 className="text-xl font-semibold text-white mb-2" key={710406}>
+            <div className="text-center py-12"
+              <h2 className="text-xl font-semibold text-white mb-2"
                 {selectedView.charAt(0).toUpperCase() + selectedView.slice(1)}{" "}
                 View;
               </h2>
-              <p className="text-slate-200" key={234428}>Coming soon...</p>
+              <p className="text-slate-200"Coming soon...</p>
             </div>
           )}
         </main>
