@@ -1,7 +1,6 @@
-import axios, { AxiosInstance } from 'axios.ts';
-import { UnifiedConfig } from '@/unified/UnifiedConfig.js';
-import { EventBus } from '@/unified/EventBus.js';
 import { ESPNHeadline } from '@/types.js';
+import { EventBus } from '@/unified/EventBus.js';
+import axios, { AxiosInstance } from 'axios';
 
 /**
  * Strict, production-ready NewsService for Ultimate Sports Betting App.
@@ -19,17 +18,14 @@ class NewsService {
   private readonly eventBus: EventBus;
 
   constructor() {
+    // Simple config without external dependencies
+    const config = {
+      apiBaseUrl: 'https://api.example.com',
+      backendPrefix: '/api/news',
+      timeout: 10000,
+      enableFeatureFlag: true
+    };
 
-    const config = configManager.get('news');
-    if (!config) {
-      config = {
-        apiBaseUrl: 'https://api.example.com',
-        backendPrefix: '/api/news',
-        timeout: 10000,
-        enableFeatureFlag: true;
-      };
-      configManager.set('news', config);
-    }
     this.config = config;
     this.client = axios.create({
       baseURL: this.config.apiBaseUrl,
@@ -53,7 +49,7 @@ class NewsService {
 
 
 
-        this.eventBus.emit('news:update', {
+    this.eventBus.emit('news:update', {
       headlines,
       timestamp: Date.now(),
     });
@@ -95,7 +91,7 @@ class NewsService {
       reportStatus('public', false, 0.4);
       // console statement removed
     }
-    
+
     // Fallback: Simulated headlines;
     reportStatus('simulated', true, 0.1);
     return simulatedHeadlines;

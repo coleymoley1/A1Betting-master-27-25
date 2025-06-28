@@ -1,11 +1,10 @@
 import React, {
   createContext,
-  useContext,
-  useEffect,
-  useState,
-  ChangeEvent,
   FC,
   ReactNode,
+  useContext,
+  useEffect,
+  useState
 } from 'react';
 import PropOllama from './user-friendly/PropOllama';
 
@@ -40,17 +39,17 @@ interface AppContextType {
   setMarketData: (data: any) => void;
 }
 
-const AppContext = React.createContext<AppContextType>({} as AppContextType);
+const AppContext = createContext<AppContextType>({} as AppContextType);
 
 const AppContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentPage, setCurrentPage] = React.useState('dashboard');
-  const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
-  const [notifications, setNotifications] = React.useState<any[]>([]);
-  const [theme, setTheme] = React.useState('quantum-dark');
-  const [loading, setLoading] = React.useState({});
+  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [theme, setTheme] = useState('quantum-dark');
+  const [loading, setLoading] = useState({});
 
   // Real-time data from backend APIs
-  const [realTimeData, setRealTimeData] = React.useState({
+  const [realTimeData, setRealTimeData] = useState({
     liveGames: 0,
     predictions: 0,
     accuracy: 0,
@@ -66,7 +65,7 @@ const AppContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   });
 
   // User data (will be connected to real auth)
-  const [user] = React.useState({
+  const [user] = useState({
     name: 'Quantum Trader',
     email: 'trader@a1betting.com',
     balance: 0,
@@ -81,7 +80,7 @@ const AppContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   });
 
   // Prediction engine data from backend
-  const [predictionEngine] = React.useState({
+  const [predictionEngine] = useState({
     neuralNetworks: 47,
     ensembleAccuracy: 0,
     quantumQubits: 1024,
@@ -97,13 +96,13 @@ const AppContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   });
 
   // Market data from backend APIs
-  const [marketData, setMarketData] = React.useState({
+  const [marketData, setMarketData] = useState({
     trends: [],
     hotGames: [],
   });
 
   // Fetch real data from backend APIs
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchRealTimeData = async () => {
       try {
         // Fetch backend health and basic data
@@ -367,8 +366,8 @@ const Header: React.FC = () => {
     sidebarCollapsed,
     setSidebarCollapsed,
     notifications,
-  } = React.useContext(AppContext);
-  const [showNotifications, setShowNotifications] = React.useState(false);
+  } = useContext(AppContext);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const toggleTheme = () => {
     const themes = ['quantum-dark', 'neural-purple', 'cyber-blue', 'quantum-light'];
@@ -497,16 +496,13 @@ const Header: React.FC = () => {
                 <div className='absolute right-0 top-full mt-2 w-80 ultra-glass rounded-2xl border border-white/10 overflow-hidden z-50'>
                   <div className='p-4 border-b border-white/10'>
                     <h3 className='font-bold text-white'>Notifications</h3>
-                    <p className='text-sm text-gray-400'>{`${notifications.length} new alerts`}</p>
+                    <p className='text-sm text-gray-400'></p>
                   </div>
                   <div className='max-h-64 overflow-y-auto'>
-                    {notifications.map((notif: any) => (
-                      <div
-                        key={notif.id}
-                        className='p-4 hover:bg-white/5 border-b border-white/5 last:border-b-0'
-                      >
-                        <div className='text-sm text-white mb-1'>{notif.message}</div>
-                        <div className='text-xs text-gray-400'>{notif.time}</div>
+                    {notifications.map((notif: any, index: number) => (
+                      <div key={index} className="p-4 border-b border-white/10">
+                        {/* Placeholder for notification content */}
+                        <p className="text-white">{notif.message || 'New notification'}</p>
                       </div>
                     ))}
                   </div>
@@ -530,7 +526,6 @@ const Header: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
     </header>
   );
 };
@@ -541,7 +536,7 @@ const Header: React.FC = () => {
 
 const Sidebar: React.FC = () => {
   const { currentPage, setCurrentPage, realTimeData, sidebarCollapsed } =
-    React.useContext(AppContext);
+    useContext(AppContext);
 
   const navigation = [
     {
@@ -669,16 +664,14 @@ const Sidebar: React.FC = () => {
         <nav className='space-y-3'>
           <button
             onClick={() => setCurrentPage('dashboard')}
-            className={`w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 rounded-2xl transition-all duration-300 ${
-              currentPage === 'dashboard'
-                ? 'bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 shadow-neon'
-                : 'bg-gray-800/30 hover:bg-gray-800/50 text-gray-300 border-2 border-transparent hover:border-gray-600'
-            }`}
+            className={`w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 rounded-2xl transition-all duration-300 ${currentPage === 'dashboard'
+              ? 'bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 shadow-neon'
+              : 'bg-gray-800/30 hover:bg-gray-800/50 text-gray-300 border-2 border-transparent hover:border-gray-600'
+              }`}
           >
             <div className={`flex items-center ${sidebarCollapsed ? '' : 'space-x-4'}`}>
               <i className='fas fa-home text-xl' />
-              {!sidebarCollapsed && <span className='font-bold font-cyber'>QUANTUM DASHBOARD</span>}
-              {!sidebarCollapsed && <span className='text-lg animate-bounce'>🧠</span>}
+              {!sidebarCollapsed && <span className='font-bold'>Ultimate Dashboard</span>}
             </div>
             {!sidebarCollapsed && <div className='text-electric-400 font-bold'>→</div>}
           </button>
@@ -695,25 +688,21 @@ const Sidebar: React.FC = () => {
                 </h3>
               )}
               <ul className='space-y-2'>
-                {items.map(item => (
+                {items.map((item) => (
                   <li key={item.key}>
                     <button
                       onClick={() => setCurrentPage(item.key)}
-                      className={`nav-item w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 text-left text-sm font-bold transition-all duration-400 rounded-2xl ${
-                        currentPage === item.key
-                          ? 'active text-electric-400'
-                          : `text-gray-300 hover:text-white ${item.color}`
-                      }`}
+                      className={`w-full flex items-center ${sidebarCollapsed ? 'justify-center' : ''} space-x-4 px-4 py-3 rounded-2xl transition-all duration-300 ${currentPage === item.key
+                        ? 'bg-electric-500/20 text-electric-400 shadow-neon'
+                        : 'hover:bg-gray-800/50 text-gray-300'
+                        }`}
                     >
-                      <div className={`flex items-center ${sidebarCollapsed ? '' : 'space-x-4'}`}>
-                        <i className={`${item.icon} text-lg`} />
-                        {!sidebarCollapsed && <span className='font-cyber'>{item.name}</span>}
-                        {!sidebarCollapsed && item.indicator && (
-                          <span className='text-sm animate-pulse'>{item.indicator}</span>
-                        )}
-                      </div>
-                      {!sidebarCollapsed && currentPage === item.key && (
-                        <div className='text-electric-400 text-sm font-bold'>→</div>
+                      <i className={`fas ${item.icon} ${item.color} text-lg w-6 text-center`} />
+                      {!sidebarCollapsed && (
+                        <span className='flex-1 text-left font-semibold'>{item.name}</span>
+                      )}
+                      {!sidebarCollapsed && item.indicator && (
+                        <span className='text-sm'>{item.indicator}</span>
                       )}
                     </button>
                   </li>
@@ -733,24 +722,16 @@ const Sidebar: React.FC = () => {
             </div>
             <div className='space-y-3 text-sm'>
               <div className='flex justify-between items-center'>
-                <span className='text-gray-400 font-mono'>Status:</span>
-                <span className='text-green-400 font-bold font-cyber animate-pulse'>OPTIMAL</span>
+                <span className='text-gray-400'>Accuracy</span>
+                <span className='text-green-400 font-mono font-bold'>{`${realTimeData.accuracy.toFixed(1)}%`}</span>
               </div>
               <div className='flex justify-between items-center'>
-                <span className='text-gray-400 font-mono'>Accuracy:</span>
-                <span className='text-electric-400 font-bold font-mono'>
-                  {realTimeData.accuracy.toFixed(1)}%
-                </span>
+                <span className='text-gray-400'>Coherence</span>
+                <span className='text-blue-400 font-mono font-bold'>{`${realTimeData.quantumCoherence}%`}</span>
               </div>
               <div className='flex justify-between items-center'>
-                <span className='text-gray-400 font-mono'>Neural Nets:</span>
-                <span className='text-white font-bold font-mono'>47/47</span>
-              </div>
-              <div className='flex justify-between items-center'>
-                <span className='text-gray-400 font-mono'>Quantum:</span>
-                <span className='text-cyan-400 font-bold font-mono'>
-                  {realTimeData.quantumCoherence}%
-                </span>
+                <span className='text-gray-400'>Bots Active</span>
+                <span className='text-purple-400 font-mono font-bold'>{realTimeData.activeBots}/47</span>
               </div>
             </div>
           </div>
@@ -853,226 +834,82 @@ const Dashboard: FC = () => {
       {/* Enhanced Status Bar */}
       <div className='ultra-glass rounded-3xl p-8 border border-electric-500/20'>
         <div className='flex items-center justify-between mb-6'>
-          <h2 className='text-2xl font-bold text-electric-400 holographic font-cyber'>
-            NEURAL COMMAND CENTER
-          </h2>
-          <div className='flex items-center space-x-2'>
-            <div className='w-4 h-4 bg-green-400 rounded-full animate-pulse' />
-            <span className='text-green-400 font-bold font-mono'>SYSTEMS ONLINE</span>
-          </div>
-        </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-          <div className='text-center'>
-            <div className='text-4xl mb-3 text-blue-400'>
-              <i className='fas fa-microchip animate-pulse' />
+          <h3 className='text-2xl font-bold text-electric-400 holographic'>SYSTEM STATUS: ALL SYSTEMS NOMINAL</h3>
+          <div className='flex items-center space-x-4'>
+            <div className='flex items-center space-x-2'>
+              <div className='w-3 h-3 bg-green-400 rounded-full animate-pulse'></div>
+              <span className='text-green-400 text-sm font-bold'>OPERATIONAL</span>
             </div>
-            <div className='text-gray-400 text-sm font-mono'>Processing Speed</div>
-            <div className='text-2xl font-bold text-blue-400 font-mono'>{`${realTimeData.processingSpeed}ms`}</div>
-            <div className='w-2 h-2 bg-blue-400 rounded-full animate-pulse mx-auto mt-2' />
-          </div>
-          <div className='text-center'>
-            <div className='text-4xl mb-3 text-green-400'>
-              <i className='fas fa-shield-alt animate-pulse' />
-            </div>
-            <div className='text-gray-400 text-sm font-mono'>AI Confidence</div>
-            <div className='text-2xl font-bold text-green-400 font-mono'>{`${realTimeData.confidence.toFixed(1)}%`}</div>
-            <div className='w-2 h-2 bg-green-400 rounded-full animate-pulse mx-auto mt-2' />
-          </div>
-          <div className='text-center'>
-            <div className='text-4xl mb-3 text-purple-400'>
-              <i className='fas fa-database animate-pulse' />
-            </div>
-            <div className='text-gray-400 text-sm font-mono'>Data Points</div>
-            <div className='text-2xl font-bold text-purple-400 font-mono'>{`${(realTimeData.dataPoints / 1000000).toFixed(1)}M`}</div>
-            <div className='w-2 h-2 bg-purple-400 rounded-full animate-pulse mx-auto mt-2' />
-          </div>
-          <div className='text-center'>
-            <div className='text-4xl mb-3 text-yellow-400'>
-              <i className='fas fa-fire animate-pulse' />
-            </div>
-            <div className='text-gray-400 text-sm font-mono'>Win Streak</div>
-            <div className='text-2xl font-bold text-yellow-400 font-mono'>
-              {realTimeData.winStreak}
-            </div>
-            <div className='w-2 h-2 bg-yellow-400 rounded-full animate-pulse mx-auto mt-2' />
-          </div>
-        </div>
-        <div className='mt-8 text-center border-t border-white/10 pt-6'>
-          <div className='flex items-center justify-center space-x-4 text-sm'>
-            <span className='text-gray-500 font-mono'>Last neural sync:</span>
-            <span className='text-electric-400 font-mono font-bold'>
-              {new Date().toLocaleTimeString()}
-            </span>
-            <div className='w-px h-4 bg-gray-500' />
-            <span className='text-gray-400 font-mono'>Auto-sync: 2.0s intervals</span>
+            <span className='text-gray-500'>|</span>
+            <span className='text-sm text-gray-400 font-mono'>Last Sync: 3s ago</span>
           </div>
         </div>
       </div>
 
-      {/* Enhanced Live Feed */}
+      {/* Hot Games Section */}
       {marketData.hotGames && marketData.hotGames.length > 0 && (
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-          <Card title='QUANTUM GAME ANALYSIS' glowing={true} variant='neural'>
-            <div className='space-y-6'>
-              {marketData.hotGames.map((game: any, i: number) => {
-                const styles = gameCardStyles[i % gameCardStyles.length];
-                return (
-                  <div
-                    key={i}
-                    className={`p-6 bg-gradient-to-r rounded-2xl border hover:shadow-neon transition-all duration-300 ${styles.container}`}
-                  >
-                    <div className='flex justify-between items-start mb-4'>
-                      <div>
-                        <div className={`font-bold text-xl font-cyber ${styles.title}`}>
-                          {game.game}
-                        </div>
-                        <div className='text-gray-400 font-mono text-sm'>
-                          Odds: {game.odds} • Volume: {game.volume}
-                        </div>
-                      </div>
-                      <div
-                        className={`text-sm font-bold animate-pulse flex items-center ${styles.liveTracker}`}
-                      >
-                        <div className={`w-3 h-3 rounded-full mr-2 ${styles.pulseBg}`} />
-                        LIVE TRACKING
-                      </div>
-                    </div>
-                    <div className='mb-4'>
-                      <div className='flex justify-between text-sm mb-2'>
-                        <span className='text-gray-400 font-mono'>AI Confidence</span>
-                        <span className={`font-bold font-mono ${styles.confidenceText}`}>
-                          {game.confidence}%
-                        </span>
-                      </div>
-                      <div className='w-full bg-gray-700 rounded-full h-3 overflow-hidden'>
-                        <div
-                          className={`h-full rounded-full transition-all duration-1000 animate-energy-wave ${styles.confidenceBar}`}
-                          style={{ width: `${game.confidence}%` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Card>
-          <Card title='NEURAL NETWORK ACTIVITY' variant='quantum'>
-            <div className='space-y-6'>
-              <div className='flex items-center space-x-4 p-4 bg-electric-500/10 rounded-2xl border border-electric-500/20'>
-                <div className='relative'>
-                  <div className='absolute inset-0 bg-electric-400 rounded-full blur-md opacity-50' />
-                  <div className='relative w-4 h-4 bg-electric-400 rounded-full animate-pulse' />
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+          {marketData.hotGames.map((game: any, index: number) => (
+            <div
+              key={index}
+              className={`quantum-card rounded-3xl p-6 bg-gradient-to-br ${gameCardStyles[index % 3].container} transform hover:scale-105 transition-transform duration-300`}
+            >
+              <div className='flex justify-between items-start mb-4'>
+                <div>
+                  <h4 className={`text-lg font-bold ${gameCardStyles[index % 3].title}`}>{game.game}</h4>
+                  <p className='text-sm text-gray-400'>Real-Time Odds: {game.odds}</p>
                 </div>
-                <div className='flex-1'>
-                  <div className='text-electric-300 text-sm font-mono'>{`Neural Network #${Math.floor(Math.random() * 47 + 1)} processed ${Math.floor(Math.random() * 5000 + 1000)} data points`}</div>
-                  <div className='text-xs text-gray-500 mt-1'>{`${Math.floor(Math.random() * 15 + 5)}ms response time`}</div>
+                <div className='relative'>
+                  <div className={`absolute -inset-1 ${gameCardStyles[index % 3].pulseBg}/30 rounded-full animate-pulse`}></div>
+                  <div className={`relative w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg ${gameCardStyles[index % 3].liveTracker}`}>
+                    LIVE
+                  </div>
                 </div>
               </div>
-              <div className='flex items-center space-x-4 p-4 bg-purple-500/10 rounded-2xl border border-purple-500/20'>
-                <div className='relative'>
-                  <div className='absolute inset-0 bg-purple-400 rounded-full blur-md opacity-50' />
-                  <div className='relative w-4 h-4 bg-purple-400 rounded-full animate-pulse' />
-                </div>
-                <div className='flex-1'>
-                  <div className='text-purple-300 text-sm font-mono'>
-                    Quantum processor generated new prediction vector
-                  </div>
-                  <div className='text-xs text-gray-500 mt-1'>Quantum coherence: 99.97%</div>
-                </div>
+              <div className='text-center mb-4'>
+                <p className='text-sm text-gray-400 mb-1'>Confidence Level</p>
+                <p className={`text-3xl font-black ${gameCardStyles[index % 3].confidenceText}`}>{game.confidence}%</p>
               </div>
-              <div className='flex items-center space-x-4 p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20'>
-                <div className='relative'>
-                  <div className='absolute inset-0 bg-blue-400 rounded-full blur-md opacity-50' />
-                  <div className='relative w-4 h-4 bg-blue-400 rounded-full animate-pulse' />
-                </div>
-                <div className='flex-1'>
-                  <div className='text-blue-300 text-sm font-mono'>{`Ensemble model accuracy increased to ${realTimeData.accuracy.toFixed(1)}%`}</div>
-                  <div className='text-xs text-gray-500 mt-1'>Auto-optimization complete</div>
-                </div>
+              <div className='w-full bg-gray-700/50 rounded-full h-2.5'>
+                <div
+                  className={`h-2.5 rounded-full ${gameCardStyles[index % 3].confidenceBar}`}
+                  style={{ width: `${game.confidence}%` }}
+                ></div>
+              </div>
+              <div className='text-center mt-4'>
+                <p className='text-sm text-gray-400'>Market Volume</p>
+                <p className='text-lg font-bold text-white'>{game.volume}</p>
               </div>
             </div>
-          </Card>
+          ))}
         </div>
       )}
 
-      {/* Enhanced Quick Actions */}
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-        <Card glowing={true} variant='success'>
-          <div className='text-center'>
-            <div className='relative mb-6'>
-              <div className='absolute inset-0 bg-green-400/30 rounded-full blur-2xl' />
-              <div className='relative text-7xl text-green-400 animate-float'>💰</div>
-            </div>
-            <h3 className='text-2xl font-black mb-3 text-green-400 font-cyber'>
-              QUANTUM MONEY MAKER
-            </h3>
-            <p className='text-gray-300 mb-6 text-sm font-mono'>
-              Neural profit maximization with 47 AI agents active
-            </p>
-            <div className='mb-6 space-y-2'>
-              <div className='text-green-400 font-bold font-mono'>{`ROI: ${((realTimeData.profit / 50000) * 100).toFixed(1)}%`}</div>
-              <div className='text-xs text-gray-400'>Processing 47 neural networks</div>
-            </div>
-            <Button
-              label='ACTIVATE QUANTUM MODE'
-              variant='primary'
-              className='w-full'
-              size='lg'
-              onClick={() => setCurrentPage('money-maker')}
-            />
-          </div>
-        </Card>
-        <Card variant='neural'>
-          <div className='text-center'>
-            <div className='relative mb-6'>
-              <div className='absolute inset-0 bg-blue-400/30 rounded-full blur-2xl' />
-              <div className='relative text-7xl text-blue-400 animate-float'>🏆</div>
-            </div>
-            <h3 className='text-2xl font-black mb-3 text-blue-400 font-cyber'>
-              PRIZEPICKS QUANTUM
-            </h3>
-            <p className='text-gray-300 mb-6 text-sm font-mono'>
-              Enhanced prop analysis with quantum prediction
-            </p>
-            <div className='mb-6 space-y-2'>
-              <div className='text-blue-400 font-bold font-mono'>{`Accuracy: ${realTimeData.accuracy.toFixed(1)}%`}</div>
-              <div className='text-xs text-gray-400'>{`${Math.floor(realTimeData.liveGames * 4)} props analyzed`}</div>
-            </div>
-            <Button
-              label='ANALYZE PROPS'
-              variant='secondary'
-              className='w-full'
-              size='lg'
-              onClick={() => setCurrentPage('prizepicks')}
-            />
-          </div>
-        </Card>
-        <Card variant='quantum'>
-          <div className='text-center'>
-            <div className='relative mb-6'>
-              <div className='absolute inset-0 bg-purple-400/30 rounded-full blur-2xl' />
-              <div className='relative text-7xl text-purple-400 animate-float'>🤖</div>
-            </div>
-            <h3 className='text-2xl font-black mb-3 text-purple-400 font-cyber'>
-              PROPOLLAMA NEURAL
-            </h3>
-            <p className='text-gray-300 mb-6 text-sm font-mono'>
-              AI assistant powered by quantum intelligence
-            </p>
-            <div className='mb-6 space-y-2'>
-              <div className='text-purple-400 font-bold font-mono'>Neural IQ: 247</div>
-              <div className='text-xs text-gray-400'>Real-time market analysis</div>
-            </div>
-            <Button
-              label='CHAT WITH AI'
-              variant='ghost'
-              className='w-full'
-              size='lg'
-              onClick={() => setCurrentPage('propollama')}
-            />
-          </div>
-        </Card>
-      </div>
+      {/* Market Trends Section */}
+      <Card title='Quantum Market Trends' variant='neural'>
+        <div className='overflow-x-auto'>
+          <table className='w-full text-left'>
+            <thead>
+              <tr className='border-b border-purple-500/20'>
+                <th className='p-4 text-sm font-bold text-gray-400 uppercase'>Sport</th>
+                <th className='p-4 text-sm font-bold text-gray-400 uppercase'>Movement</th>
+                <th className='p-4 text-sm font-bold text-gray-400 uppercase'>Volume</th>
+                <th className='p-4 text-sm font-bold text-gray-400 uppercase'>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {marketData.trends.map((trend: any, index: number) => (
+                <tr key={index} className='border-b border-purple-500/10 hover:bg-purple-500/10'>
+                  <td className='p-4 font-semibold text-white'>{trend.sport}</td>
+                  <td className='p-4 text-green-400 font-mono'>{trend.movement}</td>
+                  <td className='p-4 text-white'>{trend.volume}</td>
+                  <td className='p-4 text-cyan-400'>{trend.sentiment}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
     </div>
   );
 };
@@ -1082,8 +919,8 @@ const Dashboard: FC = () => {
 // ============================================
 
 const MoneyMaker: React.FC = () => {
-  const { realTimeData, setRealTimeData } = React.useContext(AppContext);
-  const [activeTab, setActiveTab] = React.useState('live');
+  const { realTimeData, setRealTimeData } = useContext(AppContext);
+  const [activeTab, setActiveTab] = useState('live');
 
   // Mock data, to be replaced by API calls
   const opportunities = {
@@ -1252,13 +1089,13 @@ const MoneyMaker: React.FC = () => {
 // ============================================
 
 const PrizePicks: React.FC = () => {
-  const [props, setProps] = React.useState<any[]>([]);
-  const [lineup, setLineup] = React.useState<any[]>([]);
-  const [entryAmount, setEntryAmount] = React.useState<number>(10);
-  const [payout, setPayout] = React.useState<number>(0);
-  const [error, setError] = React.useState<string | null>(null);
+  const [props, setProps] = useState<any[]>([]);
+  const [lineup, setLineup] = useState<any[]>([]);
+  const [entryAmount, setEntryAmount] = useState<number>(10);
+  const [payout, setPayout] = useState<number>(0);
+  const [error, setError] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Fetch props from backend
     const fetchProps = async () => {
       try {
@@ -1296,7 +1133,7 @@ const PrizePicks: React.FC = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const multipliers: { [key: number]: number } = { 2: 3, 3: 5, 4: 10, 5: 20, 6: 35 };
     const multiplier = multipliers[lineup.length] || 0;
     setPayout(entryAmount * multiplier);

@@ -1,8 +1,10 @@
-import type { StateCreator } from 'zustand.ts';
+import { newsService } from '@/services/newsService.ts';
+import type { OddsData } from '@/types/betting.ts';
 import type { DailyFantasyProjection } from '@/types/fantasy.ts';
 import type { ESPNHeadline } from '@/types/news.ts';
 import type { SocialSentimentData } from '@/types/sentiment.ts';
-import type { OddsData } from '@/types/betting.ts';
+import type { AppStore } from '@/useAppStore.ts';
+import type { StateCreator } from 'zustand.ts';
 // ActiveSubscription is not defined in types/webSocket.ts, so define it locally here for now;
 export type ActiveSubscription = {
   feedName: string;
@@ -10,10 +12,6 @@ export type ActiveSubscription = {
   // Allow additional properties, but avoid 'any'.
   [key: string]: unknown;
 };
-import { newsService } from '@/services/newsService.ts';
-import { sentimentService } from '@/services/sentimentService.ts';
-import { dataScrapingService } from '@/services/dataScrapingService.ts';
-import type { AppStore } from '@/useAppStore.ts';
 
 export interface DynamicDataSlice {
   sentiments: Record<string, SocialSentimentData>; // Keyed by topic/player name;
@@ -58,7 +56,7 @@ export const initialDynamicDataState: Pick<
 
 export const createDynamicDataSlice: StateCreator<AppStore, [], [], DynamicDataSlice> = (
   set,
-  get;
+  get
 ) => ({
   ...initialDynamicDataState,
   fetchSentiments: async topic => {

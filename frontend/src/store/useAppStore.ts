@@ -1,23 +1,23 @@
 // Import slice types and creators;
-import { AuthSlice, createAuthSlice, initialAuthState } from './slices/authSlice.ts';
-import {
-  PrizePicksSlice,
-  createPrizePicksSlice,
-  initialPrizePicksState,
-} from './slices/prizePicksSlice.ts';
-import { BetSlipSlice, createBetSlipSlice, initialBetSlipState } from './slices/betSlipSlice.ts';
-import {
-  NotificationSlice,
-  createNotificationSlice,
-  initialNotificationState,
-} from './slices/notificationSlice.ts';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import { AuthSlice, createAuthSlice, initialAuthState } from './slices/authSlice';
+import { BetSlipSlice, createBetSlipSlice, initialBetSlipState } from './slices/betSlipSlice';
 import {
   DynamicDataSlice,
   createDynamicDataSlice,
   initialDynamicDataState,
-} from './slices/dynamicDataSlice.ts';
-import { create } from 'zustand.ts';
-import { persist, createJSONStorage } from 'zustand/middleware.ts';
+} from './slices/dynamicDataSlice';
+import {
+  NotificationSlice,
+  createNotificationSlice,
+  initialNotificationState,
+} from './slices/notificationSlice';
+import {
+  PrizePicksSlice,
+  createPrizePicksSlice,
+  initialPrizePicksState,
+} from './slices/prizePicksSlice';
 
 // Define the AppState as a combination of all slice states;
 export type AppState = AuthSlice &

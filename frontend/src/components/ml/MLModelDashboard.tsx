@@ -1,4 +1,7 @@
-// Placeholder for MLModelDashboard component;
-import React from 'react.ts';
+// Placeholder for MLModelDashboard component
 
-export { MLModelDashboard };
+const MLModelDashboard = () => {
+    return <div>ML Model Dashboard - Coming Soon</div>;
+};
+
+export default MLModelDashboard;

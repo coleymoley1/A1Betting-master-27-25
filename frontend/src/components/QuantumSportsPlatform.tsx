@@ -1,38 +1,36 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
 import { motion } from 'framer-motion';
 import {
+  Atom,
+  BarChart3,
+  Bell,
   Brain,
-  Target,
   DollarSign,
-  TrendingUp,
+  Eye,
+  Home,
+  Menu,
+  MessageCircle,
   Settings,
   Shield,
-  Eye,
-  BarChart3,
-  Home,
   Trophy,
-  MessageCircle,
-  Atom,
-  Bell,
-  User,
-  Menu,
-  X,
+  X
 } from 'lucide-react';
+import React, { createContext, useContext, useState } from 'react';
 
 // Import real components from workspace
-import PropOllama from './user-friendly/PropOllama';
-import { MoneyMaker } from './MoneyMaker';
-import PrizePicksPro from './user-friendly/PrizePicksPro';
-import MLModelDashboard from './ml/MLModelDashboard';
-import QuantumDashboard from './QuantumDashboard';
-import AdminPanel from './admin/AdminPanel';
-import UltimateSettingsPage from './settings/UltimateSettingsPage';
-import Analytics from './Analytics';
+// import AdminPanel from './admin/AdminPanel';
+// import Analytics from './Analytics';
+// import MLModelDashboard from './ml/MLModelDashboard';
+// import { MoneyMaker } from './MoneyMaker';
+// import QuantumDashboard from './QuantumDashboard';
+// import UltimateSettingsPage from './settings/UltimateSettingsPage';
+// import PrizePicksPro from './user-friendly/PrizePicksPro';
+// import PropOllama from './user-friendly/PropOllama';
 
 // Import real services
-import { useRealTimeData } from '../hooks/useRealTimeData';
 import { useAuth } from '../hooks/useAuth';
 import { useBettingData } from '../hooks/useBettingData';
+import { useRealTimeData } from '../hooks/useRealtimeData';
+import { useStore } from '../stores/useStore';
 
 // Context for app state
 interface AppContextType {
@@ -56,6 +54,12 @@ const QuantumSportsPlatform: React.FC = () => {
   const { user } = useAuth();
   const { data: realTimeData } = useRealTimeData();
   const { notifications } = useBettingData();
+
+  // Toast functionality
+  const store = useStore();
+  console.log('Store:', store);
+  console.log('Store keys:', Object.keys(store));
+  // const { addToast } = store;
 
   const contextValue: AppContextType = {
     currentPage,
@@ -112,6 +116,15 @@ const Header: React.FC = () => {
 
   const { user, notifications, sidebarCollapsed, setSidebarCollapsed } = context;
   const [showNotifications, setShowNotifications] = useState(false);
+  const store = useStore();
+  console.log('Header Store:', store);
+  // const { addToast } = store;
+
+  // Test function for toast
+  const testToast = () => {
+    // addToast('success', 'Toast system is working! 🎉');
+    console.log('Test toast called');
+  };
 
   return (
     <header className='border-b border-white/10 backdrop-blur-xl bg-black/20'>
@@ -172,6 +185,15 @@ const Header: React.FC = () => {
               </motion.div>
             )}
           </div>
+
+          {/* Test Toast Button */}
+          <motion.button
+            onClick={testToast}
+            className='px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium transition-colors'
+            whileHover={{ scale: 1.05 }}
+          >
+            Test Toast
+          </motion.button>
 
           {/* User Profile */}
           <div className='flex items-center space-x-4'>
@@ -346,11 +368,10 @@ const Sidebar: React.FC = () => {
                     <li key={item.key}>
                       <motion.button
                         onClick={() => setCurrentPage(item.key)}
-                        className={`w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 rounded-2xl transition-all duration-400 ${
-                          isActive
-                            ? 'bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 shadow-neon'
-                            : `bg-gray-800/30 hover:bg-gray-800/50 text-gray-300 border-2 border-transparent hover:border-gray-600 ${item.color}`
-                        }`}
+                        className={`w-full flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'} px-4 py-4 rounded-2xl transition-all duration-400 ${isActive
+                          ? 'bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 shadow-neon'
+                          : `bg-gray-800/30 hover:bg-gray-800/50 text-gray-300 border-2 border-transparent hover:border-gray-600 ${item.color}`
+                          }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -428,23 +449,23 @@ const PageRenderer: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <QuantumDashboard />;
+        return <div>Dashboard Placeholder</div>;
       case 'money-maker':
-        return <MoneyMaker />;
+        return <div>MoneyMaker Placeholder</div>;
       case 'prizepicks':
-        return <PrizePicksPro />;
+        return <div>PrizePicksPro Placeholder</div>;
       case 'propollama':
-        return <PropOllama />;
+        return <div>PropOllama Placeholder</div>;
       case 'ml-center':
-        return <MLModelDashboard />;
+        return <div>MLModelDashboard Placeholder</div>;
       case 'analytics':
-        return <Analytics />;
+        return <div>Analytics Placeholder</div>;
       case 'settings':
-        return <UltimateSettingsPage />;
+        return <div>UltimateSettingsPage Placeholder</div>;
       case 'admin':
-        return <AdminPanel />;
+        return <div>AdminPanel Placeholder</div>;
       default:
-        return <QuantumDashboard />;
+        return <div>Dashboard Placeholder</div>;
     }
   };
 

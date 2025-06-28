@@ -25,7 +25,7 @@ class ConsoleManager {
 
     if (
       !this.state.backendOfflineLogged ||
-      now - this.state.lastOfflineCheck > this.OFFLINE_CHECK_INTERVAL;
+      now - this.state.lastOfflineCheck > this.OFFLINE_CHECK_INTERVAL
     ) {
       // console statement removed
       this.state.backendOfflineLogged = true;
@@ -70,8 +70,7 @@ class ConsoleManager {
     if (offlineEndpoints.length === 0) {
       console.info(`🚀 All ${onlineEndpoints.length} API endpoints are online`);
     } else {
-      // console statement removed}`,
-      );
+      // console statement removed
     }
   }
 

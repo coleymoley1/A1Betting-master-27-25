@@ -3,8 +3,6 @@
  * Provides user-friendly error messages and retry mechanisms;
  */
 
-import { AxiosError } from 'axios.ts';
-import toast from 'react-hot-toast.ts';
 import { consoleManager } from '@/utils/consoleUtils.ts';
 
 export class ApiErrorHandler {
@@ -12,8 +10,8 @@ export class ApiErrorHandler {
     const isNetworkError =
       error.code === "NETWORK_ERROR" || error.message === "Network Error";
 
-    const userMessage = "Service temporarily unavailable";
-    const technicalMessage = error.message || "Unknown error";
+    let userMessage = "Service temporarily unavailable";
+    let technicalMessage = error.message || "Unknown error";
 
     if (isNetworkError) {
       userMessage = "Unable to connect to betting services";

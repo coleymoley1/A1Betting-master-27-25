@@ -1,7 +1,6 @@
-import { StateCreator } from 'zustand.ts';
 import { ParlayLeg } from '@/../../shared/betting.ts';
-import { bettingStrategyService } from '@/strategies/bettingStrategy.ts';
 import { AppStore } from '@/stores/useAppStore.ts';
+import { StateCreator } from 'zustand.ts';
 
 // Helper for Odds Conversion (Simplified)
 const americanToDecimal = (americanOdds: number): number => {
@@ -40,7 +39,7 @@ export const createBetSlipSlice: StateCreator<
   AppStore,
   [],
   [],
-  BetSlipSlice;
+  BetSlipSlice
 > = (set, get) => ({
   ...initialBetSlipState,
   addLeg: (leg) => {
@@ -92,7 +91,7 @@ export const createBetSlipSlice: StateCreator<
     // PrizePicks has fixed multipliers for N-leg parlays, not based on individual odds.
     // This is a simplified example. Real PrizePicks payout calculation is more complex.
     // For other sportsbooks, you'd multiply decimal odds.
-    const multiplier = 1;
+    let multiplier = 1;
     if (legs.length === 2) multiplier = 3;
     else if (legs.length === 3) multiplier = 5;
     else if (legs.length === 4) multiplier = 10;

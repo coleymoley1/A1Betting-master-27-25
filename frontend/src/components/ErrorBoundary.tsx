@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode  } from 'react.ts';
+import { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -10,7 +10,7 @@ interface State {
   error?: Error;
 }
 
-class ErrorBoundary extends Component<Props, State key={458171}> {
+class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
   };
@@ -20,44 +20,44 @@ class ErrorBoundary extends Component<Props, State key={458171}> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // console statement removed
+    console.error("Uncaught error:", error, errorInfo);
   }
 
   public render() {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div;
+          <div
             style={{
-              padding: "20px",
-              margin: "20px",
-              border: "1px solid #ff4757",
-              borderRadius: "8px",
-              backgroundColor: "#fff5f5",
-              color: "#dc2626",
+              padding: '20px',
+              margin: '20px',
+              border: '1px solid #ff4757',
+              borderRadius: '8px',
+              backgroundColor: '#fff5f5',
+              color: '#dc2626',
             }}
-           key={306635}>
-            <h2 key={707260}>Theme Error</h2>
-            <p key={161203}>Something went wrong with the theme system.</p>
-            <details style={{ marginTop: "10px" }} key={400323}>
-              <summary key={93963}>Error details:</summary>
-              <pre style={{ marginTop: "10px", fontSize: "12px" }} key={761230}>
+          >
+            <h2>Theme Error</h2>
+            <p>Something went wrong with the theme system.</p>
+            <details style={{ marginTop: '10px' }}>
+              <summary>Error details:</summary>
+              <pre style={{ marginTop: '10px', fontSize: '12px' }}>
                 {this.state.error?.toString()}
               </pre>
             </details>
-            <button;
-              onClick={() = key={619354}> window.location.reload()}
+            <button
+              onClick={() => window.location.reload()}
               style={{
-                marginTop: "10px",
-                padding: "8px 16px",
-                backgroundColor: "#dc2626",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
+                marginTop: '10px',
+                padding: '8px 16px',
+                backgroundColor: '#dc2626',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
               }}
             >
-              Reload Page;
+              Reload Page
             </button>
           </div>
         )

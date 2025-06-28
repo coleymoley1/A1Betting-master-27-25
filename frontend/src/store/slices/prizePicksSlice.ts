@@ -1,13 +1,11 @@
-import { StateCreator } from 'zustand.ts';
 import {
   PrizePicksEntry,
-  PrizePicksProps,
-  PrizePicksPlayer,
   PrizePicksLines,
+  PrizePicksPlayer,
+  PrizePicksProps,
 } from '@/../../shared/prizePicks.ts';
-import { prizePicksService } from '@/services/prizePicksService.ts';
-import { userService } from '@/services/userService.ts';
 import { AppStore } from '@/stores/useAppStore.ts'; // Corrected path;
+import { StateCreator } from 'zustand.ts';
 
 export interface PrizePicksSlice {
   props: PrizePicksProps[];
@@ -53,7 +51,7 @@ export const initialPrizePicksState: Pick<
 
 export const createPrizePicksSlice: StateCreator<AppStore, [], [], PrizePicksSlice> = (
   set,
-  get;
+  get
 ) => ({
   ...initialPrizePicksState,
   fetchProps: async (league, statType) => {

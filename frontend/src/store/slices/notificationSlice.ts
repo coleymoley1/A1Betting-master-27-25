@@ -1,6 +1,6 @@
-import { StateCreator } from 'zustand.ts';
-import { ToastNotification } from '@/../../shared/formatters.ts';
-import { AppStore } from '@/stores/useAppStore.ts'; // Corrected path;
+import { StateCreator } from 'zustand';
+import { ToastNotification } from '../../utils/formatters';
+import { AppStore } from '../useAppStore';
 
 export interface NotificationSlice {
   toasts: ToastNotification[];
@@ -15,8 +15,8 @@ export const initialNotificationState: Pick<NotificationSlice, 'toasts'> = {
 export const createNotificationSlice: StateCreator<AppStore, [], [], NotificationSlice> = set => ({
   ...initialNotificationState,
   addToast: toast => {
-
-
+    const id = Math.random().toString(36).substr(2, 9);
+    const newToast = { ...toast, id };
     set(state => ({ toasts: [...state.toasts, newToast] }));
     return id;
   },

@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useStore } from '../stores/useStore';
 
 interface UseBettingDataOptions {
   sport?: string;
@@ -21,8 +22,12 @@ export const useBettingData = ({
   const [oddsUpdates, setOddsUpdates] = useState<OddsUpdate[]>([]);
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isConnected, setIsConnected] = useState(false);
 
   const [error, setError] = useState<Error | null>(null);
+
+  // Get addToast from the store
+  const { addToast } = useStore();
 
   // Fallback for addToast if not present, memoized for hook safety;
 
@@ -39,12 +44,7 @@ export const useBettingData = ({
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Failed to fetch data'));
-      addToast({
-        id: 'data-error',
-        type: 'error',
-        title: 'Error',
-        message: 'Failed to fetch betting data',
-      });
+      addToast('error', 'Failed to fetch betting data');
     } finally {
       setIsLoading(false);
     }
@@ -72,24 +72,14 @@ export const useBettingData = ({
           if (oddsChange < minOddsChange) return;
           setOddsUpdates(prev => [update, ...prev].slice(0, 50));
           if (oddsChange >= 0.5) {
-            addToast({
-              id: `odds-update-${update.id}`,
-              type: 'info',
-              title: 'Odds Update',
-              message: `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`,
-            });
+            addToast('info', `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`);
           }
           break;
         }
         case 'arbitrage_alert': {
           setOpportunities(prev => [opportunity, ...prev].slice(0, 50));
           if (onNewOpportunity) onNewOpportunity(opportunity);
-          addToast({
-            id: `arbitrage-${opportunity.id}`,
-            type: 'success',
-            title: 'Arbitrage Opportunity',
-            message: `New arbitrage opportunity: ${opportunity.description}`,
-          });
+          addToast('success', `New arbitrage opportunity: ${opportunity.description}`);
           break;
         }
         default:
