@@ -65,13 +65,17 @@
     border-radius: 50%;
     background: linear-gradient(135deg, #00ff88, #00d4ff);
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.6), 0 0 20px rgba(0, 255, 136, 0.3);
+    box-shadow:
+      0 0 10px rgba(0, 255, 136, 0.6),
+      0 0 20px rgba(0, 255, 136, 0.3);
     transition: all 0.3s ease;
   }
 
   .slider-thumb::-webkit-slider-thumb:hover {
     transform: scale(1.2);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 255, 136, 0.5);
+    box-shadow:
+      0 0 15px rgba(0, 255, 136, 0.8),
+      0 0 30px rgba(0, 255, 136, 0.5);
   }
 
   .slider-thumb::-moz-range-thumb {
@@ -81,19 +85,22 @@
     background: linear-gradient(135deg, #00ff88, #00d4ff);
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.6), 0 0 20px rgba(0, 255, 136, 0.3);
+    box-shadow:
+      0 0 10px rgba(0, 255, 136, 0.6),
+      0 0 20px rgba(0, 255, 136, 0.3);
     transition: all 0.3s ease;
   }
 
   .slider-thumb::-moz-range-thumb:hover {
     transform: scale(1.2);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 255, 136, 0.5);
+    box-shadow:
+      0 0 15px rgba(0, 255, 136, 0.8),
+      0 0 30px rgba(0, 255, 136, 0.5);
   }
 
   .slider-thumb:focus {
     outline: none;
     background-position: right center;
-  }
   }
 
   /* Badge Variants */
@@ -213,7 +220,8 @@
 }
 
 @keyframes pulseSoft {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
