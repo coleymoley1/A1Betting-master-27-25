@@ -86,7 +86,10 @@ export const useBettingData = ({
 
           setOddsUpdates(prev => [update, ...prev].slice(0, 50));
           if (oddsChange >= 0.5) {
-            addToast('info', `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`);
+            addToast(
+              'info',
+              `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`
+            );
           }
           break;
         }
@@ -96,16 +99,16 @@ export const useBettingData = ({
 
           setOpportunities(prev => [opportunity, ...prev].slice(0, 50));
           if (onNewOpportunity) onNewOpportunity(opportunity);
-          addToast('success', `New arbitrage opportunity: ${opportunity.description || opportunity.id}`);
+          addToast(
+            'success',
+            `New arbitrage opportunity: ${opportunity.description || opportunity.id}`
+          );
           break;
         }
         default:
           // Ignore unknown message types
           break;
       }
-    },
-    [sport, propType, minOddsChange, addToast, onNewOpportunity]
-  );
     },
     [sport, propType, minOddsChange, addToast, onNewOpportunity]
   );
