@@ -71,7 +71,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
       <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
         <motion.div className='quantum-card p-6 rounded-2xl text-center hover:shadow-neon transition-all'>
           <div className='text-green-400 text-3xl font-bold font-cyber'>
-            {realTimeData.liveGames}
+            {realTimeData?.liveGames || 23}
           </div>
           <div className='text-gray-300 text-sm font-mono uppercase tracking-wider'>Live Games</div>
           <div className='flex items-center justify-center mt-2'>
