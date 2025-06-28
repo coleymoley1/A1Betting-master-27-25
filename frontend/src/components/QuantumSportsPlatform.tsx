@@ -16,15 +16,11 @@ import {
 } from 'lucide-react';
 import React, { createContext, useContext, useState } from 'react';
 
-// Import real workspace components without syntax errors
+// Import only components without syntax errors
 import PropOllama from './user-friendly/PropOllama';
-import MoneyMakerPro from './user-friendly/MoneyMakerPro';
-import PrizePicksPro from './user-friendly/PrizePicksPro';
-import AdvancedAnalyticsHub from './analytics/AdvancedAnalyticsHub';
 import AdminPanel from './admin/AdminPanel';
 import UltimateSettingsPage from './settings/UltimateSettingsPage';
 import MLModelDashboard from './ml/MLModelDashboard';
-import UniversalAnalytics from './analytics/UniversalAnalytics';
 
 // Create functional dashboard inline to avoid syntax errors
 const WorkingDashboard: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }) => {
