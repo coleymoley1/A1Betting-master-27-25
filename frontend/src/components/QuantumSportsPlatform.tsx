@@ -485,38 +485,11 @@ const Header: React.FC = () => {
     sidebarCollapsed,
     setSidebarCollapsed,
     setCurrentPage,
+    theme,
+    toggleTheme,
   } = context;
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSystemMonitor, setShowSystemMonitor] = useState(false);
-  const [theme, setTheme] = useState('quantum-dark');
-
-  // Initialize theme on mount
-  useEffect(() => {
-    document.body.classList.add('theme-quantum-dark');
-    document.documentElement.classList.add('dark');
-  }, []);
-
-  const toggleTheme = () => {
-    const themes = ['quantum-dark', 'neural-purple', 'cyber-blue', 'quantum-light'];
-    const currentIndex = themes.indexOf(theme);
-    const nextTheme = themes[(currentIndex + 1) % themes.length];
-    setTheme(nextTheme);
-
-    // Apply theme to document body
-    document.body.className = document.body.className.replace(/theme-\w+/g, '');
-    document.body.classList.add(`theme-${nextTheme}`);
-
-    // Handle light theme
-    if (nextTheme === 'quantum-light') {
-      document.documentElement.classList.remove('dark');
-      document.body.style.background =
-        'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)';
-    } else {
-      document.documentElement.classList.add('dark');
-      document.body.style.background = '';
-    }
-  };
-
   return (
     <header className='ultra-glass border-b border-white/10 sticky top-0 z-50 backdrop-blur-30'>
       <div className='max-w-full mx-auto px-6 py-4'>
