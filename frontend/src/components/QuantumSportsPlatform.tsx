@@ -344,7 +344,7 @@ const QuantumSportsPlatform: React.FC = () => {
 
   // Real data hooks
   const { user } = useAuth();
-  const { data: realTimeData } = useRealTimeData();
+  const { data: realTimeData } = useRealtimeData();
   const { notifications } = useBettingData();
 
   // Particle effects
