@@ -20,7 +20,9 @@ import {
 } from 'lucide-react';
 import CompactFilterBar from './filters/CompactFilterBar';
 import QuantumFilters from './filters/QuantumFilters';
+import FluentLiveFilters from './filters/FluentLiveFilters';
 import { useFilters, useFilterStats } from '../hooks/useFilters';
+import { useFluentFilters, useFilteredResults } from '../hooks/useFluentFilters';
 
 interface AppContextType {
   realTimeData: {
