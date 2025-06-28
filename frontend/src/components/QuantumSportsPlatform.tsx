@@ -338,7 +338,14 @@ const Header: React.FC = () => {
   const context = useContext(AppContext);
   if (!context) return null;
 
-  const { user, realTimeData, notifications, sidebarCollapsed, setSidebarCollapsed } = context;
+  const {
+    user,
+    realTimeData,
+    notifications,
+    sidebarCollapsed,
+    setSidebarCollapsed,
+    setCurrentPage,
+  } = context;
   const [showNotifications, setShowNotifications] = useState(false);
   const [theme, setTheme] = useState('quantum-dark');
 
