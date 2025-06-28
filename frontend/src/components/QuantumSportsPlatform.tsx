@@ -17,14 +17,14 @@ import {
 import React, { createContext, useContext, useState } from 'react';
 
 // Import real components from workspace
-// import AdminPanel from './admin/AdminPanel';
-// import Analytics from './Analytics';
-// import MLModelDashboard from './ml/MLModelDashboard';
-// import { MoneyMaker } from './MoneyMaker';
-// import QuantumDashboard from './QuantumDashboard';
-// import UltimateSettingsPage from './settings/UltimateSettingsPage';
-// import PrizePicksPro from './user-friendly/PrizePicksPro';
-// import PropOllama from './user-friendly/PropOllama';
+import AdminPanel from './admin/AdminPanel';
+import Analytics from './Analytics';
+import MLModelDashboard from './ml/MLModelDashboard';
+import MoneyMakerPro from './user-friendly/MoneyMakerPro';
+import Dashboard from './dashboard/Dashboard';
+import UltimateSettingsPage from './settings/UltimateSettingsPage';
+import PrizePicksPro from './user-friendly/PrizePicksPro';
+import UniversalAnalytics from './analytics/UniversalAnalytics';
 
 // Import real services
 import { useAuth } from '../hooks/useAuth';
