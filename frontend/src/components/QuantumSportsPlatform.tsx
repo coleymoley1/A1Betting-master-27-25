@@ -16,15 +16,10 @@ import {
 } from 'lucide-react';
 import React, { createContext, useContext, useState } from 'react';
 
-// Import real components from workspace
-import AdminPanel from './admin/AdminPanel';
-import Analytics from './Analytics';
-import MLModelDashboard from './ml/MLModelDashboard';
-import MoneyMakerPro from './user-friendly/MoneyMakerPro';
-import Dashboard from './dashboard/Dashboard';
-import UltimateSettingsPage from './settings/UltimateSettingsPage';
-import PrizePicksPro from './user-friendly/PrizePicksPro';
-import UniversalAnalytics from './analytics/UniversalAnalytics';
+// Import working components from workspace
+import CleanDashboard from './dashboard/CleanDashboard';
+import CleanAnalytics from './analytics/CleanAnalytics';
+import UnifiedMoneyMaker from './money-maker/UnifiedMoneyMaker';
 
 // Import real services
 import { useAuth } from '../hooks/useAuth';
@@ -272,7 +267,7 @@ const Sidebar: React.FC = () => {
       key: 'quantum',
       icon: Atom,
       category: 'ai',
-      indicator: '⚛��',
+      indicator: '⚛️',
       color: 'text-cyan-400',
     },
     {
