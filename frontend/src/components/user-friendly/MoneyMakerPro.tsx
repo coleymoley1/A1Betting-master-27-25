@@ -60,6 +60,41 @@ const MoneyMakerPro: React.FC = () => {
     lineMovement: 'any',
   });
   const [results, setResults] = useState<MoneyMakerResults | null>(null);
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [lineupName, setLineupName] = useState('');
+
+  const saveLineup = () => {
+    if (!results || !lineupName.trim()) {
+      toast.error('Please enter a lineup name');
+      return;
+    }
+
+    const picks = results.picks.map(pick => ({
+      id: `pick_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      description: pick.pick,
+      confidence: pick.confidence,
+    }));
+
+    const lineupId = lineupTracker.saveMoneyMakerLineup(
+      lineupName,
+      picks,
+      results.investment,
+      results.payout,
+      results.accuracy
+    );
+
+    toast.success(`💰 Money Maker lineup "${lineupName}" saved!`, {
+      duration: 3000,
+      style: {
+        background: '#1f2937',
+        color: '#10b981',
+        border: '1px solid #10b981',
+      },
+    });
+
+    setShowSaveModal(false);
+    setLineupName('');
+  };
 
   const activateQuantumAI = async () => {
     setLoading(true);
