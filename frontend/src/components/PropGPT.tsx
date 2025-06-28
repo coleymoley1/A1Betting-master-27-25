@@ -77,7 +77,7 @@ const PropOllama: React.FC = () => {
       {/* Header */}
       <div className='quantum-card rounded-3xl p-10 text-center'>
         <div className='relative mb-6'>
-          <h1 className='holographic text-5xl font-black mb-4 font-cyber'>PROPGPT QUANTUM</h1>
+          <h1 className='holographic text-5xl font-black mb-4 font-cyber'>PROPOLLAMA QUANTUM</h1>
           <p className='text-2xl text-gray-400 font-mono'>Neural Sports Intelligence Assistant</p>
         </div>
         <div className='grid grid-cols-4 gap-6'>
@@ -143,7 +143,7 @@ const PropOllama: React.FC = () => {
                 <i className='fas fa-brain text-black text-sm'></i>
               </div>
               <div className='quantum-card border border-purple-500/30 text-white px-6 py-4 rounded-2xl'>
-                PropGPT Quantum is analyzing neural networks...
+                PropOllama Quantum is analyzing neural networks...
               </div>
             </div>
           )}
@@ -206,4 +206,4 @@ const PropOllama: React.FC = () => {
   );
 };
 
-export default PropGPT;
+export default PropOllama;
