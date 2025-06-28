@@ -17,6 +17,7 @@ import QuantumFilters from '../filters/QuantumFilters';
 import FluentLiveFilters from '../filters/FluentLiveFilters';
 import { useFilters, ALL_SPORTS, PRIMARY_SPORTS, MISC_SPORTS } from '../../hooks/useFilters';
 import { useFluentFilters, useFilteredResults } from '../../hooks/useFluentFilters';
+import { useQuantumPredictions } from '../../hooks/useQuantumPredictions';
 
 interface BettingConfig {
   investment: number;
@@ -81,6 +82,13 @@ const MoneyMakerPro: React.FC = () => {
   const { filters: fluentFilters, updateFilters: updateFluentFilters } = useFluentFilters();
   const { totalItems: totalOpportunities, filteredItems: filteredOpportunities } =
     useFilteredResults(fluentFilters, 89);
+  const {
+    predictions: quantumPredictions,
+    systemState: quantumState,
+    getQuantumInsight,
+    getNetworkStatus,
+    highConfidencePredictions,
+  } = useQuantumPredictions({ minConfidence: 85 });
 
   const saveLineup = () => {
     if (!results || !lineupName.trim()) {
