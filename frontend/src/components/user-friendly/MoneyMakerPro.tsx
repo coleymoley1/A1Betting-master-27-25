@@ -178,7 +178,7 @@ const MoneyMakerPro: React.FC = () => {
         ].slice(0, config.portfolio),
         quantumBoost: true,
         processingTime: `${Math.floor(500 + Math.random() * 500)}ms`,
-        neuralNetworks: 47 + filters.sports.length * 3,
+        neuralNetworks: 47 + (fluentFilters.sport === 'all' ? 36 : 12),
         filters: config,
       });
       setLoading(false);
