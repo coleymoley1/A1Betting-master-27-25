@@ -737,52 +737,7 @@ const PageRenderer: React.FC = () => {
       case 'propollama':
         return <PropOllama />;
       case 'ml-center':
-        return (
-          <div className='p-8 space-y-6'>
-            <div className='text-center'>
-              <h2 className='text-3xl font-bold text-white mb-4 animate-cyber-pulse'>
-                ML Model Center
-              </h2>
-              <p className='text-cyan-400 text-lg'>Neural Network Command Center</p>
-            </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-              <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-white mb-3'>Active Models</h3>
-                <div className='space-y-2'>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-300'>Ensemble Predictor</span>
-                    <span className='text-green-400'>Online</span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-300'>XGBoost Classifier</span>
-                    <span className='text-green-400'>Online</span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-300'>Neural Network</span>
-                    <span className='text-green-400'>Training</span>
-                  </div>
-                </div>
-              </div>
-              <div className='quantum-card p-6 rounded-2xl'>
-                <h3 className='text-xl font-bold text-white mb-3'>Performance Metrics</h3>
-                <div className='space-y-2'>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-300'>Overall Accuracy</span>
-                    <span className='text-electric-400'>87.3%</span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-300'>Predictions Today</span>
-                    <span className='text-white'>1,247</span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-300'>Processing Speed</span>
-                    <span className='text-cyan-400'>12ms avg</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
+        return <MLModelDashboard />;
       case 'quantum':
         return (
           <div className='p-8 space-y-6'>
