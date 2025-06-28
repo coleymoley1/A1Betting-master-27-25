@@ -150,7 +150,7 @@ const PropOllama: React.FC = () => {
     }
 
     const responses = [
-      "🧠 **Neural Analysis Complete**\n\nI'm processing your request through 247 neural networks. Could you specify which sport, player, or betting market you're interested in? I can provide:\n\n• Player prop analysis\n• Game predictions\n• Market inefficiencies\n• Bankroll optimization",
+      "🧠 **Neural Analysis Complete**\n\nI'm processing your request through 247 neural networks. Could you specify which sport, player, or betting market you're interested in? I can provide:\n\n�� Player prop analysis\n• Game predictions\n• Market inefficiencies\n• Bankroll optimization",
       '⚡ **Quantum Processing Active**\n\nMy neural networks are analyzing real-time data. I can help you with:\n\n🏀 **NBA Props**: Player performance predictions\n🏈 **NFL Analysis**: Team and player metrics\n⚾ **MLB Insights**: Pitcher vs batter matchups\n🎯 **Strategy**: Portfolio and risk management',
       "🎯 **PropGPT Ready**\n\nI'm continuously learning from our conversation to provide better insights. What would you like to analyze?\n\n• Live game opportunities\n• Historical performance trends\n• Injury impact analysis\n• Weather and venue factors",
     ];
@@ -296,6 +296,18 @@ const PropOllama: React.FC = () => {
 
         {/* Input Area */}
         <div className='border-t border-white/10 pt-6'>
+          <div className='flex items-center justify-between mb-4'>
+            <div className='text-sm text-gray-400 font-mono'>
+              Neural conversation analysis active
+            </div>
+            <button
+              onClick={() => setShowSaveModal(true)}
+              className='flex items-center space-x-2 px-4 py-2 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-lg hover:bg-blue-500/30 transition-all'
+            >
+              <Save className='w-4 h-4' />
+              <span>Save Analysis</span>
+            </button>
+          </div>
           <div className='flex space-x-4'>
             <input
               value={input}
