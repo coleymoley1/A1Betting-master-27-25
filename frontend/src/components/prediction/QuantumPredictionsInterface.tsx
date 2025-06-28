@@ -94,7 +94,7 @@ export const QuantumPredictionsInterface: React.FC = () => {
     });
 
   const [predictionResult, setPredictionResult] =
-    useState<QuantumPredictionResult | null key={461256}>(null);
+    useState<QuantumPredictionResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingStage, setProcessingStage] = useState("");
   const [quantumState, setQuantumState] = useState({
