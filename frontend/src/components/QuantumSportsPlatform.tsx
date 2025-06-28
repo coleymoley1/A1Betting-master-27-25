@@ -460,6 +460,20 @@ const Header: React.FC = () => {
     const currentIndex = themes.indexOf(theme);
     const nextTheme = themes[(currentIndex + 1) % themes.length];
     setTheme(nextTheme);
+
+    // Apply theme to document body
+    document.body.className = document.body.className.replace(/theme-\w+/g, '');
+    document.body.classList.add(`theme-${nextTheme}`);
+
+    // Handle light theme
+    if (nextTheme === 'quantum-light') {
+      document.documentElement.classList.remove('dark');
+      document.body.style.background =
+        'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)';
+    } else {
+      document.documentElement.classList.add('dark');
+      document.body.style.background = '';
+    }
   };
 
   return (
@@ -556,91 +570,105 @@ const Header: React.FC = () => {
               </motion.button>
 
               {showNotifications && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className='absolute right-0 top-full mt-2 w-80 bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-white/20 overflow-hidden z-50 shadow-2xl'
-                >
-                  <div className='p-4 border-b border-white/20 bg-gray-800/50'>
-                    <h3 className='font-bold text-white font-cyber'>Notifications</h3>
-                    <p className='text-sm text-gray-300'>{notifications.length} new alerts</p>
-                  </div>
-                  <div className='max-h-64 overflow-y-auto bg-gray-900/90'>
-                    {notifications.map((notif: any, index: number) => (
-                      <div
-                        key={index}
-                        className='p-4 hover:bg-electric-500/10 border-b border-white/10 last:border-b-0 transition-all'
-                      >
-                        <div className='text-sm text-white mb-1'>{notif.message}</div>
-                        <div className='text-xs text-gray-400'>{notif.time}</div>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
+                <>
+                  <div className='fixed inset-0 z-40' onClick={() => setShowNotifications(false)} />
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className='absolute right-0 top-full mt-2 w-80 bg-gray-950/98 backdrop-blur-2xl rounded-2xl border border-electric-500/30 overflow-hidden z-50 shadow-2xl shadow-electric-500/20'
+                  >
+                    <div className='p-4 border-b border-electric-500/30 bg-gradient-to-r from-gray-900/80 to-gray-800/80'>
+                      <h3 className='font-bold text-white font-cyber flex items-center space-x-2'>
+                        <Bell className='w-4 h-4 text-electric-400' />
+                        <span>Notifications</span>
+                      </h3>
+                      <p className='text-sm text-gray-300'>{notifications.length} new alerts</p>
+                    </div>
+                    <div className='max-h-64 overflow-y-auto bg-gray-950/95'>
+                      {notifications.map((notif: any, index: number) => (
+                        <div
+                          key={index}
+                          className='p-4 hover:bg-electric-500/10 border-b border-white/5 last:border-b-0 transition-all cursor-pointer'
+                        >
+                          <div className='text-sm text-white mb-1'>{notif.message}</div>
+                          <div className='text-xs text-gray-400'>{notif.time}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </>
               )}
             </div>
 
             {/* System Monitor Modal */}
             {showSystemMonitor && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className='absolute right-20 top-full mt-2 w-96 bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-electric-500/30 overflow-hidden z-50 shadow-2xl'
-              >
-                <div className='p-4 border-b border-electric-500/30 bg-gray-800/50'>
-                  <h3 className='font-bold text-electric-400 font-cyber flex items-center space-x-2'>
-                    <Activity className='w-5 h-5 animate-pulse' />
-                    <span>System Monitor</span>
-                  </h3>
-                  <p className='text-sm text-gray-300'>Real-time system performance</p>
-                </div>
-                <div className='p-4 space-y-4 bg-gray-900/90'>
-                  <div className='grid grid-cols-2 gap-3'>
-                    <div className='bg-gray-800/50 rounded-lg p-3'>
-                      <div className='text-xs text-gray-400 font-mono'>CPU Usage</div>
-                      <div className='text-electric-400 font-bold font-cyber'>67%</div>
-                    </div>
-                    <div className='bg-gray-800/50 rounded-lg p-3'>
-                      <div className='text-xs text-gray-400 font-mono'>Memory</div>
-                      <div className='text-green-400 font-bold font-cyber'>4.2GB</div>
-                    </div>
-                    <div className='bg-gray-800/50 rounded-lg p-3'>
-                      <div className='text-xs text-gray-400 font-mono'>Networks</div>
-                      <div className='text-purple-400 font-bold font-cyber'>
-                        {realTimeData?.activeBots || 47}/47
+              <>
+                <div className='fixed inset-0 z-40' onClick={() => setShowSystemMonitor(false)} />
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className='absolute right-16 top-full mt-2 w-96 bg-gray-950/98 backdrop-blur-2xl rounded-2xl border border-electric-500/30 overflow-hidden z-50 shadow-2xl shadow-electric-500/20'
+                >
+                  <div className='p-4 border-b border-electric-500/30 bg-gradient-to-r from-gray-900/80 to-gray-800/80'>
+                    <h3 className='font-bold text-electric-400 font-cyber flex items-center space-x-2'>
+                      <Activity className='w-5 h-5 animate-pulse' />
+                      <span>System Monitor</span>
+                    </h3>
+                    <p className='text-sm text-gray-300'>Real-time system performance</p>
+                  </div>
+                  <div className='p-4 space-y-4 bg-gray-950/95'>
+                    <div className='grid grid-cols-2 gap-3'>
+                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                        <div className='text-xs text-gray-400 font-mono'>CPU Usage</div>
+                        <div className='text-electric-400 font-bold font-cyber'>67%</div>
+                      </div>
+                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                        <div className='text-xs text-gray-400 font-mono'>Memory</div>
+                        <div className='text-green-400 font-bold font-cyber'>4.2GB</div>
+                      </div>
+                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                        <div className='text-xs text-gray-400 font-mono'>Networks</div>
+                        <div className='text-purple-400 font-bold font-cyber'>
+                          {realTimeData?.activeBots || 47}/47
+                        </div>
+                      </div>
+                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                        <div className='text-xs text-gray-400 font-mono'>Latency</div>
+                        <div className='text-cyan-400 font-bold font-cyber'>
+                          {realTimeData?.processingSpeed || 12}ms
+                        </div>
                       </div>
                     </div>
-                    <div className='bg-gray-800/50 rounded-lg p-3'>
-                      <div className='text-xs text-gray-400 font-mono'>Latency</div>
-                      <div className='text-cyan-400 font-bold font-cyber'>
-                        {realTimeData?.processingSpeed || 12}ms
+                    <div className='space-y-2'>
+                      <div className='flex justify-between text-sm'>
+                        <span className='text-gray-400 font-mono'>Quantum Coherence</span>
+                        <span className='text-cyan-400 font-bold font-cyber'>
+                          {realTimeData?.quantumCoherence || 99.97}%
+                        </span>
+                      </div>
+                      <div className='w-full bg-gray-700 rounded-full h-2'>
+                        <div
+                          className='bg-gradient-to-r from-cyan-400 to-electric-400 h-2 rounded-full transition-all'
+                          style={{ width: `${realTimeData?.quantumCoherence || 99.97}%` }}
+                        />
                       </div>
                     </div>
-                  </div>
-                  <div className='space-y-2'>
-                    <div className='flex justify-between text-sm'>
-                      <span className='text-gray-400 font-mono'>Quantum Coherence</span>
-                      <span className='text-cyan-400 font-bold font-cyber'>
-                        {realTimeData?.quantumCoherence || 99.97}%
-                      </span>
-                    </div>
-                    <div className='w-full bg-gray-700 rounded-full h-2'>
-                      <div
-                        className='bg-gradient-to-r from-cyan-400 to-electric-400 h-2 rounded-full'
-                        style={{ width: `${realTimeData?.quantumCoherence || 99.97}%` }}
-                      />
+                    <div className='text-center'>
+                      <button
+                        onClick={() => {
+                          setCurrentPage('realtime');
+                          setShowSystemMonitor(false);
+                        }}
+                        className='text-xs text-electric-400 hover:text-electric-300 font-cyber transition-colors px-3 py-1 rounded-lg hover:bg-electric-500/10'
+                      >
+                        View Full Monitor →
+                      </button>
                     </div>
                   </div>
-                  <div className='text-center'>
-                    <button
-                      onClick={() => setCurrentPage('realtime')}
-                      className='text-xs text-electric-400 hover:text-electric-300 font-cyber transition-colors'
-                    >
-                      View Full Monitor →
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </>
             )}
 
             <div className='flex items-center space-x-4'>
