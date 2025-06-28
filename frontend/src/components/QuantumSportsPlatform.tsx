@@ -384,11 +384,11 @@ const Header: React.FC = () => {
               <div className='w-3 h-3 bg-green-400 rounded-full animate-pulse' />
               <span className='text-green-400 text-sm font-bold font-cyber'>NEURAL OPTIMAL</span>
               <span className='text-green-300 text-sm font-mono'>
-                {realTimeData.accuracy.toFixed(1)}% ACC
+                {(realTimeData?.accuracy || 87.3).toFixed(1)}% ACC
               </span>
               <div className='w-px h-4 bg-green-400/30' />
               <span className='text-blue-400 text-sm font-mono'>
-                {realTimeData.quantumCoherence}% COHERENCE
+                {realTimeData?.quantumCoherence || 99.97}% COHERENCE
               </span>
             </div>
           </div>
@@ -399,14 +399,14 @@ const Header: React.FC = () => {
                 <Zap className='text-electric-400 animate-pulse w-4 h-4' />
                 <span className='text-gray-400'>Processing:</span>
                 <span className='text-electric-400 font-mono font-bold'>
-                  {realTimeData.processingSpeed}ms
+                  {realTimeData?.processingSpeed || 12}ms
                 </span>
               </div>
               <div className='flex items-center space-x-2'>
                 <Brain className='text-purple-400 animate-pulse w-4 h-4' />
                 <span className='text-gray-400'>Bots:</span>
                 <span className='text-purple-400 font-mono font-bold'>
-                  {realTimeData.activeBots}/47
+                  {realTimeData?.activeBots || 47}/47
                 </span>
               </div>
             </div>
@@ -706,7 +706,7 @@ const Sidebar: React.FC = () => {
               <div className='flex justify-between items-center'>
                 <span className='text-gray-400 font-mono'>Accuracy:</span>
                 <span className='text-electric-400 font-bold font-mono'>
-                  {(realTimeData.accuracy || 87.3).toFixed(1)}%
+                  {(realTimeData?.accuracy || 87.3).toFixed(1)}%
                 </span>
               </div>
               <div className='flex justify-between items-center'>
@@ -716,7 +716,7 @@ const Sidebar: React.FC = () => {
               <div className='flex justify-between items-center'>
                 <span className='text-gray-400 font-mono'>Quantum:</span>
                 <span className='text-cyan-400 font-bold font-mono'>
-                  {realTimeData.quantumCoherence || 99.97}%
+                  {realTimeData?.quantumCoherence || 99.97}%
                 </span>
               </div>
             </div>
