@@ -131,7 +131,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
     autoRefresh: true,
     isLoading: false,
   });
-  const [livePredictions, setLivePredictions] = useState<LivePrediction[]([]);
+  const [livePredictions, setLivePredictions] = useState<LivePrediction[]>([]);
 
   // Real-time data fetching with React Query - all with error handling;
   const {
