@@ -901,152 +901,155 @@ const Header: React.FC = () => {
               )}
             </div>
 
-            {/* System Monitor Modal */}
+            {/* Enhanced System Monitor Panel */}
             {showSystemMonitor && (
               <>
                 <div className='fixed inset-0 z-40' onClick={() => setShowSystemMonitor(false)} />
                 <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  initial={{ opacity: 0, y: -10, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className='absolute right-16 top-full mt-2 w-96 z-50'
+                  exit={{ opacity: 0, y: -10, scale: 0.9 }}
+                  transition={{ type: "spring", duration: 0.4 }}
+                  className='absolute right-20 top-full mt-3 w-[420px] z-50 quantum-card'
                   style={{
-                    backgroundColor:
-                      theme === 'neural-purple'
-                        ? '#1e1b4b'
-                        : theme === 'cyber-blue'
-                          ? '#1e3a8a'
-                          : theme === 'quantum-light'
-                            ? '#f8fafc'
-                            : '#0f0f14',
-                    border:
-                      theme === 'neural-purple'
-                        ? '2px solid rgba(147, 51, 234, 0.4)'
-                        : theme === 'cyber-blue'
-                          ? '2px solid rgba(59, 130, 246, 0.4)'
-                          : theme === 'quantum-light'
-                            ? '2px solid rgba(100, 116, 139, 0.3)'
-                            : '2px solid rgba(64, 224, 208, 0.3)',
-                    borderRadius: '16px',
-                    boxShadow:
-                      theme === 'neural-purple'
-                        ? '0 25px 50px -12px rgba(88, 28, 135, 0.4), 0 0 30px rgba(147, 51, 234, 0.2)'
-                        : theme === 'cyber-blue'
-                          ? '0 25px 50px -12px rgba(29, 78, 216, 0.4), 0 0 30px rgba(59, 130, 246, 0.2)'
-                          : theme === 'quantum-light'
-                            ? '0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 20px rgba(100, 116, 139, 0.1)'
-                            : '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(64, 224, 208, 0.2)',
-                    backdropFilter: 'blur(20px)',
+                    background: theme === 'neural-purple'
+                      ? 'linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(45, 27, 105, 0.95) 100%)'
+                      : theme === 'cyber-blue'
+                        ? 'linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%)'
+                        : theme === 'quantum-light'
+                          ? 'linear-gradient(135deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%)'
+                          : 'linear-gradient(135deg, rgba(15, 15, 20, 0.95) 0%, rgba(26, 26, 36, 0.95) 100%)',
+                    border: theme === 'neural-purple'
+                      ? '1px solid rgba(147, 51, 234, 0.6)'
+                      : theme === 'cyber-blue'
+                        ? '1px solid rgba(59, 130, 246, 0.6)'
+                        : theme === 'quantum-light'
+                          ? '1px solid rgba(100, 116, 139, 0.4)'
+                          : '1px solid rgba(64, 224, 208, 0.6)',
+                    borderRadius: '20px',
+                    boxShadow: theme === 'neural-purple'
+                      ? '0 25px 50px -12px rgba(88, 28, 135, 0.6), 0 0 40px rgba(147, 51, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                      : theme === 'cyber-blue'
+                        ? '0 25px 50px -12px rgba(29, 78, 216, 0.6), 0 0 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                        : theme === 'quantum-light'
+                          ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(100, 116, 139, 0.2)'
+                          : '0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(64, 224, 208, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(30px)',
                   }}
                 >
-                  <div
-                    className='p-4 border-b'
-                    style={{
-                      backgroundColor:
-                        theme === 'neural-purple'
-                          ? '#2d1b69'
-                          : theme === 'cyber-blue'
-                            ? '#1d4ed8'
-                            : theme === 'quantum-light'
-                              ? '#e2e8f0'
-                              : '#1a1a24',
-                      borderBottom:
-                        theme === 'neural-purple'
-                          ? '1px solid rgba(147, 51, 234, 0.3)'
-                          : theme === 'cyber-blue'
-                            ? '1px solid rgba(59, 130, 246, 0.3)'
-                            : theme === 'quantum-light'
-                              ? '1px solid rgba(100, 116, 139, 0.2)'
-                              : '1px solid rgba(64, 224, 208, 0.3)',
-                    }}
-                  >
-                    <div className='flex items-center justify-between mb-2'>
-                      <h3
-                        className={`font-bold font-cyber flex items-center space-x-2 ${
-                          theme === 'quantum-light'
-                            ? 'text-gray-800'
-                            : theme === 'neural-purple'
+                  {/* Header Section */}
+                  <div className={`p-6 border-b rounded-t-[20px] ${
+                    theme === 'neural-purple'
+                      ? 'bg-gradient-to-r from-purple-900/30 to-purple-800/30 border-purple-500/30'
+                      : theme === 'cyber-blue'
+                        ? 'bg-gradient-to-r from-blue-900/30 to-blue-800/30 border-blue-500/30'
+                        : theme === 'quantum-light'
+                          ? 'bg-gradient-to-r from-gray-50/50 to-gray-100/50 border-gray-300/30'
+                          : 'bg-gradient-to-r from-gray-900/30 to-gray-800/30 border-electric-500/30'
+                  }`}>
+                    <div className='flex items-center justify-between mb-3'>
+                      <div className='flex items-center space-x-3'>
+                        <div className={`p-2 rounded-xl ${
+                          theme === 'neural-purple'
+                            ? 'bg-purple-500/20'
+                            : theme === 'cyber-blue'
+                              ? 'bg-blue-500/20'
+                              : theme === 'quantum-light'
+                                ? 'bg-gray-200'
+                                : 'bg-electric-500/20'
+                        }`}>
+                          <Activity className={`w-5 h-5 animate-pulse ${
+                            theme === 'neural-purple'
                               ? 'text-purple-400'
                               : theme === 'cyber-blue'
                                 ? 'text-blue-400'
-                                : 'text-electric-400'
-                        }`}
-                      >
-                        <Activity
-                          className={`w-5 h-5 animate-pulse ${
-                            theme === 'quantum-light'
-                              ? 'text-gray-600'
-                              : theme === 'neural-purple'
-                                ? 'text-purple-400'
-                                : theme === 'cyber-blue'
-                                  ? 'text-blue-400'
+                                : theme === 'quantum-light'
+                                  ? 'text-gray-700'
                                   : 'text-electric-400'
-                          }`}
-                        />
-                        <span>System Monitor</span>
-                      </h3>
-                      <div
-                        className={`text-xs px-2 py-1 rounded-full ${
+                          }`} />
+                        </div>
+                        <div>
+                          <h3 className={`text-lg font-bold font-cyber ${
+                            theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
+                          }`}>
+                            System Monitor
+                          </h3>
+                          <p className={`text-sm ${
+                            theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'
+                          }`}>
+                            Live performance metrics
+                          </p>
+                        </div>
+                      </div>
+                      <div className={`flex items-center space-x-2`}>
+                        <div className={`text-xs px-3 py-1.5 rounded-full font-mono font-medium ${
                           theme === 'neural-purple'
-                            ? 'bg-purple-500/20 text-purple-300'
+                            ? 'bg-purple-500/30 text-purple-200 border border-purple-400/30'
                             : theme === 'cyber-blue'
-                              ? 'bg-blue-500/20 text-blue-300'
+                              ? 'bg-blue-500/30 text-blue-200 border border-blue-400/30'
                               : theme === 'quantum-light'
-                                ? 'bg-gray-200 text-gray-700'
-                                : 'bg-electric-500/20 text-electric-300'
-                        } font-mono`}
-                      >
-                        LIVE
+                                ? 'bg-gray-200 text-gray-700 border border-gray-300'
+                                : 'bg-electric-500/30 text-electric-200 border border-electric-400/30'
+                        }`}>
+                          LIVE
+                        </div>
                       </div>
                     </div>
-                    <p
-                      className={`text-sm ${theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'}`}
-                    >
-                      Real-time performance metrics
-                    </p>
                   </div>
-                  <div
-                    className='p-4 space-y-4'
-                    style={{
-                      backgroundColor:
-                        theme === 'neural-purple'
-                          ? '#1e1b4b'
-                          : theme === 'cyber-blue'
-                            ? '#1e3a8a'
-                            : theme === 'quantum-light'
-                              ? '#f8fafc'
-                              : '#0f0f14',
-                    }}
-                  >
-                    <div className='grid grid-cols-2 gap-3'>
+
+                  {/* Metrics Grid */}
+                  <div className='p-6'>
+                    <div className='grid grid-cols-2 gap-4 mb-6'>
                       {[
                         {
                           label: 'CPU Usage',
                           value: '67%',
-                          color:
-                            theme === 'neural-purple'
-                              ? 'purple'
-                              : theme === 'cyber-blue'
-                                ? 'blue'
-                                : theme === 'quantum-light'
-                                  ? 'gray'
-                                  : 'electric',
+                          trend: '+2.3%',
+                          icon: '🖥️',
+                          color: theme === 'neural-purple'
+                            ? 'purple'
+                            : theme === 'cyber-blue'
+                              ? 'blue'
+                              : theme === 'quantum-light'
+                                ? 'gray'
+                                : 'electric',
                         },
-                        { label: 'Memory', value: '4.2GB', color: 'green' },
+                        {
+                          label: 'Memory',
+                          value: '4.2GB',
+                          trend: '+180MB',
+                          icon: '💾',
+                          color: 'green'
+                        },
                         {
                           label: 'Networks',
                           value: `${realTimeData?.activeBots || 47}/47`,
+                          trend: 'OPTIMAL',
+                          icon: '🌐',
                           color: 'purple',
                         },
                         {
                           label: 'Latency',
                           value: `${realTimeData?.processingSpeed || 12}ms`,
+                          trend: '-3ms',
+                          icon: '⚡',
                           color: 'cyan',
                         },
                       ].map((metric, index) => (
-                        <div
+                        <motion.div
                           key={index}
-                          className='rounded-lg p-3 border'
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.1 }}
+                          className={`rounded-xl p-4 border transition-all hover:scale-105 ${
+                            theme === 'neural-purple'
+                              ? 'bg-purple-500/10 border-purple-500/30 hover:bg-purple-500/20'
+                              : theme === 'cyber-blue'
+                                ? 'bg-blue-500/10 border-blue-500/30 hover:bg-blue-500/20'
+                                : theme === 'quantum-light'
+                                  ? 'bg-white border-gray-200 hover:bg-gray-50'
+                                  : 'bg-electric-500/10 border-electric-500/30 hover:bg-electric-500/20'
+                          }`}
                           style={{
                             backgroundColor:
                               theme === 'neural-purple'
