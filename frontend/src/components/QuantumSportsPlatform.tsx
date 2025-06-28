@@ -16,7 +16,7 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 
 // Import working components
 import PropOllama from './user-friendly/PropOllama';
