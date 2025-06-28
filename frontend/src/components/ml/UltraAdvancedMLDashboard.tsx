@@ -109,7 +109,7 @@ interface SystemHealthMetrics {
 interface UnifiedPredictionRequest {
   event_id: string;
   sport: string;
-  features: Record<string, number;
+  features: Record<string, number>;
   processing_level: string;
 }
 
