@@ -15,13 +15,7 @@ import { lineupTracker } from '../../services/lineupTrackingService';
 import toast from 'react-hot-toast';
 import QuantumFilters from '../filters/QuantumFilters';
 import FluentLiveFilters from '../filters/FluentLiveFilters';
-import {
-  useFilters,
-  ALL_SPORTS,
-  isAllSportsSelected,
-  PRIMARY_SPORTS,
-  MISC_SPORTS,
-} from '../../hooks/useFilters';
+import { useFilters, ALL_SPORTS, PRIMARY_SPORTS, MISC_SPORTS } from '../../hooks/useFilters';
 import { useFluentFilters, useFilteredResults } from '../../hooks/useFluentFilters';
 
 interface BettingConfig {
