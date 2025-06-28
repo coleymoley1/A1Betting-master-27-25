@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, createContext, useContext } from 'rea
 import type { FilterState } from '../components/filters/QuantumFilters';
 
 // All available sports for default selection
-const ALL_SPORTS = [
+export const ALL_SPORTS = [
   'nba',
   'wnba',
   'mlb',
@@ -28,6 +28,26 @@ const ALL_SPORTS = [
   'swimming',
   'track',
   'olympics',
+];
+
+// Helper function to check if all sports are selected
+export const isAllSportsSelected = (selectedSports: string[]): boolean => {
+  return selectedSports.length === ALL_SPORTS.length;
+};
+
+// Helper function to get primary sports (most popular)
+export const PRIMARY_SPORTS = [
+  'nba',
+  'wnba',
+  'mlb',
+  'nfl',
+  'nhl',
+  'soccer',
+  'pga',
+  'mma',
+  'boxing',
+  'tennis',
+  'esports',
 ];
 
 // Default filter state - ALL sports selected for maximum opportunity analysis

@@ -14,7 +14,12 @@ import {
 import { lineupTracker } from '../../services/lineupTrackingService';
 import toast from 'react-hot-toast';
 import QuantumFilters from '../filters/QuantumFilters';
-import { useFilters } from '../../hooks/useFilters';
+import {
+  useFilters,
+  ALL_SPORTS,
+  isAllSportsSelected,
+  PRIMARY_SPORTS,
+} from '../../hooks/useFilters';
 
 interface BettingConfig {
   investment: number;
@@ -337,64 +342,111 @@ const MoneyMakerPro: React.FC = () => {
             <div className='quantum-card p-6 rounded-2xl border border-electric-500/30'>
               <h3 className='text-lg font-bold text-electric-400 font-cyber mb-4 flex items-center space-x-2'>
                 <Filter className='w-5 h-5' />
-                <span>ACTIVE FILTERS</span>
+                <span>OPPORTUNITY ANALYZER</span>
               </h3>
-              <div className='space-y-3'>
-                <div className='flex flex-wrap gap-2'>
-                  {filters.sports.length >= 20 ? (
-                    <div className='px-4 py-2 bg-electric-500/20 text-electric-400 rounded-full text-sm font-cyber font-bold border border-electric-500/30'>
-                      ALL SPORTS ({filters.sports.length})
-                    </div>
-                  ) : filters.sports.length > 0 ? (
-                    <>
-                      {filters.sports.slice(0, 3).map(sportId => {
-                        const sport = [
-                          'NBA',
-                          'NFL',
-                          'MLB',
-                          'NHL',
-                          'Soccer',
-                          'WNBA',
-                          'PGA',
-                          'MMA',
-                          'Boxing',
-                          'Tennis',
-                          'Esports',
-                          'NCAAB',
-                          'NCAAF',
-                        ].find(s => s.toLowerCase() === sportId);
-                        return sport ? (
+              <div className='space-y-4'>
+                {/* Sports Selection */}
+                <div>
+                  <label className='block text-sm font-bold mb-2 text-electric-400 font-cyber'>
+                    SPORTS ANALYSIS
+                  </label>
+                  <div className='relative'>
+                    <div
+                      className={`p-3 rounded-lg border-2 transition-all ${
+                        isAllSportsSelected(filters.sports)
+                          ? 'bg-green-500/20 border-green-500/40 text-green-400'
+                          : 'bg-gray-800/30 border-gray-600 text-gray-300'
+                      }`}
+                    >
+                      <div className='flex items-center justify-between'>
+                        <div className='flex items-center space-x-2'>
                           <div
-                            key={sportId}
-                            className='px-3 py-1 bg-electric-500/20 text-electric-400 rounded-full text-sm font-mono border border-electric-500/30'
+                            className={`w-3 h-3 rounded-full ${
+                              isAllSportsSelected(filters.sports)
+                                ? 'bg-green-400 animate-pulse'
+                                : 'bg-gray-500'
+                            }`}
+                          />
+                          <span className='font-cyber font-bold'>
+                            {isAllSportsSelected(filters.sports)
+                              ? `ALL SPORTS (${filters.sports.length} ACTIVE)`
+                              : `${filters.sports.length}/${ALL_SPORTS.length} SPORTS`}
+                          </span>
+                        </div>
+                        <div className='flex space-x-2'>
+                          {!isAllSportsSelected(filters.sports) && (
+                            <button
+                              onClick={() => updateFilters({ sports: [...ALL_SPORTS] })}
+                              className='text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded hover:bg-green-500/30 transition-all font-cyber'
+                            >
+                              SELECT ALL
+                            </button>
+                          )}
+                          <button
+                            onClick={() => updateFilters({ sports: [...PRIMARY_SPORTS] })}
+                            className='text-xs px-2 py-1 bg-electric-500/20 text-electric-400 rounded hover:bg-electric-500/30 transition-all font-cyber'
                           >
-                            {sport}
-                          </div>
-                        ) : null;
-                      })}
-                      {filters.sports.length > 3 && (
-                        <div className='px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-sm font-mono'>
-                          +{filters.sports.length - 3} more
+                            PRIMARY
+                          </button>
+                          <button
+                            onClick={() => updateFilters({ sports: [] })}
+                            className='text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded hover:bg-red-500/30 transition-all font-cyber'
+                          >
+                            CLEAR
+                          </button>
+                        </div>
+                      </div>
+                      {!isAllSportsSelected(filters.sports) && filters.sports.length > 0 && (
+                        <div className='mt-2 flex flex-wrap gap-1'>
+                          {filters.sports.slice(0, 6).map(sportId => (
+                            <span
+                              key={sportId}
+                              className='text-xs px-2 py-1 bg-electric-500/20 text-electric-400 rounded font-mono'
+                            >
+                              {sportId.toUpperCase()}
+                            </span>
+                          ))}
+                          {filters.sports.length > 6 && (
+                            <span className='text-xs px-2 py-1 bg-gray-500/20 text-gray-400 rounded font-mono'>
+                              +{filters.sports.length - 6}
+                            </span>
+                          )}
                         </div>
                       )}
-                    </>
-                  ) : (
-                    <div className='px-4 py-2 bg-red-500/20 text-red-400 rounded-full text-sm font-cyber font-bold border border-red-500/30'>
-                      NO SPORTS
                     </div>
-                  )}
+                  </div>
                 </div>
-                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
-                  <span className='text-gray-300 font-mono text-sm'>Time Frame</span>
-                  <span className='text-electric-400 font-cyber font-bold'>
-                    {filters.timeFrame.toUpperCase()}
-                  </span>
+
+                {/* Quick Stats */}
+                <div className='grid grid-cols-2 gap-3'>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Time Frame</span>
+                    <span className='text-electric-400 font-cyber font-bold text-sm'>
+                      {filters.timeFrame.toUpperCase()}
+                    </span>
+                  </div>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Min Confidence</span>
+                    <span className='text-electric-400 font-cyber font-bold text-sm'>
+                      {filters.advanced.minConfidence}%
+                    </span>
+                  </div>
                 </div>
-                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
-                  <span className='text-gray-300 font-mono text-sm'>Min Confidence</span>
-                  <span className='text-electric-400 font-cyber font-bold'>
-                    {filters.advanced.minConfidence}%
-                  </span>
+
+                {/* Analysis Status */}
+                <div className='p-3 bg-green-500/10 rounded-lg border border-green-500/30'>
+                  <div className='flex items-center space-x-2'>
+                    <div className='w-2 h-2 bg-green-400 rounded-full animate-pulse' />
+                    <span className='text-green-400 font-cyber font-bold text-sm'>
+                      ANALYZING {isAllSportsSelected(filters.sports) ? 'MAXIMUM' : 'FILTERED'}{' '}
+                      OPPORTUNITIES
+                    </span>
+                  </div>
+                  <div className='text-gray-300 font-mono text-xs mt-1'>
+                    {isAllSportsSelected(filters.sports)
+                      ? 'All sports selected for best prediction accuracy'
+                      : `${filters.sports.length} sports selected - consider "Select All" for maximum opportunities`}
+                  </div>
                 </div>
               </div>
             </div>
