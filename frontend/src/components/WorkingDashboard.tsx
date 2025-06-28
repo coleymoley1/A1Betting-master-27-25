@@ -65,13 +65,17 @@ interface WorkingDashboardProps {
 
 const WorkingDashboard: React.FC<WorkingDashboardProps> = ({ onNavigate }) => {
   const { realTimeData, setRealTimeData, marketData } = useContext(AppContext);
-  const { filters, updateFilters, resetFilters, isFiltering } = useFilters();
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
-  // Mock data for filter stats
-  const totalGames = 147;
-  const filteredGames = Math.floor(totalGames * 0.7); // Simulate filtering
-  const filterStats = useFilterStats(totalGames, filteredGames);
+  // Use new fluent filters
+  const { filters, updateFilters, resetFilters, isFiltering, activeFiltersCount } =
+    useFluentFilters();
+  const {
+    totalItems: totalGames,
+    filteredItems: filteredGames,
+    reductionPercent,
+  } = useFilteredResults(filters, 147);
+
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   // Enhanced real-time data updates to match HTML reference exactly
   useEffect(() => {
