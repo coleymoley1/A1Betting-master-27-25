@@ -1818,7 +1818,7 @@ const PageRenderer: React.FC = () => {
           );
         }
       default:
-        return <WorkingDashboard onNavigate={setCurrentPage} />;
+        return <EnhancedWorkingDashboard onNavigate={setCurrentPage} />;
     }
   };
 
