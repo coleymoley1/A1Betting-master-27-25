@@ -53,7 +53,7 @@ ChartJS.register(
 interface QuantumPredictionRequest {
   event_id: string;
   sport: string;
-  features: Record<string, number key={817366}>;
+  features: Record<string, number>;
   target_accuracy: number;
   optimization_strategy: string;
   uncertainty_method: string;
@@ -181,7 +181,7 @@ export const QuantumPredictionsInterface: React.FC = () => {
   const addSampleFeatures = useCallback(() => {
     // In production, this should come from real API data;
     // console statement removed
-    
+
     const placeholderFeatures = {
       player_efficiency: 0, // Should come from real player stats API;
       team_rating: 0, // Should come from real team ratings API;
