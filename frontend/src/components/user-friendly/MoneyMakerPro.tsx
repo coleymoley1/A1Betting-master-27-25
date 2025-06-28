@@ -206,7 +206,38 @@ const MoneyMakerPro: React.FC = () => {
         </div>
       </div>
 
-      {/* Enhanced Configuration Panel */}
+      {/* Sports & Time Filters */}
+      <motion.div
+        className='space-y-6 mb-12'
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <div className='quantum-card rounded-2xl p-6'>
+          <div className='flex items-center justify-between mb-4'>
+            <h3 className='text-xl font-bold text-electric-400 font-cyber'>QUANTUM FILTERS</h3>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className='flex items-center space-x-2 px-3 py-1 bg-purple-500/20 text-purple-400 rounded-lg hover:bg-purple-500/30 transition-all'
+            >
+              <Filter className='w-4 h-4' />
+              <span className='font-mono text-sm'>{showFilters ? 'Hide' : 'Show'}</span>
+            </button>
+          </div>
+
+          <CompactFilterBar filters={filters} onFiltersChange={updateFilters} className='mb-4' />
+
+          {/* In-Game Time Filter */}
+          <InGameTimeFilter
+            sport={filters.sports[0] || 'nba'}
+            onTimeFrameSelect={setSelectedTimeFrame}
+            selectedTimeFrame={selectedTimeFrame}
+            className='mt-4'
+          />
+        </div>
+      </motion.div>
+
+      {/* Enhanced Configuration */}
       <div className='quantum-card rounded-3xl p-10 border border-electric-500/30'>
         <div className='flex items-center space-x-4 mb-8'>
           <Brain className='text-3xl text-electric-400 animate-neural-pulse' />
