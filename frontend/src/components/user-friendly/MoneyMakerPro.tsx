@@ -341,8 +341,44 @@ const MoneyMakerPro: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Panel: Enhanced Fluent Filters */}
+          {/* Right Panel: Quantum Status & Filters */}
           <div className='space-y-6'>
+            {/* Quantum Predictions Status */}
+            <div className='quantum-card p-6 rounded-2xl border border-cyan-500/30'>
+              <h3 className='text-lg font-bold text-cyan-400 font-cyber mb-4 flex items-center space-x-2'>
+                <Zap className='w-5 h-5 animate-pulse' />
+                <span>QUANTUM NEURAL ENGINE</span>
+              </h3>
+              <div className='space-y-3'>
+                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                  <span className='text-gray-300 font-mono text-sm'>Network Status</span>
+                  <span className='text-cyan-400 font-cyber font-bold text-sm'>
+                    {getNetworkStatus()}
+                  </span>
+                </div>
+                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                  <span className='text-gray-300 font-mono text-sm'>Active Predictions</span>
+                  <span className='text-electric-400 font-cyber font-bold text-sm'>
+                    {quantumPredictions.length}
+                  </span>
+                </div>
+                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                  <span className='text-gray-300 font-mono text-sm'>Quantum Boost</span>
+                  <span
+                    className={`font-cyber font-bold text-sm ${quantumState.quantumBoostActive ? 'text-green-400' : 'text-gray-400'}`}
+                  >
+                    {quantumState.quantumBoostActive ? 'ACTIVE' : 'STANDBY'}
+                  </span>
+                </div>
+                <div className='text-center p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30'>
+                  <div className='text-xs text-cyan-400 font-mono mb-1'>Quantum Coherence</div>
+                  <div className='text-lg font-bold text-cyan-400 font-cyber'>
+                    {quantumState.coherence.toFixed(2)}%
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <FluentLiveFilters
               filters={fluentFilters}
               onFiltersChange={updateFluentFilters}
