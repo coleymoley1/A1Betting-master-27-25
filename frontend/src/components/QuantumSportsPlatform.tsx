@@ -580,6 +580,69 @@ const Header: React.FC = () => {
               )}
             </div>
 
+            {/* System Monitor Modal */}
+            {showSystemMonitor && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className='absolute right-20 top-full mt-2 w-96 bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-electric-500/30 overflow-hidden z-50 shadow-2xl'
+              >
+                <div className='p-4 border-b border-electric-500/30 bg-gray-800/50'>
+                  <h3 className='font-bold text-electric-400 font-cyber flex items-center space-x-2'>
+                    <Activity className='w-5 h-5 animate-pulse' />
+                    <span>System Monitor</span>
+                  </h3>
+                  <p className='text-sm text-gray-300'>Real-time system performance</p>
+                </div>
+                <div className='p-4 space-y-4 bg-gray-900/90'>
+                  <div className='grid grid-cols-2 gap-3'>
+                    <div className='bg-gray-800/50 rounded-lg p-3'>
+                      <div className='text-xs text-gray-400 font-mono'>CPU Usage</div>
+                      <div className='text-electric-400 font-bold font-cyber'>67%</div>
+                    </div>
+                    <div className='bg-gray-800/50 rounded-lg p-3'>
+                      <div className='text-xs text-gray-400 font-mono'>Memory</div>
+                      <div className='text-green-400 font-bold font-cyber'>4.2GB</div>
+                    </div>
+                    <div className='bg-gray-800/50 rounded-lg p-3'>
+                      <div className='text-xs text-gray-400 font-mono'>Networks</div>
+                      <div className='text-purple-400 font-bold font-cyber'>
+                        {realTimeData?.activeBots || 47}/47
+                      </div>
+                    </div>
+                    <div className='bg-gray-800/50 rounded-lg p-3'>
+                      <div className='text-xs text-gray-400 font-mono'>Latency</div>
+                      <div className='text-cyan-400 font-bold font-cyber'>
+                        {realTimeData?.processingSpeed || 12}ms
+                      </div>
+                    </div>
+                  </div>
+                  <div className='space-y-2'>
+                    <div className='flex justify-between text-sm'>
+                      <span className='text-gray-400 font-mono'>Quantum Coherence</span>
+                      <span className='text-cyan-400 font-bold font-cyber'>
+                        {realTimeData?.quantumCoherence || 99.97}%
+                      </span>
+                    </div>
+                    <div className='w-full bg-gray-700 rounded-full h-2'>
+                      <div
+                        className='bg-gradient-to-r from-cyan-400 to-electric-400 h-2 rounded-full'
+                        style={{ width: `${realTimeData?.quantumCoherence || 99.97}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div className='text-center'>
+                    <button
+                      onClick={() => setCurrentPage('realtime')}
+                      className='text-xs text-electric-400 hover:text-electric-300 font-cyber transition-colors'
+                    >
+                      View Full Monitor →
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
             <div className='flex items-center space-x-4'>
               <div className='hidden md:block text-right'>
                 <div className='font-bold text-white text-sm'>{user.name}</div>
