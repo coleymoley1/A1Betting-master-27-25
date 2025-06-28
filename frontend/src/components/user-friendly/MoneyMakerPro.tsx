@@ -1,8 +1,21 @@
 import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
-import { DollarSign, Brain, Target, TrendingUp, Zap, RefreshCw, Eye, Save } from 'lucide-react';
+import {
+  DollarSign,
+  Brain,
+  Target,
+  TrendingUp,
+  Zap,
+  RefreshCw,
+  Eye,
+  Save,
+  Filter,
+} from 'lucide-react';
 import { lineupTracker } from '../../services/lineupTrackingService';
 import toast from 'react-hot-toast';
+import InGameTimeFilter from '../filters/InGameTimeFilter';
+import CompactFilterBar from '../filters/CompactFilterBar';
+import { useFilters } from '../../hooks/useFilters';
 
 interface BettingConfig {
   investment: number;
@@ -62,6 +75,9 @@ const MoneyMakerPro: React.FC = () => {
   const [results, setResults] = useState<MoneyMakerResults | null>(null);
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [lineupName, setLineupName] = useState('');
+  const [selectedTimeFrame, setSelectedTimeFrame] = useState('today');
+  const [showFilters, setShowFilters] = useState(false);
+  const { filters, updateFilters } = useFilters();
 
   const saveLineup = () => {
     if (!results || !lineupName.trim()) {

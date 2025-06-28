@@ -10,9 +10,13 @@ import {
   Save,
   X,
   CheckCircle,
+  Filter,
 } from 'lucide-react';
 import { lineupTracker } from '../../services/lineupTrackingService';
 import toast from 'react-hot-toast';
+import InGameTimeFilter from '../filters/InGameTimeFilter';
+import CompactFilterBar from '../filters/CompactFilterBar';
+import { useFilters } from '../../hooks/useFilters';
 
 interface PlayerProp {
   id: number;
@@ -57,6 +61,9 @@ const PrizePicksPro: React.FC = () => {
   const [savedLineups, setSavedLineups] = useState<SavedLineup[]>([]);
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedTimeFrame, setSelectedTimeFrame] = useState('today');
+  const [showFilters, setShowFilters] = useState(false);
+  const { filters, updateFilters } = useFilters();
 
   const mockProps: PlayerProp[] = [
     {
@@ -302,6 +309,42 @@ const PrizePicksPro: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Sports & Time Filters */}
+      <motion.div
+        className='space-y-6 mb-8'
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <div className='quantum-card rounded-2xl p-6'>
+          <div className='flex items-center justify-between mb-4'>
+            <h3 className='text-xl font-bold text-electric-400 font-cyber'>LIVE PROP FILTERS</h3>
+            <div className='flex items-center space-x-4'>
+              <div className='text-sm text-gray-400 font-mono'>
+                {mockProps.length} props available
+              </div>
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className='flex items-center space-x-2 px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-lg hover:bg-yellow-500/30 transition-all'
+              >
+                <Filter className='w-4 h-4' />
+                <span className='font-mono text-sm'>{showFilters ? 'Hide' : 'Show'}</span>
+              </button>
+            </div>
+          </div>
+
+          <CompactFilterBar filters={filters} onFiltersChange={updateFilters} className='mb-4' />
+
+          {/* In-Game Time Filter for Props */}
+          <InGameTimeFilter
+            sport={filters.sports[0] || 'nba'}
+            onTimeFrameSelect={setSelectedTimeFrame}
+            selectedTimeFrame={selectedTimeFrame}
+            className='mt-4'
+          />
+        </div>
+      </motion.div>
 
       {/* Entry Configuration */}
       <div className='flex justify-between items-center'>
