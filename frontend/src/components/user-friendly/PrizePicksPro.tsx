@@ -65,7 +65,12 @@ const PrizePicksPro: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedTimeFrame, setSelectedTimeFrame] = useState('today');
   const [showFilters, setShowFilters] = useState(false);
-  const { filters, updateFilters } = useFilters();
+  const { filters: oldFilters, updateFilters: updateOldFilters } = useFilters();
+  const { filters: fluentFilters, updateFilters: updateFluentFilters } = useFluentFilters();
+  const { totalItems: totalProps, filteredItems: filteredProps } = useFilteredResults(
+    fluentFilters,
+    156
+  );
 
   const mockProps: PlayerProp[] = [
     {
