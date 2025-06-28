@@ -607,44 +607,159 @@ const Header: React.FC = () => {
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     className='absolute right-0 top-full mt-2 w-80 z-50'
                     style={{
-                      backgroundColor: '#0f0f14',
-                      border: '2px solid rgba(64, 224, 208, 0.3)',
+                      backgroundColor:
+                        theme === 'neural-purple'
+                          ? '#1e1b4b'
+                          : theme === 'cyber-blue'
+                            ? '#1e3a8a'
+                            : theme === 'quantum-light'
+                              ? '#f8fafc'
+                              : '#0f0f14',
+                      border:
+                        theme === 'neural-purple'
+                          ? '2px solid rgba(147, 51, 234, 0.4)'
+                          : theme === 'cyber-blue'
+                            ? '2px solid rgba(59, 130, 246, 0.4)'
+                            : theme === 'quantum-light'
+                              ? '2px solid rgba(100, 116, 139, 0.3)'
+                              : '2px solid rgba(64, 224, 208, 0.3)',
                       borderRadius: '16px',
                       boxShadow:
-                        '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(64, 224, 208, 0.2)',
+                        theme === 'neural-purple'
+                          ? '0 25px 50px -12px rgba(88, 28, 135, 0.4), 0 0 30px rgba(147, 51, 234, 0.2)'
+                          : theme === 'cyber-blue'
+                            ? '0 25px 50px -12px rgba(29, 78, 216, 0.4), 0 0 30px rgba(59, 130, 246, 0.2)'
+                            : theme === 'quantum-light'
+                              ? '0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 20px rgba(100, 116, 139, 0.1)'
+                              : '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(64, 224, 208, 0.2)',
                       backdropFilter: 'blur(20px)',
                     }}
                   >
                     <div
                       className='p-4 border-b'
                       style={{
-                        backgroundColor: '#1a1a24',
-                        borderBottom: '1px solid rgba(64, 224, 208, 0.3)',
+                        backgroundColor:
+                          theme === 'neural-purple'
+                            ? '#2d1b69'
+                            : theme === 'cyber-blue'
+                              ? '#1d4ed8'
+                              : theme === 'quantum-light'
+                                ? '#e2e8f0'
+                                : '#1a1a24',
+                        borderBottom:
+                          theme === 'neural-purple'
+                            ? '1px solid rgba(147, 51, 234, 0.3)'
+                            : theme === 'cyber-blue'
+                              ? '1px solid rgba(59, 130, 246, 0.3)'
+                              : theme === 'quantum-light'
+                                ? '1px solid rgba(100, 116, 139, 0.2)'
+                                : '1px solid rgba(64, 224, 208, 0.3)',
                       }}
                     >
-                      <h3 className='font-bold text-white font-cyber flex items-center space-x-2'>
-                        <Bell className='w-4 h-4 text-electric-400' />
-                        <span>Notifications</span>
-                      </h3>
-                      <p className='text-sm text-gray-300'>{notifications.length} new alerts</p>
+                      <div className='flex items-center justify-between mb-2'>
+                        <h3
+                          className={`font-bold font-cyber flex items-center space-x-2 ${
+                            theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
+                          }`}
+                        >
+                          <Bell
+                            className={`w-4 h-4 ${
+                              theme === 'neural-purple'
+                                ? 'text-purple-400'
+                                : theme === 'cyber-blue'
+                                  ? 'text-blue-400'
+                                  : theme === 'quantum-light'
+                                    ? 'text-gray-600'
+                                    : 'text-electric-400'
+                            }`}
+                          />
+                          <span>Notifications</span>
+                        </h3>
+                        <div
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            theme === 'neural-purple'
+                              ? 'bg-purple-500/20 text-purple-300'
+                              : theme === 'cyber-blue'
+                                ? 'bg-blue-500/20 text-blue-300'
+                                : theme === 'quantum-light'
+                                  ? 'bg-gray-200 text-gray-700'
+                                  : 'bg-electric-500/20 text-electric-300'
+                          } font-mono`}
+                        >
+                          {notifications.length} alerts
+                        </div>
+                      </div>
+                      <p
+                        className={`text-sm ${
+                          theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'
+                        }`}
+                      >
+                        Real-time system notifications
+                      </p>
                     </div>
                     <div
                       className='max-h-64 overflow-y-auto'
-                      style={{ backgroundColor: '#0f0f14' }}
+                      style={{
+                        backgroundColor:
+                          theme === 'neural-purple'
+                            ? '#1e1b4b'
+                            : theme === 'cyber-blue'
+                              ? '#1e3a8a'
+                              : theme === 'quantum-light'
+                                ? '#f8fafc'
+                                : '#0f0f14',
+                      }}
                     >
                       {notifications.map((notif: any, index: number) => (
                         <div
                           key={index}
-                          className='p-4 hover:bg-electric-500/10 border-b border-white/5 last:border-b-0 transition-all cursor-pointer'
+                          className={`p-4 border-b last:border-b-0 transition-all cursor-pointer hover:${
+                            theme === 'neural-purple'
+                              ? 'bg-purple-500/10'
+                              : theme === 'cyber-blue'
+                                ? 'bg-blue-500/10'
+                                : theme === 'quantum-light'
+                                  ? 'bg-gray-100'
+                                  : 'bg-electric-500/10'
+                          }`}
                           style={{
                             borderBottom:
                               index < notifications.length - 1
-                                ? '1px solid rgba(255, 255, 255, 0.05)'
+                                ? theme === 'quantum-light'
+                                  ? '1px solid rgba(0, 0, 0, 0.05)'
+                                  : '1px solid rgba(255, 255, 255, 0.05)'
                                 : 'none',
                           }}
                         >
-                          <div className='text-sm text-white mb-1'>{notif.message}</div>
-                          <div className='text-xs text-gray-400'>{notif.time}</div>
+                          <div className='flex items-start space-x-3'>
+                            <div
+                              className={`w-2 h-2 rounded-full mt-2 ${
+                                theme === 'neural-purple'
+                                  ? 'bg-purple-400'
+                                  : theme === 'cyber-blue'
+                                    ? 'bg-blue-400'
+                                    : theme === 'quantum-light'
+                                      ? 'bg-gray-400'
+                                      : 'bg-electric-400'
+                              } animate-pulse`}
+                            />
+                            <div className='flex-1'>
+                              <div
+                                className={`text-sm font-medium mb-1 ${
+                                  theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
+                                }`}
+                              >
+                                {notif.message}
+                              </div>
+                              <div
+                                className={`text-xs ${
+                                  theme === 'quantum-light' ? 'text-gray-500' : 'text-gray-400'
+                                } font-mono`}
+                              >
+                                {notif.time}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -663,111 +778,250 @@ const Header: React.FC = () => {
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   className='absolute right-16 top-full mt-2 w-96 z-50'
                   style={{
-                    backgroundColor: '#0f0f14',
-                    border: '2px solid rgba(64, 224, 208, 0.3)',
+                    backgroundColor:
+                      theme === 'neural-purple'
+                        ? '#1e1b4b'
+                        : theme === 'cyber-blue'
+                          ? '#1e3a8a'
+                          : theme === 'quantum-light'
+                            ? '#f8fafc'
+                            : '#0f0f14',
+                    border:
+                      theme === 'neural-purple'
+                        ? '2px solid rgba(147, 51, 234, 0.4)'
+                        : theme === 'cyber-blue'
+                          ? '2px solid rgba(59, 130, 246, 0.4)'
+                          : theme === 'quantum-light'
+                            ? '2px solid rgba(100, 116, 139, 0.3)'
+                            : '2px solid rgba(64, 224, 208, 0.3)',
                     borderRadius: '16px',
                     boxShadow:
-                      '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(64, 224, 208, 0.2)',
+                      theme === 'neural-purple'
+                        ? '0 25px 50px -12px rgba(88, 28, 135, 0.4), 0 0 30px rgba(147, 51, 234, 0.2)'
+                        : theme === 'cyber-blue'
+                          ? '0 25px 50px -12px rgba(29, 78, 216, 0.4), 0 0 30px rgba(59, 130, 246, 0.2)'
+                          : theme === 'quantum-light'
+                            ? '0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 20px rgba(100, 116, 139, 0.1)'
+                            : '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(64, 224, 208, 0.2)',
                     backdropFilter: 'blur(20px)',
                   }}
                 >
                   <div
                     className='p-4 border-b'
                     style={{
-                      backgroundColor: '#1a1a24',
-                      borderBottom: '1px solid rgba(64, 224, 208, 0.3)',
+                      backgroundColor:
+                        theme === 'neural-purple'
+                          ? '#2d1b69'
+                          : theme === 'cyber-blue'
+                            ? '#1d4ed8'
+                            : theme === 'quantum-light'
+                              ? '#e2e8f0'
+                              : '#1a1a24',
+                      borderBottom:
+                        theme === 'neural-purple'
+                          ? '1px solid rgba(147, 51, 234, 0.3)'
+                          : theme === 'cyber-blue'
+                            ? '1px solid rgba(59, 130, 246, 0.3)'
+                            : theme === 'quantum-light'
+                              ? '1px solid rgba(100, 116, 139, 0.2)'
+                              : '1px solid rgba(64, 224, 208, 0.3)',
                     }}
                   >
-                    <h3 className='font-bold text-electric-400 font-cyber flex items-center space-x-2'>
-                      <Activity className='w-5 h-5 animate-pulse' />
-                      <span>System Monitor</span>
-                    </h3>
-                    <p className='text-sm text-gray-300'>Real-time system performance</p>
-                  </div>
-                  <div className='p-4 space-y-4' style={{ backgroundColor: '#0f0f14' }}>
-                    <div className='grid grid-cols-2 gap-3'>
-                      <div
-                        className='rounded-lg p-3'
-                        style={{
-                          backgroundColor: '#1a1a24',
-                          border: '1px solid rgba(100, 100, 120, 0.3)',
-                        }}
+                    <div className='flex items-center justify-between mb-2'>
+                      <h3
+                        className={`font-bold font-cyber flex items-center space-x-2 ${
+                          theme === 'quantum-light'
+                            ? 'text-gray-800'
+                            : theme === 'neural-purple'
+                              ? 'text-purple-400'
+                              : theme === 'cyber-blue'
+                                ? 'text-blue-400'
+                                : 'text-electric-400'
+                        }`}
                       >
-                        <div className='text-xs text-gray-400 font-mono'>CPU Usage</div>
-                        <div className='text-electric-400 font-bold font-cyber'>67%</div>
-                      </div>
+                        <Activity
+                          className={`w-5 h-5 animate-pulse ${
+                            theme === 'quantum-light'
+                              ? 'text-gray-600'
+                              : theme === 'neural-purple'
+                                ? 'text-purple-400'
+                                : theme === 'cyber-blue'
+                                  ? 'text-blue-400'
+                                  : 'text-electric-400'
+                          }`}
+                        />
+                        <span>System Monitor</span>
+                      </h3>
                       <div
-                        className='rounded-lg p-3'
-                        style={{
-                          backgroundColor: '#1a1a24',
-                          border: '1px solid rgba(100, 100, 120, 0.3)',
-                        }}
+                        className={`text-xs px-2 py-1 rounded-full ${
+                          theme === 'neural-purple'
+                            ? 'bg-purple-500/20 text-purple-300'
+                            : theme === 'cyber-blue'
+                              ? 'bg-blue-500/20 text-blue-300'
+                              : theme === 'quantum-light'
+                                ? 'bg-gray-200 text-gray-700'
+                                : 'bg-electric-500/20 text-electric-300'
+                        } font-mono`}
                       >
-                        <div className='text-xs text-gray-400 font-mono'>Memory</div>
-                        <div className='text-green-400 font-bold font-cyber'>4.2GB</div>
-                      </div>
-                      <div
-                        className='rounded-lg p-3'
-                        style={{
-                          backgroundColor: '#1a1a24',
-                          border: '1px solid rgba(100, 100, 120, 0.3)',
-                        }}
-                      >
-                        <div className='text-xs text-gray-400 font-mono'>Networks</div>
-                        <div className='text-purple-400 font-bold font-cyber'>
-                          {realTimeData?.activeBots || 47}/47
-                        </div>
-                      </div>
-                      <div
-                        className='rounded-lg p-3'
-                        style={{
-                          backgroundColor: '#1a1a24',
-                          border: '1px solid rgba(100, 100, 120, 0.3)',
-                        }}
-                      >
-                        <div className='text-xs text-gray-400 font-mono'>Latency</div>
-                        <div className='text-cyan-400 font-bold font-cyber'>
-                          {realTimeData?.processingSpeed || 12}ms
-                        </div>
+                        LIVE
                       </div>
                     </div>
-                    <div className='space-y-2'>
-                      <div className='flex justify-between text-sm'>
-                        <span className='text-gray-400 font-mono'>Quantum Coherence</span>
-                        <span className='text-cyan-400 font-bold font-cyber'>
+                    <p
+                      className={`text-sm ${theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'}`}
+                    >
+                      Real-time performance metrics
+                    </p>
+                  </div>
+                  <div
+                    className='p-4 space-y-4'
+                    style={{
+                      backgroundColor:
+                        theme === 'neural-purple'
+                          ? '#1e1b4b'
+                          : theme === 'cyber-blue'
+                            ? '#1e3a8a'
+                            : theme === 'quantum-light'
+                              ? '#f8fafc'
+                              : '#0f0f14',
+                    }}
+                  >
+                    <div className='grid grid-cols-2 gap-3'>
+                      {[
+                        {
+                          label: 'CPU Usage',
+                          value: '67%',
+                          color:
+                            theme === 'neural-purple'
+                              ? 'purple'
+                              : theme === 'cyber-blue'
+                                ? 'blue'
+                                : theme === 'quantum-light'
+                                  ? 'gray'
+                                  : 'electric',
+                        },
+                        { label: 'Memory', value: '4.2GB', color: 'green' },
+                        {
+                          label: 'Networks',
+                          value: `${realTimeData?.activeBots || 47}/47`,
+                          color: 'purple',
+                        },
+                        {
+                          label: 'Latency',
+                          value: `${realTimeData?.processingSpeed || 12}ms`,
+                          color: 'cyan',
+                        },
+                      ].map((metric, index) => (
+                        <div
+                          key={index}
+                          className='rounded-lg p-3 border'
+                          style={{
+                            backgroundColor:
+                              theme === 'neural-purple'
+                                ? '#2d1b69'
+                                : theme === 'cyber-blue'
+                                  ? '#1d4ed8'
+                                  : theme === 'quantum-light'
+                                    ? '#ffffff'
+                                    : '#1a1a24',
+                            borderColor:
+                              theme === 'neural-purple'
+                                ? 'rgba(147, 51, 234, 0.3)'
+                                : theme === 'cyber-blue'
+                                  ? 'rgba(59, 130, 246, 0.3)'
+                                  : theme === 'quantum-light'
+                                    ? 'rgba(100, 116, 139, 0.2)'
+                                    : 'rgba(100, 100, 120, 0.3)',
+                          }}
+                        >
+                          <div
+                            className={`text-xs font-mono mb-1 ${
+                              theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-400'
+                            }`}
+                          >
+                            {metric.label}
+                          </div>
+                          <div
+                            className={`font-bold font-cyber text-lg ${
+                              metric.color === 'purple'
+                                ? 'text-purple-400'
+                                : metric.color === 'blue'
+                                  ? 'text-blue-400'
+                                  : metric.color === 'green'
+                                    ? 'text-green-400'
+                                    : metric.color === 'cyan'
+                                      ? 'text-cyan-400'
+                                      : metric.color === 'gray'
+                                        ? 'text-gray-700'
+                                        : 'text-electric-400'
+                            }`}
+                          >
+                            {metric.value}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className='space-y-3'>
+                      <div className='flex justify-between items-center text-sm'>
+                        <span
+                          className={`font-mono ${theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-400'}`}
+                        >
+                          Quantum Coherence
+                        </span>
+                        <span
+                          className={`font-bold font-cyber ${
+                            theme === 'neural-purple'
+                              ? 'text-purple-400'
+                              : theme === 'cyber-blue'
+                                ? 'text-blue-400'
+                                : theme === 'quantum-light'
+                                  ? 'text-gray-700'
+                                  : 'text-cyan-400'
+                          }`}
+                        >
                           {realTimeData?.quantumCoherence || 99.97}%
                         </span>
                       </div>
                       <div
-                        className='w-full rounded-full h-2'
-                        style={{ backgroundColor: '#374151' }}
+                        className='w-full rounded-full h-3 relative overflow-hidden'
+                        style={{
+                          backgroundColor: theme === 'quantum-light' ? '#e5e7eb' : '#374151',
+                        }}
                       >
                         <div
-                          className='h-2 rounded-full transition-all'
+                          className='h-3 rounded-full transition-all duration-1000 relative'
                           style={{
                             width: `${realTimeData?.quantumCoherence || 99.97}%`,
-                            background: 'linear-gradient(to right, #22d3ee, #40e0d0)',
+                            background:
+                              theme === 'neural-purple'
+                                ? 'linear-gradient(to right, #8b5cf6, #a855f7)'
+                                : theme === 'cyber-blue'
+                                  ? 'linear-gradient(to right, #3b82f6, #60a5fa)'
+                                  : theme === 'quantum-light'
+                                    ? 'linear-gradient(to right, #6366f1, #8b5cf6)'
+                                    : 'linear-gradient(to right, #22d3ee, #40e0d0)',
                           }}
-                        />
+                        >
+                          <div className='absolute inset-0 bg-white/20 animate-pulse' />
+                        </div>
                       </div>
                     </div>
-                    <div className='text-center'>
+
+                    <div className='text-center pt-2'>
                       <button
                         onClick={() => {
                           setCurrentPage('realtime');
                           setShowSystemMonitor(false);
                         }}
-                        className='text-xs text-electric-400 hover:text-electric-300 font-cyber transition-colors px-3 py-1 rounded-lg'
-                        style={{
-                          backgroundColor: 'rgba(64, 224, 208, 0.1)',
-                          border: '1px solid rgba(64, 224, 208, 0.2)',
-                        }}
-                        onMouseEnter={e => {
-                          e.currentTarget.style.backgroundColor = 'rgba(64, 224, 208, 0.2)';
-                        }}
-                        onMouseLeave={e => {
-                          e.currentTarget.style.backgroundColor = 'rgba(64, 224, 208, 0.1)';
-                        }}
+                        className={`text-sm font-cyber transition-all px-4 py-2 rounded-lg border ${
+                          theme === 'neural-purple'
+                            ? 'text-purple-400 hover:text-purple-300 border-purple-500/30 hover:bg-purple-500/10'
+                            : theme === 'cyber-blue'
+                              ? 'text-blue-400 hover:text-blue-300 border-blue-500/30 hover:bg-blue-500/10'
+                              : theme === 'quantum-light'
+                                ? 'text-gray-700 hover:text-gray-600 border-gray-300 hover:bg-gray-100'
+                                : 'text-electric-400 hover:text-electric-300 border-electric-500/30 hover:bg-electric-500/10'
+                        }`}
                       >
                         View Full Monitor →
                       </button>
