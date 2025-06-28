@@ -670,14 +670,12 @@ const Header: React.FC = () => {
 
               {/* Enhanced Notifications Panel */}
               {showNotifications && (
-                <>
-                  <div className='fixed inset-0 z-40' onClick={() => setShowNotifications(false)} />
-                  <motion.div
-                    initial={{ opacity: 0, y: -10, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                    transition={{ type: 'spring', duration: 0.4 }}
-                    className='absolute right-0 top-full mt-3 w-96 z-50 quantum-card'
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ type: 'spring', duration: 0.3, ease: "easeOut" }}
+                  className='absolute right-0 top-full mt-4 w-96 z-30 quantum-card'
                     style={{
                       background:
                         theme === 'neural-purple'
