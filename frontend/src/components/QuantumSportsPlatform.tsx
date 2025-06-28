@@ -747,19 +747,45 @@ const PageRenderer: React.FC = () => {
         return <MLModelDashboard />;
       case 'quantum':
         return (
-          <div className='p-8 space-y-6'>
+          <div className='space-y-10 animate-slide-in-up'>
             <div className='text-center'>
-              <h2 className='text-3xl font-bold text-white mb-4 animate-cyber-pulse'>
-                Quantum Predictions
-              </h2>
-              <p className='text-neon-blue text-lg'>Next-Generation Quantum Processing</p>
-            </div>
-            <div className='quantum-card p-6 rounded-2xl text-center'>
-              <div className='text-6xl mb-4'>⚛️</div>
-              <h3 className='text-2xl font-bold text-white mb-3'>Quantum Coherence: 99.97%</h3>
-              <p className='text-gray-300'>
-                Quantum algorithms processing market data at unprecedented accuracy
+              <div className='relative mb-10'>
+                <div className='absolute inset-0 bg-cyan-400/20 blur-3xl rounded-full' />
+                <div className='relative text-8xl text-cyan-400 float-element'>⚛️</div>
+              </div>
+              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>
+                QUANTUM PREDICTIONS
+              </h1>
+              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>
+                Quantum-enhanced prediction engine with 1024 qubits, superposition algorithms, and
+                neural-quantum hybrid processing
               </p>
+            </div>
+
+            <div className='quantum-card rounded-3xl p-10 text-center'>
+              <div className='text-gray-500 mb-8 text-xl font-mono'>
+                Advanced quantum feature interface coming soon...
+              </div>
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-10'>
+                <div className='text-center'>
+                  <div className='text-4xl mb-4 text-electric-400'>🧠</div>
+                  <div className='font-bold text-white font-cyber'>Neural Networks</div>
+                  <div className='text-gray-400 text-sm font-mono'>47 AI agents ready</div>
+                </div>
+                <div className='text-center'>
+                  <div className='text-4xl mb-4 text-purple-400'>⚛️</div>
+                  <div className='font-bold text-white font-cyber'>Quantum Processing</div>
+                  <div className='text-gray-400 text-sm font-mono'>1024 qubits active</div>
+                </div>
+                <div className='text-center'>
+                  <div className='text-4xl mb-4 text-blue-400'>📊</div>
+                  <div className='font-bold text-white font-cyber'>Real-time Analysis</div>
+                  <div className='text-gray-400 text-sm font-mono'>Live data processing</div>
+                </div>
+              </div>
+              <button className='px-12 py-6 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-xl rounded-2xl hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 font-cyber'>
+                INITIALIZE QUANTUM INTERFACE
+              </button>
             </div>
           </div>
         );
@@ -767,6 +793,50 @@ const PageRenderer: React.FC = () => {
         return <UniversalAnalytics />;
       case 'realtime':
         return <WorkingRealTimeMonitor />;
+      case 'market':
+        return (
+          <div className='space-y-10 animate-slide-in-up'>
+            <div className='text-center'>
+              <div className='relative mb-10'>
+                <div className='absolute inset-0 bg-pink-400/20 blur-3xl rounded-full' />
+                <div className='relative text-8xl text-pink-400 float-element'>📈</div>
+              </div>
+              <h1 className='holographic text-6xl font-black mb-6 font-cyber'>
+                MARKET INTELLIGENCE
+              </h1>
+              <p className='text-2xl text-gray-400 max-w-4xl mx-auto font-mono'>
+                Advanced market analysis with neural sentiment processing, quantum trend prediction,
+                and real-time opportunity detection
+              </p>
+            </div>
+
+            <div className='quantum-card rounded-3xl p-10 text-center'>
+              <div className='text-gray-500 mb-8 text-xl font-mono'>
+                Advanced quantum feature interface coming soon...
+              </div>
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-10'>
+                <div className='text-center'>
+                  <div className='text-4xl mb-4 text-electric-400'>🧠</div>
+                  <div className='font-bold text-white font-cyber'>Neural Networks</div>
+                  <div className='text-gray-400 text-sm font-mono'>47 AI agents ready</div>
+                </div>
+                <div className='text-center'>
+                  <div className='text-4xl mb-4 text-purple-400'>⚛️</div>
+                  <div className='font-bold text-white font-cyber'>Quantum Processing</div>
+                  <div className='text-gray-400 text-sm font-mono'>1024 qubits active</div>
+                </div>
+                <div className='text-center'>
+                  <div className='text-4xl mb-4 text-blue-400'>📊</div>
+                  <div className='font-bold text-white font-cyber'>Real-time Analysis</div>
+                  <div className='text-gray-400 text-sm font-mono'>Live data processing</div>
+                </div>
+              </div>
+              <button className='px-12 py-6 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl rounded-2xl hover:from-pink-400 hover:to-purple-400 transition-all duration-300 font-cyber'>
+                INITIALIZE QUANTUM INTERFACE
+              </button>
+            </div>
+          </div>
+        );
       case 'settings':
         try {
           return <UltimateSettingsPage />;
