@@ -114,9 +114,9 @@ const MoneyMakerPro: React.FC = () => {
     setLoading(true);
     setTimeout(() => {
       // Apply quantum filter bonuses
-      const filterBonus = 1 + filters.sports.length * 0.02 + filters.advanced.minConfidence / 1000;
+      const sportsBonus = filters.sports.length >= 20 ? 1.15 : 1 + filters.sports.length * 0.01; // Maximum opportunity bonus
+      const filterBonus = sportsBonus + filters.advanced.minConfidence / 1000;
       const timeFrameBonus = filters.timeFrame === 'live' ? 1.15 : 1.0;
-      const neuralBonus = config.weatherFilter && config.injuryFilter ? 1.1 : 1.0;
 
       const multiplier =
         Math.pow(2.1, config.portfolio) *
@@ -341,13 +341,13 @@ const MoneyMakerPro: React.FC = () => {
               </h3>
               <div className='space-y-3'>
                 <div className='flex flex-wrap gap-2'>
-                  {filters.sports.length === 0 ? (
+                  {filters.sports.length >= 20 ? (
                     <div className='px-4 py-2 bg-electric-500/20 text-electric-400 rounded-full text-sm font-cyber font-bold border border-electric-500/30'>
-                      ALL SPORTS
+                      ALL SPORTS ({filters.sports.length})
                     </div>
-                  ) : (
+                  ) : filters.sports.length > 0 ? (
                     <>
-                      {filters.sports.slice(0, 4).map(sportId => {
+                      {filters.sports.slice(0, 3).map(sportId => {
                         const sport = [
                           'NBA',
                           'NFL',
@@ -360,6 +360,8 @@ const MoneyMakerPro: React.FC = () => {
                           'Boxing',
                           'Tennis',
                           'Esports',
+                          'NCAAB',
+                          'NCAAF',
                         ].find(s => s.toLowerCase() === sportId);
                         return sport ? (
                           <div
@@ -370,12 +372,16 @@ const MoneyMakerPro: React.FC = () => {
                           </div>
                         ) : null;
                       })}
-                      {filters.sports.length > 4 && (
+                      {filters.sports.length > 3 && (
                         <div className='px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-sm font-mono'>
-                          +{filters.sports.length - 4}
+                          +{filters.sports.length - 3} more
                         </div>
                       )}
                     </>
+                  ) : (
+                    <div className='px-4 py-2 bg-red-500/20 text-red-400 rounded-full text-sm font-cyber font-bold border border-red-500/30'>
+                      NO SPORTS
+                    </div>
                   )}
                 </div>
                 <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>

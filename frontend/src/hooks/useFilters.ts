@@ -1,9 +1,38 @@
 import { useState, useEffect, useCallback, createContext, useContext } from 'react';
 import type { FilterState } from '../components/filters/QuantumFilters';
 
-// Default filter state
+// All available sports for default selection
+const ALL_SPORTS = [
+  'nba',
+  'wnba',
+  'mlb',
+  'nfl',
+  'nhl',
+  'soccer',
+  'pga',
+  'mma',
+  'boxing',
+  'tennis',
+  'esports',
+  'ncaab',
+  'ncaaf',
+  'cricket',
+  'rugby',
+  'f1',
+  'motorsports',
+  'lol',
+  'csgo',
+  'dota',
+  'valorant',
+  'cycling',
+  'swimming',
+  'track',
+  'olympics',
+];
+
+// Default filter state - ALL sports selected for maximum opportunity analysis
 const DEFAULT_FILTERS: FilterState = {
-  sports: [], // Empty array means "All Sports"
+  sports: [...ALL_SPORTS], // All sports selected by default
   timeFrame: 'today',
   regions: ['us'],
   advanced: {
@@ -183,14 +212,16 @@ export const isDefaultFilters = (filters: FilterState): boolean => {
 export const getFilterSummary = (filters: FilterState): string => {
   const parts = [];
 
-  if (filters.sports.length > 0) {
+  if (filters.sports.length === ALL_SPORTS.length) {
+    parts.push('All Sports');
+  } else if (filters.sports.length > 0) {
     if (filters.sports.length <= 3) {
       parts.push(`Sports: ${filters.sports.join(', ').toUpperCase()}`);
     } else {
-      parts.push(`${filters.sports.length} sports selected`);
+      parts.push(`${filters.sports.length}/${ALL_SPORTS.length} sports`);
     }
   } else {
-    parts.push('All Sports');
+    parts.push('No Sports Selected');
   }
 
   if (filters.timeFrame !== 'today') {
