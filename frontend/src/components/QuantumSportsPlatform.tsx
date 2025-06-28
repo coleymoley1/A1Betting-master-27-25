@@ -834,7 +834,7 @@ const PageRenderer: React.FC = () => {
           </div>
         );
       default:
-        return <CleanDashboard />;
+        return <WorkingDashboard />;
     }
   };
 
