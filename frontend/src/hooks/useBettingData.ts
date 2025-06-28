@@ -75,20 +75,26 @@ export const useBettingData = ({
           break;
         }
         case 'odds_update': {
-          const update = msg.data as OddsUpdate;
+          const update = msg.data as OddsUpdate & {
+            sport?: string;
+            propType?: string;
+            propName?: string;
+          };
           if (!update) return;
 
           if (sport && update.sport !== sport) return;
           if (propType && update.propType !== propType) return;
 
-          const oddsChange = Math.abs(update.newOdds - update.oldOdds);
+          const oldOdds = update.oldOdds || update.odds;
+          const newOdds = update.newOdds || update.odds;
+          const oddsChange = Math.abs(newOdds - oldOdds);
           if (oddsChange < minOddsChange) return;
 
           setOddsUpdates(prev => [update, ...prev].slice(0, 50));
           if (oddsChange >= 0.5) {
             addToast(
               'info',
-              `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`
+              `Odds updated for ${update.propName || update.propId} from ${oldOdds} to ${newOdds}`
             );
           }
           break;
