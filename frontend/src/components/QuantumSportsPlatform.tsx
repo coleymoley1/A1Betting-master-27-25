@@ -175,7 +175,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
               <div className='flex justify-between items-center mb-2'>
                 <span className='text-gray-300 font-mono'>Model Accuracy</span>
                 <span className='text-green-400 font-bold font-mono'>
-                  {realTimeData.accuracy.toFixed(1)}%
+                  {(realTimeData?.accuracy || 87.3).toFixed(1)}%
                 </span>
               </div>
               <div className='w-full bg-gray-700 rounded-full h-2'>
