@@ -600,47 +600,48 @@ const Header: React.FC = () => {
             </motion.button>
 
             {/* Activity Monitor Button */}
-            <motion.button
-              onClick={() => setShowSystemMonitor(!showSystemMonitor)}
-              className={`relative p-3 rounded-xl transition-all duration-300 group ${
-                theme === 'neural-purple'
-                  ? 'hover:bg-purple-500/20 hover:shadow-neon-purple'
-                  : theme === 'cyber-blue'
-                    ? 'hover:bg-blue-500/20 hover:shadow-neon-blue'
-                    : theme === 'quantum-light'
-                      ? 'hover:bg-gray-200 hover:shadow-lg'
-                      : 'hover:bg-electric-500/20 hover:shadow-neon'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Activity
-                className={`w-5 h-5 transition-colors duration-300 ${
-                  showSystemMonitor
-                    ? theme === 'neural-purple'
-                      ? 'text-purple-400'
-                      : theme === 'cyber-blue'
-                        ? 'text-blue-400'
-                        : theme === 'quantum-light'
-                          ? 'text-gray-700'
-                          : 'text-electric-400'
-                    : theme === 'quantum-light'
-                      ? 'text-gray-500'
-                      : 'text-gray-400'
-                } group-hover:animate-pulse`}
-              />
-              <div
-                className={`absolute -top-1 -right-1 w-3 h-3 rounded-full animate-pulse ${
+            <div className='relative' ref={systemMonitorRef}>
+              <motion.button
+                onClick={() => setShowSystemMonitor(!showSystemMonitor)}
+                className={`relative p-3 rounded-xl transition-all duration-300 group ${
                   theme === 'neural-purple'
-                    ? 'bg-purple-400'
+                    ? 'hover:bg-purple-500/20 hover:shadow-neon-purple'
                     : theme === 'cyber-blue'
-                      ? 'bg-blue-400'
+                      ? 'hover:bg-blue-500/20 hover:shadow-neon-blue'
                       : theme === 'quantum-light'
-                        ? 'bg-green-500'
-                        : 'bg-green-400'
+                        ? 'hover:bg-gray-200 hover:shadow-lg'
+                        : 'hover:bg-electric-500/20 hover:shadow-neon'
                 }`}
-              />
-            </motion.button>
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Activity
+                  className={`w-5 h-5 transition-colors duration-300 ${
+                    showSystemMonitor
+                      ? theme === 'neural-purple'
+                        ? 'text-purple-400'
+                        : theme === 'cyber-blue'
+                          ? 'text-blue-400'
+                          : theme === 'quantum-light'
+                            ? 'text-gray-700'
+                            : 'text-electric-400'
+                      : theme === 'quantum-light'
+                        ? 'text-gray-500'
+                        : 'text-gray-400'
+                  } group-hover:animate-pulse`}
+                  />
+                <div
+                  className={`absolute -top-1 -right-1 w-3 h-3 rounded-full animate-pulse ${
+                    theme === 'neural-purple'
+                      ? 'bg-purple-400'
+                      : theme === 'cyber-blue'
+                        ? 'bg-blue-400'
+                        : theme === 'quantum-light'
+                          ? 'bg-green-500'
+                          : 'bg-green-400'
+                  }`}
+                />
+              </motion.button>
 
             {/* Notifications Button */}
             <div className='relative' ref={notificationsRef}>
