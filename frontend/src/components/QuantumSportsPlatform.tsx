@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import {
+  Activity,
   Atom,
   BarChart3,
   Bell,
@@ -13,8 +14,9 @@ import {
   Shield,
   Trophy,
   X,
+  Zap,
 } from 'lucide-react';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Import working components
 import PropOllama from './user-friendly/PropOllama';
