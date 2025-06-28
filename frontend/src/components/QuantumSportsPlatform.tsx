@@ -983,7 +983,7 @@ const Header: React.FC = () => {
                     </span>
                   </div>
                 )}
-              </motion.button>
+              </button>
 
               {/* Enhanced Notifications Panel */}
               {showNotifications && (
