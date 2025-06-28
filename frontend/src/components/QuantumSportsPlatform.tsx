@@ -639,7 +639,7 @@ const Header: React.FC = () => {
                           : 'bg-green-400'
                   }`}
                 />
-              </motion.button>
+              </button>
 
               {/* Enhanced System Monitor Panel */}
               {showSystemMonitor && (
