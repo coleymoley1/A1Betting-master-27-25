@@ -216,34 +216,217 @@ const MoneyMakerPro: React.FC = () => {
         </div>
       </div>
 
-      {/* Quantum Filters Section */}
+      {/* Unified Quantum Control Center */}
       <motion.div
-        className='space-y-6 mb-12'
+        className='quantum-card rounded-3xl p-10 border-2 border-electric-500/30 shadow-neon mb-12'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className='flex items-center justify-between mb-4'>
-          <h3 className='text-2xl font-bold text-electric-400 font-cyber holographic'>
-            NEURAL FILTER MATRIX
-          </h3>
-          <motion.button
-            onClick={() => setShowQuantumFilters(!showQuantumFilters)}
-            className='flex items-center space-x-3 px-6 py-3 rounded-2xl bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 hover:bg-electric-500/30 transition-all duration-300 font-cyber font-bold'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Filter className={`w-5 h-5 ${showQuantumFilters ? 'animate-pulse' : ''}`} />
-            <span>{showQuantumFilters ? 'COLLAPSE MATRIX' : 'EXPAND MATRIX'}</span>
-          </motion.button>
+        {/* Control Center Header */}
+        <div className='flex items-center space-x-4 mb-10'>
+          <Brain className='text-4xl text-electric-400 animate-neural-pulse' />
+          <div className='flex-1'>
+            <h2 className='text-4xl font-bold text-electric-400 holographic font-cyber mb-2'>
+              QUANTUM CONTROL CENTER
+            </h2>
+            <div className='text-gray-400 font-mono'>
+              Neural Matrix • AI Configuration • Filter System
+            </div>
+          </div>
+          <div className='flex space-x-3'>
+            <motion.button
+              onClick={() => setShowQuantumFilters(!showQuantumFilters)}
+              className='flex items-center space-x-2 px-4 py-2 rounded-xl bg-electric-500/20 border border-electric-500/40 text-electric-400 hover:bg-electric-500/30 transition-all font-cyber font-bold text-sm'
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Filter className={`w-4 h-4 ${showQuantumFilters ? 'animate-pulse' : ''}`} />
+              <span>FILTERS</span>
+            </motion.button>
+            <motion.button
+              onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+              className='flex items-center space-x-2 px-4 py-2 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-400 hover:bg-purple-500/30 transition-all font-cyber font-bold text-sm'
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Zap className={`w-4 h-4 ${showAdvancedFilters ? 'animate-neural-pulse' : ''}`} />
+              <span>NEURAL</span>
+            </motion.button>
+          </div>
         </div>
 
+        {/* Core Configuration Grid */}
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8'>
+          {/* Left Panel: Investment & Strategy */}
+          <div className='space-y-6'>
+            <div className='quantum-card p-6 rounded-2xl border border-green-500/30'>
+              <h3 className='text-lg font-bold text-green-400 font-cyber mb-4 flex items-center space-x-2'>
+                <DollarSign className='w-5 h-5' />
+                <span>INVESTMENT MATRIX</span>
+              </h3>
+              <div className='grid grid-cols-2 gap-4'>
+                <div>
+                  <label className='block text-sm font-bold mb-2 text-green-400 font-cyber'>
+                    AMOUNT ($)
+                  </label>
+                  <input
+                    type='number'
+                    min='100'
+                    max='10000'
+                    step='100'
+                    value={config.investment}
+                    onChange={e => setConfig({ ...config, investment: parseInt(e.target.value) })}
+                    className='w-full p-3 rounded-xl text-center font-bold text-lg border-2 border-green-500/30 focus:border-green-500 bg-gray-900/50 text-green-400'
+                  />
+                </div>
+                <div>
+                  <label className='block text-sm font-bold mb-2 text-green-400 font-cyber'>
+                    STRATEGY
+                  </label>
+                  <select
+                    value={config.strategy}
+                    onChange={e => setConfig({ ...config, strategy: e.target.value })}
+                    className='w-full p-3 rounded-xl border-2 border-green-500/30 focus:border-green-500 bg-gray-900/50 text-white font-cyber'
+                  >
+                    <option value='quantum'>Quantum Enhanced</option>
+                    <option value='aggressive'>Aggressive Growth</option>
+                    <option value='conservative'>Conservative Steady</option>
+                    <option value='balanced'>Balanced Portfolio</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className='quantum-card p-6 rounded-2xl border border-blue-500/30'>
+              <h3 className='text-lg font-bold text-blue-400 font-cyber mb-4 flex items-center space-x-2'>
+                <Target className='w-5 h-5' />
+                <span>PRECISION CONTROLS</span>
+              </h3>
+              <div className='space-y-4'>
+                <div>
+                  <label className='block text-sm font-bold mb-3 text-blue-400 font-cyber'>
+                    CONFIDENCE: {config.confidence}%
+                  </label>
+                  <input
+                    type='range'
+                    min='80'
+                    max='99'
+                    value={config.confidence}
+                    onChange={e => setConfig({ ...config, confidence: parseInt(e.target.value) })}
+                    className='w-full h-2 bg-gray-700 rounded-lg appearance-none slider-thumb'
+                  />
+                  <div className='flex justify-between text-xs text-gray-400 mt-1 font-mono'>
+                    <span>Safe (80%)</span>
+                    <span>Maximum (99%)</span>
+                  </div>
+                </div>
+                <div>
+                  <label className='block text-sm font-bold mb-2 text-blue-400 font-cyber'>
+                    PORTFOLIO SIZE
+                  </label>
+                  <select
+                    value={config.portfolio}
+                    onChange={e => setConfig({ ...config, portfolio: parseInt(e.target.value) })}
+                    className='w-full p-3 rounded-xl border-2 border-blue-500/30 focus:border-blue-500 bg-gray-900/50 text-white font-cyber'
+                  >
+                    <option value={2}>2 Picks (Safe)</option>
+                    <option value={3}>3 Picks (Balanced)</option>
+                    <option value={4}>4 Picks (Optimal)</option>
+                    <option value={5}>5 Picks (Aggressive)</option>
+                    <option value={6}>6 Picks (Maximum)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Panel: Quick Filters & Neural Settings */}
+          <div className='space-y-6'>
+            <div className='quantum-card p-6 rounded-2xl border border-electric-500/30'>
+              <h3 className='text-lg font-bold text-electric-400 font-cyber mb-4 flex items-center space-x-2'>
+                <Filter className='w-5 h-5' />
+                <span>ACTIVE FILTERS</span>
+              </h3>
+              <div className='space-y-3'>
+                <div className='flex flex-wrap gap-2'>
+                  {filters.sports.slice(0, 4).map(sportId => {
+                    const sport = ['NBA', 'NFL', 'MLB', 'NHL', 'Soccer', 'WNBA', 'PGA', 'MMA', 'Boxing', 'Tennis', 'Esports'].find(s => s.toLowerCase() === sportId);
+                    return sport ? (
+                      <div key={sportId} className='px-3 py-1 bg-electric-500/20 text-electric-400 rounded-full text-sm font-mono border border-electric-500/30'>
+                        {sport}
+                      </div>
+                    ) : null;
+                  })}
+                  {filters.sports.length > 4 && (
+                    <div className='px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-sm font-mono'>
+                      +{filters.sports.length - 4}
+                    </div>
+                  )}
+                </div>
+                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                  <span className='text-gray-300 font-mono text-sm'>Time Frame</span>
+                  <span className='text-electric-400 font-cyber font-bold'>{filters.timeFrame.toUpperCase()}</span>
+                </div>
+                <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
+                  <span className='text-gray-300 font-mono text-sm'>Min Confidence</span>
+                  <span className='text-electric-400 font-cyber font-bold'>{filters.advanced.minConfidence}%</span>
+                </div>
+              </div>
+            </div>
+
+            <div className='quantum-card p-6 rounded-2xl border border-purple-500/30'>
+              <h3 className='text-lg font-bold text-purple-400 font-cyber mb-4 flex items-center space-x-2'>
+                <Brain className='w-5 h-5' />
+                <span>NEURAL MODULES</span>
+              </h3>
+              <div className='grid grid-cols-2 gap-3'>
+                <label className='flex items-center justify-between p-3 quantum-card rounded-lg cursor-pointer hover:bg-purple-500/10 transition-all'>
+                  <span className='text-gray-300 font-mono text-sm'>Weather</span>
+                  <input
+                    type='checkbox'
+                    checked={config.weatherFilter}
+                    onChange={e => setConfig({ ...config, weatherFilter: e.target.checked })}
+                    className='w-4 h-4 text-purple-400'
+                  />
+                </label>
+                <label className='flex items-center justify-between p-3 quantum-card rounded-lg cursor-pointer hover:bg-purple-500/10 transition-all'>
+                  <span className='text-gray-300 font-mono text-sm'>Injury Intel</span>
+                  <input
+                    type='checkbox'
+                    checked={config.injuryFilter}
+                    onChange={e => setConfig({ ...config, injuryFilter: e.target.checked })}
+                    className='w-4 h-4 text-purple-400'
+                  />
+                </label>
+              </div>
+              <div className='mt-4'>
+                <label className='block text-sm font-bold mb-2 text-cyan-400 font-cyber'>
+                  RISK PROTOCOL
+                </label>
+                <select
+                  value={config.riskLevel}
+                  onChange={e => setConfig({ ...config, riskLevel: e.target.value })}
+                  className='w-full p-3 rounded-xl border-2 border-cyan-500/30 focus:border-cyan-500 bg-gray-900/50 text-white font-cyber'
+                >
+                  <option value='conservative'>Conservative</option>
+                  <option value='moderate'>Balanced</option>
+                  <option value='aggressive'>Aggressive</option>
+                  <option value='maximum'>Maximum</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Expandable Sections */}
         {showQuantumFilters && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4 }}
+            className='border-t border-electric-500/30 pt-8 mt-8'
           >
             <QuantumFilters
               filters={filters}
@@ -253,150 +436,57 @@ const MoneyMakerPro: React.FC = () => {
             />
           </motion.div>
         )}
-      </motion.div>
 
-      {/* Enhanced Configuration */}
-      <div className='quantum-card rounded-3xl p-10 border border-electric-500/30'>
-        <div className='flex items-center space-x-4 mb-8'>
-          <Brain className='text-3xl text-electric-400 animate-neural-pulse' />
-          <h2 className='text-3xl font-bold text-electric-400 holographic font-cyber'>
-            QUANTUM AI CONFIGURATION
-          </h2>
-        </div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8'>
-          {/* Investment Amount */}
-          <div>
-            <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-              INVESTMENT ($)
-            </label>
-            <input
-              type='number'
-              min='100'
-              max='10000'
-              step='100'
-              value={config.investment}
-              onChange={e => setConfig({ ...config, investment: parseInt(e.target.value) })}
-              className='w-full p-4 rounded-2xl text-center font-bold text-xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
-            />
-          </div>
-
-          {/* Strategy */}
-          <div>
-            <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-              NEURAL STRATEGY
-            </label>
-            <select
-              value={config.strategy}
-              onChange={e => setConfig({ ...config, strategy: e.target.value })}
-              className='w-full p-4 rounded-2xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
-            >
-              <option value='quantum'>Quantum Enhanced</option>
-              <option value='aggressive'>Aggressive Growth</option>
-              <option value='conservative'>Conservative Steady</option>
-              <option value='balanced'>Balanced Portfolio</option>
-            </select>
-          </div>
-
-          {/* Confidence Threshold */}
-          <div>
-            <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-              CONFIDENCE (%)
-            </label>
-            <input
-              type='range'
-              min='80'
-              max='99'
-              value={config.confidence}
-              onChange={e => setConfig({ ...config, confidence: parseInt(e.target.value) })}
-              className='w-full h-3 bg-gray-700 rounded-full appearance-none slider mb-2'
-            />
-            <div className='text-center text-electric-400 font-bold text-xl font-cyber'>
-              {config.confidence}%
-            </div>
-          </div>
-
-          {/* Portfolio Size */}
-          <div>
-            <label className='block text-sm font-bold mb-3 text-electric-400 font-cyber'>
-              PORTFOLIO SIZE
-            </label>
-            <select
-              value={config.portfolio}
-              onChange={e => setConfig({ ...config, portfolio: parseInt(e.target.value) })}
-              className='w-full p-4 rounded-2xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
-            >
-              <option value={2}>2 Picks (Safe)</option>
-              <option value={3}>3 Picks (Balanced)</option>
-              <option value={4}>4 Picks (Optimal)</option>
-              <option value={5}>5 Picks (Aggressive)</option>
-              <option value={6}>6 Picks (Maximum)</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Neural Enhancement Settings */}
-        <div className='flex items-center justify-between mb-6'>
-          <h3 className='text-lg font-bold text-purple-400 font-cyber'>NEURAL ENHANCEMENTS</h3>
-          <motion.button
-            onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-            className='flex items-center space-x-3 px-6 py-3 rounded-2xl bg-purple-500/20 border-2 border-purple-500/40 text-purple-400 hover:bg-purple-500/30 transition-all duration-300 font-cyber font-bold'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Brain className={`w-5 h-5 ${showAdvancedFilters ? 'animate-neural-pulse' : ''}`} />
-            <span>{showAdvancedFilters ? 'HIDE NEURAL' : 'SHOW NEURAL'}</span>
-          </motion.button>
-        </div>
-
-        {/* Neural Enhancement Controls */}
         {showAdvancedFilters && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-8'
+            transition={{ duration: 0.4 }}
+            className='border-t border-purple-500/30 pt-8 mt-8'
           >
-            <div className='quantum-card p-6 rounded-2xl border border-purple-500/30'>
-              <label className='block text-sm font-bold mb-4 text-purple-400 font-cyber'>
-                NEURAL ANALYSIS MODULES
-              </label>
-              <div className='space-y-3'>
-                <label className='flex items-center justify-between p-3 quantum-card rounded-lg'>
-                  <span className='text-gray-300 font-mono'>Weather Matrix</span>
-                  <input
-                    type='checkbox'
-                    checked={config.weatherFilter}
-                    onChange={e => setConfig({ ...config, weatherFilter: e.target.checked })}
-                    className='w-5 h-5 text-purple-400'
-                  />
-                </label>
-                <label className='flex items-center justify-between p-3 quantum-card rounded-lg'>
-                  <span className='text-gray-300 font-mono'>Injury Intelligence</span>
-                  <input
-                    type='checkbox'
-                    checked={config.injuryFilter}
-                    onChange={e => setConfig({ ...config, injuryFilter: e.target.checked })}
-                    className='w-5 h-5 text-purple-400'
-                  />
-                </label>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+              <div className='quantum-card p-6 rounded-2xl border border-purple-500/30'>
+                <h4 className='text-lg font-bold text-purple-400 font-cyber mb-4'>NEURAL NETWORKS</h4>
+                <div className='space-y-3'>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Active Networks</span>
+                    <span className='text-purple-400 font-cyber font-bold'>47</span>
+                  </div>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Processing Power</span>
+                    <span className='text-electric-400 font-cyber font-bold'>∞ TFLOPS</span>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <div className='quantum-card p-6 rounded-2xl border border-cyan-500/30'>
-              <label className='block text-sm font-bold mb-4 text-cyan-400 font-cyber'>
-                QUANTUM RISK MATRIX
-              </label>
-              <select
-                value={config.riskLevel}
-                onChange={e => setConfig({ ...config, riskLevel: e.target.value })}
-                className='w-full p-4 rounded-xl border-2 border-cyan-500/30 focus:border-cyan-500 bg-gray-900/50 text-white font-cyber'
-              >
-                <option value='conservative'>Conservative Protocol</option>
-                <option value='moderate'>Balanced Neural</option>
-                <option value='aggressive'>Aggressive Matrix</option>
-                <option value='maximum'>Maximum Quantum</option>
-              </select>
+              <div className='quantum-card p-6 rounded-2xl border border-cyan-500/30'>
+                <h4 className='text-lg font-bold text-cyan-400 font-cyber mb-4'>DATA STREAMS</h4>
+                <div className='space-y-3'>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Live Sources</span>
+                    <span className='text-cyan-400 font-cyber font-bold'>1,247</span>
+                  </div>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Update Rate</span>
+                    <span className='text-green-400 font-cyber font-bold'>&lt;1ms</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className='quantum-card p-6 rounded-2xl border border-yellow-500/30'>
+                <h4 className='text-lg font-bold text-yellow-400 font-cyber mb-4'>QUANTUM STATUS</h4>
+                <div className='space-y-3'>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Entanglement</span>
+                    <span className='text-yellow-400 font-cyber font-bold'>ACTIVE</span>
+                  </div>
+                  <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
+                    <span className='text-gray-300 font-mono text-sm'>Coherence</span>
+                    <span className='text-electric-400 font-cyber font-bold'>99.7%</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
