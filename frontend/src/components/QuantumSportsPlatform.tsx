@@ -34,6 +34,26 @@ import '../styles/quantum-dashboard.css';
 // Import enhanced WorkingDashboard
 import EnhancedWorkingDashboard from './WorkingDashboard';
 
+// Custom hook for handling clicks outside an element
+const useClickOutside = (callback: () => void) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        callback();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, [callback]);
+
+  return ref;
+};
+
 // Enhanced Real-time Monitor with live data streaming
 const WorkingRealTimeMonitor: React.FC = () => {
   const { realTimeData } = useContext(AppContext);
