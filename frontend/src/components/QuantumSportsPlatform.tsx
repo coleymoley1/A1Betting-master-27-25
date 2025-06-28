@@ -643,7 +643,7 @@ const Header: React.FC = () => {
             </motion.button>
 
             {/* Notifications Button */}
-            <div className='relative'>
+            <div className='relative' ref={notificationsRef}>
               <motion.button
                 onClick={() => setShowNotifications(!showNotifications)}
                 className={`relative p-3 rounded-xl transition-all duration-300 group ${
