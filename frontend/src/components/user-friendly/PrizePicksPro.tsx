@@ -307,7 +307,7 @@ const PrizePicksPro: React.FC = () => {
             <div className='text-gray-400 font-mono'>AI Accuracy</div>
           </div>
           <div>
-            <div className='text-3xl font-bold text-purple-400 font-cyber'>{mockProps.length}</div>
+            <div className='text-3xl font-bold text-purple-400 font-cyber'>{filteredProps}</div>
             <div className='text-gray-400 font-mono'>Props Analyzed</div>
           </div>
           <div>
