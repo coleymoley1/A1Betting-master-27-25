@@ -931,9 +931,9 @@ const Header: React.FC = () => {
 
             {/* Notifications Button */}
             <div className='relative' ref={notificationsRef}>
-              <motion.button
+              <button
                 onClick={() => setShowNotifications(!showNotifications)}
-                className={`relative p-3 rounded-xl transition-all duration-300 group ${
+                className={`relative p-3 rounded-xl transition-colors duration-200 group ${
                   showNotifications
                     ? theme === 'neural-purple'
                       ? 'bg-purple-500/30 shadow-neon-purple border border-purple-500/50'
@@ -950,11 +950,9 @@ const Header: React.FC = () => {
                           ? 'hover:bg-gray-200 hover:shadow-lg'
                           : 'hover:bg-electric-500/20 hover:shadow-neon'
                 }`}
-                whileHover={{ scale: 1.05 }}
-                style={{ transformOrigin: 'center' }}
               >
                 <Bell
-                  className={`w-5 h-5 transition-colors duration-300 ${
+                  className={`w-5 h-5 transition-colors duration-200 ${
                     showNotifications
                       ? theme === 'neural-purple'
                         ? 'text-purple-400'
@@ -966,7 +964,7 @@ const Header: React.FC = () => {
                       : theme === 'quantum-light'
                         ? 'text-gray-500'
                         : 'text-gray-400'
-                  } group-hover:animate-bounce`}
+                  }`}
                 />
                 {notifications.length > 0 && (
                   <div
