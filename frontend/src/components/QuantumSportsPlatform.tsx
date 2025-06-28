@@ -629,7 +629,7 @@ const PageRenderer: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <UserFriendlyDashboard onNavigate={setCurrentPage} />;
+        return <WorkingDashboard onNavigate={setCurrentPage} />;
       case 'money-maker':
         return (
           <div className='p-8 space-y-6'>
