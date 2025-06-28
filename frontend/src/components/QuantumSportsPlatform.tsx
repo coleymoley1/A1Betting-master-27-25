@@ -452,6 +452,7 @@ const Header: React.FC = () => {
     setCurrentPage,
   } = context;
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showSystemMonitor, setShowSystemMonitor] = useState(false);
   const [theme, setTheme] = useState('quantum-dark');
 
   const toggleTheme = () => {
@@ -532,10 +533,12 @@ const Header: React.FC = () => {
             </motion.button>
 
             <motion.button
-              className='p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300 hover:shadow-neon'
+              onClick={() => setShowSystemMonitor(!showSystemMonitor)}
+              className='relative p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300 hover:shadow-neon'
               whileHover={{ scale: 1.05 }}
             >
               <Activity className='text-gray-400 w-5 h-5' />
+              <div className='absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse' />
             </motion.button>
 
             <div className='relative'>
@@ -556,17 +559,17 @@ const Header: React.FC = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className='absolute right-0 top-full mt-2 w-80 ultra-glass rounded-2xl border border-white/10 overflow-hidden z-50'
+                  className='absolute right-0 top-full mt-2 w-80 bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-white/20 overflow-hidden z-50 shadow-2xl'
                 >
-                  <div className='p-4 border-b border-white/10'>
-                    <h3 className='font-bold text-white'>Notifications</h3>
-                    <p className='text-sm text-gray-400'>{notifications.length} new alerts</p>
+                  <div className='p-4 border-b border-white/20 bg-gray-800/50'>
+                    <h3 className='font-bold text-white font-cyber'>Notifications</h3>
+                    <p className='text-sm text-gray-300'>{notifications.length} new alerts</p>
                   </div>
-                  <div className='max-h-64 overflow-y-auto'>
+                  <div className='max-h-64 overflow-y-auto bg-gray-900/90'>
                     {notifications.map((notif: any, index: number) => (
                       <div
                         key={index}
-                        className='p-4 hover:bg-white/5 border-b border-white/5 last:border-b-0'
+                        className='p-4 hover:bg-electric-500/10 border-b border-white/10 last:border-b-0 transition-all'
                       >
                         <div className='text-sm text-white mb-1'>{notif.message}</div>
                         <div className='text-xs text-gray-400'>{notif.time}</div>
