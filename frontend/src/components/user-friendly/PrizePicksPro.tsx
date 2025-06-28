@@ -135,8 +135,15 @@ const PrizePicksPro: React.FC = () => {
       trend: 'up',
       game: 'LAL vs GSW',
     },
+  ];
+
+  // Combine quantum and fallback props
+  const allProps = [...quantumProps, ...fallbackProps].slice(0, 8);
+
+  const mockProps: PlayerProp[] = [
+    ...allProps,
     {
-      id: 6,
+      id: 106,
       player: 'Jayson Tatum',
       team: 'BOS',
       stat: 'Points',
