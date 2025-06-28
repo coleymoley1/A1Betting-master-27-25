@@ -333,6 +333,9 @@ interface AppContextType {
   user: any;
   realTimeData: any;
   notifications: any[];
+  theme: string;
+  setTheme: (theme: string) => void;
+  toggleTheme: () => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
