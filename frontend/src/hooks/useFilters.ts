@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, createContext, useContext } from 'react';
 import type { FilterState } from '../components/filters/QuantumFilters';
 
-// All available sports for default selection
+// All available sports for default selection (Primary 11 + Misc)
 export const ALL_SPORTS = [
   'nba',
   'wnba',
@@ -14,20 +14,7 @@ export const ALL_SPORTS = [
   'boxing',
   'tennis',
   'esports',
-  'ncaab',
-  'ncaaf',
-  'cricket',
-  'rugby',
-  'f1',
-  'motorsports',
-  'lol',
-  'csgo',
-  'dota',
-  'valorant',
-  'cycling',
-  'swimming',
-  'track',
-  'olympics',
+  'misc',
 ];
 
 // Helper function to check if all sports are selected
@@ -35,7 +22,7 @@ export const isAllSportsSelected = (selectedSports: string[]): boolean => {
   return selectedSports.length === ALL_SPORTS.length;
 };
 
-// Helper function to get primary sports (most popular)
+// Primary 11 sports from PrizePicks
 export const PRIMARY_SPORTS = [
   'nba',
   'wnba',
@@ -49,6 +36,9 @@ export const PRIMARY_SPORTS = [
   'tennis',
   'esports',
 ];
+
+// Just the misc category
+export const MISC_SPORTS = ['misc'];
 
 // Default filter state - ALL sports selected for maximum opportunity analysis
 const DEFAULT_FILTERS: FilterState = {

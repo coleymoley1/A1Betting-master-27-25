@@ -18,7 +18,7 @@ export interface SportOption {
   name: string;
   icon: string;
   color: string;
-  category: 'major' | 'secondary' | 'international' | 'combat' | 'esports';
+  category: 'primary' | 'misc';
 }
 
 export interface TimeFrameOption {
@@ -51,45 +51,20 @@ interface QuantumFiltersProps {
 
 const SPORTS_OPTIONS: SportOption[] = [
   // Primary Eleven (PrizePicks Core Sports)
-  { id: 'nba', name: 'NBA Basketball', icon: '🏀', color: 'text-orange-400', category: 'primary' },
-  {
-    id: 'wnba',
-    name: 'WNBA Basketball',
-    icon: '🏀',
-    color: 'text-orange-300',
-    category: 'primary',
-  },
-  { id: 'mlb', name: 'MLB Baseball', icon: '⚾', color: 'text-blue-400', category: 'primary' },
-  { id: 'nfl', name: 'NFL Football', icon: '🏈', color: 'text-green-400', category: 'primary' },
-  { id: 'nhl', name: 'NHL Hockey', icon: '🏒', color: 'text-cyan-400', category: 'primary' },
-  { id: 'soccer', name: 'Soccer/Football', icon: '⚽', color: 'text-white', category: 'primary' },
-  { id: 'pga', name: 'PGA Golf', icon: '⛳', color: 'text-emerald-400', category: 'primary' },
-  { id: 'mma', name: 'MMA/UFC', icon: '🥊', color: 'text-red-400', category: 'primary' },
+  { id: 'nba', name: 'NBA', icon: '🏀', color: 'text-orange-400', category: 'primary' },
+  { id: 'wnba', name: 'WNBA', icon: '🏀', color: 'text-orange-300', category: 'primary' },
+  { id: 'mlb', name: 'MLB', icon: '���', color: 'text-blue-400', category: 'primary' },
+  { id: 'nfl', name: 'NFL', icon: '🏈', color: 'text-green-400', category: 'primary' },
+  { id: 'nhl', name: 'NHL', icon: '🏒', color: 'text-cyan-400', category: 'primary' },
+  { id: 'soccer', name: 'Soccer', icon: '⚽', color: 'text-white', category: 'primary' },
+  { id: 'pga', name: 'PGA', icon: '⛳', color: 'text-emerald-400', category: 'primary' },
+  { id: 'mma', name: 'MMA', icon: '🥊', color: 'text-red-400', category: 'primary' },
   { id: 'boxing', name: 'Boxing', icon: '🥊', color: 'text-yellow-500', category: 'primary' },
   { id: 'tennis', name: 'Tennis', icon: '🎾', color: 'text-green-400', category: 'primary' },
   { id: 'esports', name: 'Esports', icon: '🎮', color: 'text-purple-500', category: 'primary' },
 
-  // Misc Sports (Everything Else)
-  {
-    id: 'ncaab',
-    name: 'College Basketball',
-    icon: '🎓',
-    color: 'text-purple-400',
-    category: 'misc',
-  },
-  { id: 'ncaaf', name: 'College Football', icon: '🎓', color: 'text-yellow-400', category: 'misc' },
-  { id: 'cricket', name: 'Cricket', icon: '🏏', color: 'text-amber-400', category: 'misc' },
-  { id: 'rugby', name: 'Rugby', icon: '🏉', color: 'text-red-400', category: 'misc' },
-  { id: 'f1', name: 'Formula 1', icon: '🏎️', color: 'text-red-500', category: 'misc' },
-  { id: 'motorsports', name: 'Motorsports', icon: '🏁', color: 'text-gray-400', category: 'misc' },
-  { id: 'lol', name: 'League of Legends', icon: '🎮', color: 'text-blue-500', category: 'misc' },
-  { id: 'csgo', name: 'CS:GO', icon: '🎯', color: 'text-orange-500', category: 'misc' },
-  { id: 'dota', name: 'Dota 2', icon: '⚔️', color: 'text-purple-500', category: 'misc' },
-  { id: 'valorant', name: 'Valorant', icon: '🔫', color: 'text-red-300', category: 'misc' },
-  { id: 'cycling', name: 'Cycling', icon: '🚴', color: 'text-yellow-300', category: 'misc' },
-  { id: 'swimming', name: 'Swimming', icon: '🏊', color: 'text-blue-300', category: 'misc' },
-  { id: 'track', name: 'Track & Field', icon: '🏃', color: 'text-green-300', category: 'misc' },
-  { id: 'olympics', name: 'Olympics', icon: '🏅', color: 'text-gold-400', category: 'misc' },
+  // Misc Category (Everything Else from PrizePicks)
+  { id: 'misc', name: 'Misc.', icon: '🎯', color: 'text-gray-400', category: 'misc' },
 ];
 
 const TIME_FRAME_OPTIONS: TimeFrameOption[] = [
@@ -445,7 +420,7 @@ const QuantumFilters: React.FC<QuantumFiltersProps> = ({
   const CategoryIcon = ({ category }: { category: string }) => {
     const icons = {
       primary: '⭐',
-      misc: '📂',
+      misc: '🎯',
     };
     return <span className='text-lg'>{icons[category as keyof typeof icons] || '📊'}</span>;
   };
@@ -563,9 +538,16 @@ const QuantumFilters: React.FC<QuantumFiltersProps> = ({
                     <div key={category}>
                       <div className='flex items-center space-x-2 mb-3'>
                         <CategoryIcon category={category} />
-                        <h4 className='text-sm font-bold text-gray-300 uppercase tracking-wider font-cyber'>
-                          {category.replace('_', ' ')} Sports
-                        </h4>
+                        <div>
+                          <h4 className='text-sm font-bold text-gray-300 uppercase tracking-wider font-cyber'>
+                            {category === 'primary' ? 'Primary 11 Sports' : 'Misc. Sports'}
+                          </h4>
+                          {category === 'misc' && (
+                            <p className='text-xs text-gray-400 font-mono mt-1'>
+                              College sports, international events, specialty competitions
+                            </p>
+                          )}
+                        </div>
                       </div>
                       <div className='grid grid-cols-2 md:grid-cols-3 gap-2'>
                         {sports.map(sport => (

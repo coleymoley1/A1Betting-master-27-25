@@ -14,12 +14,7 @@ import {
 import { lineupTracker } from '../../services/lineupTrackingService';
 import toast from 'react-hot-toast';
 import QuantumFilters from '../filters/QuantumFilters';
-import {
-  useFilters,
-  ALL_SPORTS,
-  isAllSportsSelected,
-  PRIMARY_SPORTS,
-} from '../../hooks/useFilters';
+import { useFilters, ALL_SPORTS, isAllSportsSelected, PRIMARY_SPORTS, MISC_SPORTS } from '../../hooks/useFilters';
 
 interface BettingConfig {
   investment: number;
@@ -119,8 +114,8 @@ const MoneyMakerPro: React.FC = () => {
     setLoading(true);
     setTimeout(() => {
       // Apply quantum filter bonuses
-      const sportsBonus = filters.sports.length >= 20 ? 1.15 : 1 + filters.sports.length * 0.01; // Maximum opportunity bonus
-      const filterBonus = sportsBonus + filters.advanced.minConfidence / 1000;
+      const sportsBonus = isAllSportsSelected(filters.sports) ? 1.15 : 1 + (filters.sports.length * 0.02); // Maximum opportunity bonus
+      const filterBonus = sportsBonus + (filters.advanced.minConfidence / 1000);
       const timeFrameBonus = filters.timeFrame === 'live' ? 1.15 : 1.0;
 
       const multiplier =
@@ -249,6 +244,7 @@ const MoneyMakerPro: React.FC = () => {
               <Filter className={`w-4 h-4 ${showQuantumFilters ? 'animate-pulse' : ''}`} />
               <span>FILTERS</span>
             </motion.button>
+
           </div>
         </div>
 
@@ -351,35 +347,30 @@ const MoneyMakerPro: React.FC = () => {
                     SPORTS ANALYSIS
                   </label>
                   <div className='relative'>
-                    <div
-                      className={`p-3 rounded-lg border-2 transition-all ${
-                        isAllSportsSelected(filters.sports)
-                          ? 'bg-green-500/20 border-green-500/40 text-green-400'
-                          : 'bg-gray-800/30 border-gray-600 text-gray-300'
-                      }`}
-                    >
+                    <div className={`p-3 rounded-lg border-2 transition-all ${
+                      isAllSportsSelected(filters.sports)
+                        ? 'bg-green-500/20 border-green-500/40 text-green-400'
+                        : 'bg-gray-800/30 border-gray-600 text-gray-300'
+                    }`}>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center space-x-2'>
-                          <div
-                            className={`w-3 h-3 rounded-full ${
-                              isAllSportsSelected(filters.sports)
-                                ? 'bg-green-400 animate-pulse'
-                                : 'bg-gray-500'
-                            }`}
-                          />
+                          <div className={`w-3 h-3 rounded-full ${
+                            isAllSportsSelected(filters.sports) ? 'bg-green-400 animate-pulse' : 'bg-gray-500'
+                          }`} />
                           <span className='font-cyber font-bold'>
                             {isAllSportsSelected(filters.sports)
                               ? `ALL SPORTS (${filters.sports.length} ACTIVE)`
-                              : `${filters.sports.length}/${ALL_SPORTS.length} SPORTS`}
+                              : `${filters.sports.length}/${ALL_SPORTS.length} SPORTS`
+                            }
                           </span>
                         </div>
-                        <div className='flex space-x-2'>
+                        <div className='flex space-x-1'>
                           {!isAllSportsSelected(filters.sports) && (
                             <button
                               onClick={() => updateFilters({ sports: [...ALL_SPORTS] })}
                               className='text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded hover:bg-green-500/30 transition-all font-cyber'
                             >
-                              SELECT ALL
+                              ALL
                             </button>
                           )}
                           <button
@@ -387,6 +378,12 @@ const MoneyMakerPro: React.FC = () => {
                             className='text-xs px-2 py-1 bg-electric-500/20 text-electric-400 rounded hover:bg-electric-500/30 transition-all font-cyber'
                           >
                             PRIMARY
+                          </button>
+                          <button
+                            onClick={() => updateFilters({ sports: [...MISC_SPORTS] })}
+                            className='text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded hover:bg-purple-500/30 transition-all font-cyber'
+                          >
+                            MISC
                           </button>
                           <button
                             onClick={() => updateFilters({ sports: [] })}
@@ -399,14 +396,11 @@ const MoneyMakerPro: React.FC = () => {
                       {!isAllSportsSelected(filters.sports) && filters.sports.length > 0 && (
                         <div className='mt-2 flex flex-wrap gap-1'>
                           {filters.sports.slice(0, 6).map(sportId => (
-                            <span
-                              key={sportId}
-                              className='text-xs px-2 py-1 bg-electric-500/20 text-electric-400 rounded font-mono'
-                            >
+                            <span key={sportId} className='text-xs px-2 py-1 bg-electric-500/20 text-electric-400 rounded font-mono'>
                               {sportId.toUpperCase()}
                             </span>
                           ))}
-                          {filters.sports.length > 6 && (
+                      {isAllSportsSelected(filters.sports) ? (
                             <span className='text-xs px-2 py-1 bg-gray-500/20 text-gray-400 rounded font-mono'>
                               +{filters.sports.length - 6}
                             </span>
@@ -421,15 +415,11 @@ const MoneyMakerPro: React.FC = () => {
                 <div className='grid grid-cols-2 gap-3'>
                   <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
                     <span className='text-gray-300 font-mono text-sm'>Time Frame</span>
-                    <span className='text-electric-400 font-cyber font-bold text-sm'>
-                      {filters.timeFrame.toUpperCase()}
-                    </span>
+                    <span className='text-electric-400 font-cyber font-bold text-sm'>{filters.timeFrame.toUpperCase()}</span>
                   </div>
                   <div className='flex items-center justify-between p-3 bg-gray-800/30 rounded-lg'>
                     <span className='text-gray-300 font-mono text-sm'>Min Confidence</span>
-                    <span className='text-electric-400 font-cyber font-bold text-sm'>
-                      {filters.advanced.minConfidence}%
-                    </span>
+                    <span className='text-electric-400 font-cyber font-bold text-sm'>{filters.advanced.minConfidence}%</span>
                   </div>
                 </div>
 
@@ -438,14 +428,14 @@ const MoneyMakerPro: React.FC = () => {
                   <div className='flex items-center space-x-2'>
                     <div className='w-2 h-2 bg-green-400 rounded-full animate-pulse' />
                     <span className='text-green-400 font-cyber font-bold text-sm'>
-                      ANALYZING {isAllSportsSelected(filters.sports) ? 'MAXIMUM' : 'FILTERED'}{' '}
-                      OPPORTUNITIES
+                      ANALYZING {isAllSportsSelected(filters.sports) ? 'MAXIMUM' : 'FILTERED'} OPPORTUNITIES
                     </span>
                   </div>
                   <div className='text-gray-300 font-mono text-xs mt-1'>
                     {isAllSportsSelected(filters.sports)
-                      ? 'All sports selected for best prediction accuracy'
-                      : `${filters.sports.length} sports selected - consider "Select All" for maximum opportunities`}
+                      ? 'Primary 11 + Misc sports active for maximum accuracy'
+                      : `${filters.sports.length}/12 sports selected - consider "ALL" for maximum opportunities`
+                    }
                   </div>
                 </div>
               </div>
@@ -475,9 +465,7 @@ const MoneyMakerPro: React.FC = () => {
                   </select>
                 </div>
                 <div className='text-center p-3 bg-purple-500/10 rounded-lg border border-purple-500/30'>
-                  <div className='text-xs text-purple-400 font-mono mb-1'>
-                    Advanced Neural Modules
-                  </div>
+                  <div className='text-xs text-purple-400 font-mono mb-1'>Advanced Neural Modules</div>
                   <div className='text-sm text-gray-300'>Configure in Admin Panel</div>
                 </div>
               </div>
@@ -513,9 +501,7 @@ const MoneyMakerPro: React.FC = () => {
           >
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
               <div className='quantum-card p-6 rounded-2xl border border-purple-500/30'>
-                <h4 className='text-lg font-bold text-purple-400 font-cyber mb-4'>
-                  NEURAL NETWORKS
-                </h4>
+                <h4 className='text-lg font-bold text-purple-400 font-cyber mb-4'>NEURAL NETWORKS</h4>
                 <div className='space-y-3'>
                   <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
                     <span className='text-gray-300 font-mono text-sm'>Active Networks</span>
@@ -543,9 +529,7 @@ const MoneyMakerPro: React.FC = () => {
               </div>
 
               <div className='quantum-card p-6 rounded-2xl border border-yellow-500/30'>
-                <h4 className='text-lg font-bold text-yellow-400 font-cyber mb-4'>
-                  QUANTUM STATUS
-                </h4>
+                <h4 className='text-lg font-bold text-yellow-400 font-cyber mb-4'>QUANTUM STATUS</h4>
                 <div className='space-y-3'>
                   <div className='flex items-center justify-between p-3 bg-gray-800/50 rounded-lg'>
                     <span className='text-gray-300 font-mono text-sm'>Entanglement</span>
