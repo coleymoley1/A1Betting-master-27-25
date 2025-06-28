@@ -854,7 +854,7 @@ const PageRenderer: React.FC = () => {
           </div>
         );
       case 'realtime':
-        return <RealTimeAPIIntegrationDashboard />;
+        return <WorkingRealTimeMonitor />;
       case 'settings':
         return (
           <div className='p-8 space-y-6'>
