@@ -362,6 +362,107 @@ const PrizePicksPro: React.FC = () => {
         </motion.div>
       )}
 
+      {/* Current Lineup Display */}
+      {selectedProps.size > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className='quantum-card rounded-3xl p-8 border-2 border-electric-500/30'
+        >
+          <div className='flex justify-between items-center mb-6'>
+            <h3 className='text-2xl font-bold text-electric-400 holographic font-cyber'>
+              CURRENT LINEUP ({selectedProps.size}/6)
+            </h3>
+            <div className='flex items-center space-x-4'>
+              <div className='text-center'>
+                <div className='text-sm text-gray-400 font-mono'>Entry</div>
+                <div className='text-lg font-bold text-white font-cyber'>${entryAmount}</div>
+              </div>
+              <div className='text-center'>
+                <div className='text-sm text-gray-400 font-mono'>Payout</div>
+                <div className='text-lg font-bold text-green-400 font-cyber'>
+                  ${calculatePayout().toFixed(2)}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='grid gap-4'>
+            {Array.from(selectedProps.entries()).map(([key, pick]) => {
+              const prop = mockProps.find(p => p.id === pick.propId);
+              if (!prop) return null;
+
+              return (
+                <motion.div
+                  key={key}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  className='flex items-center justify-between p-4 rounded-xl bg-gray-800/30 border border-gray-700/50'
+                >
+                  <div className='flex items-center space-x-4'>
+                    <div className='w-12 h-12 rounded-xl bg-gradient-to-r from-electric-500 to-purple-500 flex items-center justify-center text-white font-bold'>
+                      {prop.team}
+                    </div>
+                    <div>
+                      <div className='text-lg font-bold text-white'>{prop.player}</div>
+                      <div className='text-sm text-gray-400 font-mono'>{prop.game}</div>
+                    </div>
+                  </div>
+
+                  <div className='flex items-center space-x-6'>
+                    <div className='text-center'>
+                      <div className='text-sm text-gray-400 font-mono'>{prop.stat}</div>
+                      <div className='text-lg font-bold text-electric-400 font-cyber'>
+                        {pick.choice.toUpperCase()} {prop.line}
+                      </div>
+                    </div>
+
+                    <div className='text-center'>
+                      <div className='text-sm text-gray-400 font-mono'>Confidence</div>
+                      <div className='text-lg font-bold text-green-400 font-cyber'>
+                        {prop.confidence.toFixed(1)}%
+                      </div>
+                    </div>
+
+                    <div className='text-center'>
+                      <div className='text-sm text-gray-400 font-mono'>Choice</div>
+                      <div
+                        className={`px-3 py-1 rounded-lg font-bold text-sm font-cyber ${
+                          pick.choice === 'over'
+                            ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                            : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                        }`}
+                      >
+                        {pick.choice.toUpperCase()}
+                      </div>
+                    </div>
+
+                    <motion.button
+                      onClick={() => selectProp(prop.id, pick.choice)}
+                      className='p-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all'
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <X className='w-4 h-4' />
+                    </motion.button>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {selectedProps.size < 2 && (
+            <div className='text-center mt-4 p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20'>
+              <div className='text-yellow-400 font-mono text-sm'>
+                ⚠️ Add {2 - selectedProps.size} more pick{2 - selectedProps.size !== 1 ? 's' : ''}{' '}
+                to submit lineup
+              </div>
+            </div>
+          )}
+        </motion.div>
+      )}
+
       {/* Props Grid */}
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {mockProps.map(prop => {
