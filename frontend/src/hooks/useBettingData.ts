@@ -57,9 +57,16 @@ export const useBettingData = ({
     (message: unknown) => {
       if (typeof message !== 'object' || message === null) return;
 
+      const msg = message as any; // Type assertion for message structure
+
       switch (msg.type) {
         case 'prop_update': {
+          const data = msg.data as PlayerProp;
+          if (!data) return;
+
           setProps(prev => {
+            const updated = [...prev];
+            const index = updated.findIndex(p => p.id === data.id);
             if (index === -1) return [...prev, data];
 
             updated[index] = data;
@@ -68,28 +75,37 @@ export const useBettingData = ({
           break;
         }
         case 'odds_update': {
+          const update = msg.data as OddsUpdate;
+          if (!update) return;
+
           if (sport && update.sport !== sport) return;
           if (propType && update.propType !== propType) return;
 
+          const oddsChange = Math.abs(update.newOdds - update.oldOdds);
           if (oddsChange < minOddsChange) return;
+
           setOddsUpdates(prev => [update, ...prev].slice(0, 50));
           if (oddsChange >= 0.5) {
-            addToast(
-              'info',
-              `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`
-            );
+            addToast('info', `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`);
           }
           break;
         }
         case 'arbitrage_alert': {
+          const opportunity = msg.data as Opportunity;
+          if (!opportunity) return;
+
           setOpportunities(prev => [opportunity, ...prev].slice(0, 50));
           if (onNewOpportunity) onNewOpportunity(opportunity);
-          addToast('success', `New arbitrage opportunity: ${opportunity.description}`);
+          addToast('success', `New arbitrage opportunity: ${opportunity.description || opportunity.id}`);
           break;
         }
         default:
-        // console statement removed
+          // Ignore unknown message types
+          break;
       }
+    },
+    [sport, propType, minOddsChange, addToast, onNewOpportunity]
+  );
     },
     [sport, propType, minOddsChange, addToast, onNewOpportunity]
   );
