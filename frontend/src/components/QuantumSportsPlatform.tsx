@@ -27,6 +27,7 @@ import MoneyMakerPro from './user-friendly/MoneyMakerPro';
 import PrizePicksPro from './user-friendly/PrizePicksPro';
 import UniversalAnalytics from './analytics/UniversalAnalytics';
 import SavedLineups from './lineups/SavedLineups';
+import '../styles/quantum-dashboard.css';
 
 // Create functional dashboard inline to avoid syntax errors
 const WorkingDashboard: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }) => {
