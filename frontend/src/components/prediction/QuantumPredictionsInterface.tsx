@@ -84,7 +84,7 @@ interface QuantumPredictionResult {
 
 export const QuantumPredictionsInterface: React.FC = () => {
   const [predictionRequest, setPredictionRequest] =
-    useState<QuantumPredictionRequest key={856587}>({
+    useState<QuantumPredictionRequest>({
       event_id: "",
       sport: "basketball",
       features: {},
