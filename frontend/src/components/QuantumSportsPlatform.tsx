@@ -181,7 +181,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
               <div className='w-full bg-gray-700 rounded-full h-2'>
                 <div
                   className='bg-gradient-to-r from-green-400 to-emerald-400 h-2 rounded-full'
-                  style={{ width: `${realTimeData.accuracy}%` }}
+                  style={{ width: `${realTimeData?.accuracy || 87.3}%` }}
                 ></div>
               </div>
             </div>
