@@ -270,6 +270,7 @@ const MoneyMakerPro: React.FC = () => {
             </select>
           </div>
         </div>
+        )}
 
         {/* Quantum Activation Button */}
         <div className="text-center">
