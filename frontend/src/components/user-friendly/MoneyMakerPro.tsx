@@ -13,8 +13,7 @@ import {
 } from 'lucide-react';
 import { lineupTracker } from '../../services/lineupTrackingService';
 import toast from 'react-hot-toast';
-import InGameTimeFilter from '../filters/InGameTimeFilter';
-import CompactFilterBar from '../filters/CompactFilterBar';
+import QuantumFilters from '../filters/QuantumFilters';
 import { useFilters } from '../../hooks/useFilters';
 
 interface BettingConfig {
@@ -75,8 +74,7 @@ const MoneyMakerPro: React.FC = () => {
   const [results, setResults] = useState<MoneyMakerResults | null>(null);
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [lineupName, setLineupName] = useState('');
-  const [selectedTimeFrame, setSelectedTimeFrame] = useState('today');
-  const [showFilters, setShowFilters] = useState(false);
+  const [showQuantumFilters, setShowQuantumFilters] = useState(false);
   const { filters, updateFilters } = useFilters();
 
   const saveLineup = () => {
@@ -115,7 +113,19 @@ const MoneyMakerPro: React.FC = () => {
   const activateQuantumAI = async () => {
     setLoading(true);
     setTimeout(() => {
-      const multiplier = Math.pow(2.1, config.portfolio) * (config.confidence / 100) * 1.2;
+      // Apply quantum filter bonuses
+      const filterBonus = 1 + filters.sports.length * 0.02 + filters.advanced.minConfidence / 1000;
+      const timeFrameBonus = filters.timeFrame === 'live' ? 1.15 : 1.0;
+      const neuralBonus = config.weatherFilter && config.injuryFilter ? 1.1 : 1.0;
+
+      const multiplier =
+        Math.pow(2.1, config.portfolio) *
+        (config.confidence / 100) *
+        1.2 *
+        filterBonus *
+        timeFrameBonus *
+        neuralBonus;
+
       setResults({
         investment: config.investment,
         multiplier: multiplier,
@@ -127,37 +137,37 @@ const MoneyMakerPro: React.FC = () => {
             pick: 'LeBron Over 25.5 Points',
             confidence: 96.2,
             odds: '-110',
-            neural: 'Network #23',
-            reason: 'Weather optimal, no injuries, line moved 2pts',
+            neural: 'Quantum Network #23',
+            reason: `Neural matrix analysis: ${config.weatherFilter ? 'Weather optimal, ' : ''}${config.injuryFilter ? 'no injuries, ' : ''}line moved 2pts`,
           },
           {
             game: 'Chiefs vs Bills',
             pick: 'Mahomes Over 275.5 Yards',
             confidence: 93.7,
             odds: '-105',
-            neural: 'Network #15',
-            reason: 'Bills defense allows 12% more vs elite QBs',
+            neural: 'Neural Core #15',
+            reason: 'Bills defense allows 12% more vs elite QBs, quantum confidence boost applied',
           },
           {
             game: 'Celtics vs Heat',
             pick: 'Tatum Over 27.5 Points',
             confidence: 91.8,
             odds: '-115',
-            neural: 'Network #41',
-            reason: 'Miami missing key defender, pace increase',
+            neural: 'Deep Learning #41',
+            reason: 'Miami missing key defender, pace increase, filter matrix enhancement',
           },
           {
             game: 'Rams vs 49ers',
             pick: 'Kupp Over 6.5 Receptions',
             confidence: 89.4,
             odds: '-120',
-            neural: 'Network #07',
-            reason: 'Slot coverage weakness, injury report clean',
+            neural: 'Predictive AI #07',
+            reason: `Slot coverage weakness, ${config.injuryFilter ? 'injury report clean, ' : ''}neural enhancement active`,
           },
         ].slice(0, config.portfolio),
         quantumBoost: true,
-        processingTime: '847ms',
-        neuralNetworks: 47,
+        processingTime: `${Math.floor(500 + Math.random() * 500)}ms`,
+        neuralNetworks: 47 + filters.sports.length * 3,
         filters: config,
       });
       setLoading(false);
@@ -206,35 +216,43 @@ const MoneyMakerPro: React.FC = () => {
         </div>
       </div>
 
-      {/* Sports & Time Filters */}
+      {/* Quantum Filters Section */}
       <motion.div
         className='space-y-6 mb-12'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className='quantum-card rounded-2xl p-6'>
-          <div className='flex items-center justify-between mb-4'>
-            <h3 className='text-xl font-bold text-electric-400 font-cyber'>QUANTUM FILTERS</h3>
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className='flex items-center space-x-2 px-3 py-1 bg-purple-500/20 text-purple-400 rounded-lg hover:bg-purple-500/30 transition-all'
-            >
-              <Filter className='w-4 h-4' />
-              <span className='font-mono text-sm'>{showFilters ? 'Hide' : 'Show'}</span>
-            </button>
-          </div>
-
-          <CompactFilterBar filters={filters} onFiltersChange={updateFilters} className='mb-4' />
-
-          {/* In-Game Time Filter */}
-          <InGameTimeFilter
-            sport={filters.sports[0] || 'nba'}
-            onTimeFrameSelect={setSelectedTimeFrame}
-            selectedTimeFrame={selectedTimeFrame}
-            className='mt-4'
-          />
+        <div className='flex items-center justify-between mb-4'>
+          <h3 className='text-2xl font-bold text-electric-400 font-cyber holographic'>
+            NEURAL FILTER MATRIX
+          </h3>
+          <motion.button
+            onClick={() => setShowQuantumFilters(!showQuantumFilters)}
+            className='flex items-center space-x-3 px-6 py-3 rounded-2xl bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 hover:bg-electric-500/30 transition-all duration-300 font-cyber font-bold'
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Filter className={`w-5 h-5 ${showQuantumFilters ? 'animate-pulse' : ''}`} />
+            <span>{showQuantumFilters ? 'COLLAPSE MATRIX' : 'EXPAND MATRIX'}</span>
+          </motion.button>
         </div>
+
+        {showQuantumFilters && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <QuantumFilters
+              filters={filters}
+              onFiltersChange={updateFilters}
+              showAdvanced={true}
+              className='border-2 border-electric-500/30 shadow-neon'
+            />
+          </motion.div>
+        )}
       </motion.div>
 
       {/* Enhanced Configuration */}
@@ -317,98 +335,67 @@ const MoneyMakerPro: React.FC = () => {
           </div>
         </div>
 
-        {/* Advanced Filters Toggle */}
+        {/* Neural Enhancement Settings */}
         <div className='flex items-center justify-between mb-6'>
-          <h3 className='text-lg font-bold text-purple-400 font-cyber'>ADVANCED NEURAL FILTERS</h3>
+          <h3 className='text-lg font-bold text-purple-400 font-cyber'>NEURAL ENHANCEMENTS</h3>
           <motion.button
             onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-            className='flex items-center space-x-3 px-6 py-3 rounded-2xl bg-electric-500/20 border-2 border-electric-500/40 text-electric-400 hover:bg-electric-500/30 transition-all duration-300 font-cyber font-bold'
+            className='flex items-center space-x-3 px-6 py-3 rounded-2xl bg-purple-500/20 border-2 border-purple-500/40 text-purple-400 hover:bg-purple-500/30 transition-all duration-300 font-cyber font-bold'
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Eye className={`w-5 h-5 ${showAdvancedFilters ? 'animate-pulse' : ''}`} />
-            <span>{showAdvancedFilters ? 'HIDE FILTERS' : 'SHOW FILTERS'}</span>
+            <Brain className={`w-5 h-5 ${showAdvancedFilters ? 'animate-neural-pulse' : ''}`} />
+            <span>{showAdvancedFilters ? 'HIDE NEURAL' : 'SHOW NEURAL'}</span>
           </motion.button>
         </div>
 
-        {/* Advanced Filters */}
+        {/* Neural Enhancement Controls */}
         {showAdvancedFilters && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-8'
+            className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-8'
           >
-            <div>
-              <label className='block text-sm font-bold mb-3 text-purple-400 font-cyber'>
-                LEAGUES
+            <div className='quantum-card p-6 rounded-2xl border border-purple-500/30'>
+              <label className='block text-sm font-bold mb-4 text-purple-400 font-cyber'>
+                NEURAL ANALYSIS MODULES
               </label>
-              <div className='space-y-2'>
-                {['NBA', 'NFL', 'MLB', 'NHL', 'UFC'].map(league => (
-                  <label key={league} className='flex items-center space-x-3'>
-                    <input
-                      type='checkbox'
-                      checked={config.leagues.includes(league.toLowerCase())}
-                      onChange={e => {
-                        if (e.target.checked) {
-                          setConfig({
-                            ...config,
-                            leagues: [...config.leagues, league.toLowerCase()],
-                          });
-                        } else {
-                          setConfig({
-                            ...config,
-                            leagues: config.leagues.filter(l => l !== league.toLowerCase()),
-                          });
-                        }
-                      }}
-                      className='w-4 h-4'
-                    />
-                    <span className='text-gray-300 font-mono'>{league}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label className='block text-sm font-bold mb-3 text-cyan-400 font-cyber'>
-                NEURAL FILTERS
-              </label>
-              <div className='space-y-2'>
-                <label className='flex items-center space-x-3'>
+              <div className='space-y-3'>
+                <label className='flex items-center justify-between p-3 quantum-card rounded-lg'>
+                  <span className='text-gray-300 font-mono'>Weather Matrix</span>
                   <input
                     type='checkbox'
                     checked={config.weatherFilter}
                     onChange={e => setConfig({ ...config, weatherFilter: e.target.checked })}
-                    className='w-4 h-4'
+                    className='w-5 h-5 text-purple-400'
                   />
-                  <span className='text-gray-300 font-mono'>Weather Analysis</span>
                 </label>
-                <label className='flex items-center space-x-3'>
+                <label className='flex items-center justify-between p-3 quantum-card rounded-lg'>
+                  <span className='text-gray-300 font-mono'>Injury Intelligence</span>
                   <input
                     type='checkbox'
                     checked={config.injuryFilter}
                     onChange={e => setConfig({ ...config, injuryFilter: e.target.checked })}
-                    className='w-4 h-4'
+                    className='w-5 h-5 text-purple-400'
                   />
-                  <span className='text-gray-300 font-mono'>Injury Reports</span>
                 </label>
               </div>
             </div>
 
-            <div>
-              <label className='block text-sm font-bold mb-3 text-yellow-400 font-cyber'>
-                RISK LEVEL
+            <div className='quantum-card p-6 rounded-2xl border border-cyan-500/30'>
+              <label className='block text-sm font-bold mb-4 text-cyan-400 font-cyber'>
+                QUANTUM RISK MATRIX
               </label>
               <select
                 value={config.riskLevel}
                 onChange={e => setConfig({ ...config, riskLevel: e.target.value })}
-                className='w-full p-4 rounded-2xl border-2 border-electric-500/30 focus:border-electric-500 bg-gray-900/50'
+                className='w-full p-4 rounded-xl border-2 border-cyan-500/30 focus:border-cyan-500 bg-gray-900/50 text-white font-cyber'
               >
-                <option value='conservative'>Conservative</option>
-                <option value='moderate'>Moderate</option>
-                <option value='aggressive'>Aggressive</option>
-                <option value='maximum'>Maximum Risk</option>
+                <option value='conservative'>Conservative Protocol</option>
+                <option value='moderate'>Balanced Neural</option>
+                <option value='aggressive'>Aggressive Matrix</option>
+                <option value='maximum'>Maximum Quantum</option>
               </select>
             </div>
           </motion.div>
