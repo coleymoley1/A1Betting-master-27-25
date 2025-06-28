@@ -455,6 +455,12 @@ const Header: React.FC = () => {
   const [showSystemMonitor, setShowSystemMonitor] = useState(false);
   const [theme, setTheme] = useState('quantum-dark');
 
+  // Initialize theme on mount
+  useEffect(() => {
+    document.body.classList.add('theme-quantum-dark');
+    document.documentElement.classList.add('dark');
+  }, []);
+
   const toggleTheme = () => {
     const themes = ['quantum-dark', 'neural-purple', 'cyber-blue', 'quantum-light'];
     const currentIndex = themes.indexOf(theme);
