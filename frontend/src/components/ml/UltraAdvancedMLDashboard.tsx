@@ -102,7 +102,7 @@ interface SystemHealthMetrics {
   responseTime: number;
   throughput: number;
   lastHealthCheck: string;
-  services: Record<string, string;
+  services: Record<string, string>;
   alerts: Array<{ level: string; message: string; timestamp: string }>;
 }
 
@@ -597,7 +597,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
       {/* Sidebar */}
       <div;
         className={`${sidebarCollapsed ? "w-16" : "w-64"} bg-slate-900/50 backdrop-blur-xl border-r border-slate-700/50 flex flex-col transition-all duration-300`}
-      
+
         {/* Sidebar Header */}
         <div className="p-4 border-b border-slate-700/50"
           <div className="flex items-center gap-3"
@@ -681,7 +681,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                     ? "bg-green-500/20 border-green-500/50 text-green-400 hover:bg-green-500/30"
                     : "border-slate-600 text-slate-200 hover:text-white hover:border-slate-500"
                 }`}
-              
+
                 {dashboardState.autoRefresh ? (
                   <Pause className="w-4 h-4 mr-2" /
                 ) : (
@@ -696,7 +696,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 onClick={refreshDashboardData}
                 disabled={dashboardState.isLoading}
                 className="border-slate-600 text-slate-200 hover:text-white hover:border-slate-500"
-              
+
                 <RefreshCw;
                   className={`w-4 h-4 mr-2 ${dashboardState.isLoading ? "animate-spin" : ""}`}
                 /
@@ -707,7 +707,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 size="sm"
                 onClick={executeLivePrediction}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25"
-              
+
                 <Sparkles className="w-4 h-4 mr-2" /
                 Live Prediction;
               </Button>
@@ -720,7 +720,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
               <div;
                 key={index}
                 className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-4 border border-slate-700/30"
-              
+
                 <div className="flex items-center justify-between"
                   <div
                     <p className="text-slate-200 text-xs font-medium uppercase tracking-wider"
@@ -1026,7 +1026,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                     variant="outline"
                     size="sm"
                     className="border-slate-600 text-slate-200"
-                  
+
                     <Filter className="w-4 h-4 mr-2" /
                     Filter;
                   </Button>
@@ -1034,7 +1034,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                     variant="outline"
                     size="sm"
                     className="border-slate-600 text-slate-200"
-                  
+
                     <Download className="w-4 h-4 mr-2" /
                     Export;
                   </Button>
@@ -1049,7 +1049,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                     <Card;
                       key={model.model_id}
                       className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600/50 transition-all duration-200"
-                    
+
                       <CardHeader
                         <div className="flex items-center justify-between"
                           <CardTitle className="flex items-center text-white"
@@ -1121,7 +1121,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                               <Badge;
                                 size="sm"
                                 className="bg-green-500/20 text-green-400 border-green-500/30"
-                              
+
                                 Stable;
                               </Badge>
                             )}
@@ -1129,7 +1129,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                               <Badge;
                                 size="sm"
                                 className="bg-blue-500/20 text-blue-400 border-blue-500/30"
-                              
+
                                 Optimal;
                               </Badge>
                             )}
@@ -1152,7 +1152,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                 <Button;
                   onClick={executeLivePrediction}
                   className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white"
-                
+
                   <Sparkles className="w-4 h-4 mr-2" /
                   Execute Prediction;
                 </Button>
@@ -1176,7 +1176,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                         <div;
                           key={prediction.id}
                           className="flex items-center justify-between p-4 bg-slate-700/30 rounded-lg border border-slate-600/30"
-                        
+
                           <div className="flex items-center gap-4"
                             <div;
                               className={`w-3 h-3 rounded-full ${
@@ -1391,7 +1391,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                   <Card;
                     key={index}
                     className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
-                  
+
                     <CardHeader
                       <CardTitle className="text-blue-400"
                         {foundation.metric_type}
@@ -1476,15 +1476,15 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                       <div;
                         key={index}
                         className={`text-center p-4 border rounded-lg border-${lib.color}-500/30 bg-${lib.color}-500/10`}
-                      
+
                         <div;
                           className={`w-8 h-8 mx-auto mb-2 text-${lib.color}-400`}
-                        
+
                           <Hexagon className="w-full h-full" /
                         </div>
                         <h5;
                           className={`font-medium mb-1 text-${lib.color}-400`}
-                        
+
                           {lib.name}
                         </h5>
                         <p className="text-sm text-slate-200"{lib.tech}</p>
@@ -1516,7 +1516,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                         ? "bg-red-500/10 border-red-500/30 text-red-400"
                         : "bg-green-500/10 border-green-500/30 text-green-400"
                     }`}
-                  
+
                     <div;
                       className={`w-2 h-2 rounded-full ${
                         isOffline ? "bg-red-400" : "bg-green-400 animate-pulse"
@@ -1560,7 +1560,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                   <Card;
                     key={index}
                     className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50"
-                  
+
                     <CardContent className="p-4"
                       <div className="flex items-center justify-between mb-3"
                         <h3 className="text-white font-semibold text-sm"
@@ -1579,7 +1579,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                             className={
                               service.status ? "text-green-400" : "text-red-400"
                             }
-                          
+
                             {service.status ? service.latency : "N/A"}
                           </span>
                         </div>
@@ -1589,7 +1589,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                             className={
                               service.status ? "text-green-400" : "text-red-400"
                             }
-                          
+
                             {service.status ? service.uptime : "0%"}
                           </span>
                         </div>
@@ -1615,14 +1615,14 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                         onClick={handleRetry}
                         className="bg-green-500/20 hover:bg-green-500/30 border border-green-500/40 text-green-400"
                         disabled={!isOffline}
-                      
+
                         <RefreshCw className="w-4 h-4 mr-2" /
                         Reconnect All;
                       </Button>
                       <Button;
                         variant="outline"
                         className="border-yellow-500/40 text-yellow-400 hover:bg-yellow-500/10"
-                      
+
                         <Wifi className="w-4 h-4 mr-2" /
                         Test Connection;
                       </Button>
@@ -1694,11 +1694,11 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                         <div;
                           key={index}
                           className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg"
-                        
+
                           <div className="flex items-center gap-3"
                             <Badge;
                               className={`text-xs ${api.method === "GET" ? "bg-blue-500/20 text-blue-400" : "bg-green-500/20 text-green-400"}`}
-                            
+
                               {api.method}
                             </Badge>
                             <code className="text-slate-300 text-sm"
@@ -1708,7 +1708,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                           <div className="flex items-center gap-2"
                             <span;
                               className={`text-xs ${api.status ? "text-green-400" : "text-red-400"}`}
-                            
+
                               {api.status ? api.response : "Failed"}
                             </span>
                             <div;
@@ -1783,7 +1783,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                                 ? "bg-yellow-500/20 text-yellow-400"
                                 : "bg-green-500/20 text-green-400"
                           }`}
-                        
+
                           {log.level}
                         </Badge>
                         <span;
@@ -1794,7 +1794,7 @@ const UltraAdvancedMLDashboard: React.FC = () => {
                                 ? "text-yellow-300"
                                 : "text-slate-300"
                           }`}
-                        
+
                           {log.message}
                         </span>
                       </div>
