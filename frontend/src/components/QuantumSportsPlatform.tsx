@@ -196,7 +196,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
               <div className='w-full bg-gray-700 rounded-full h-2'>
                 <div
                   className='bg-gradient-to-r from-cyan-400 to-blue-400 h-2 rounded-full'
-                  style={{ width: `${realTimeData.confidence}%` }}
+                  style={{ width: `${realTimeData?.confidence || 91.5}%` }}
                 ></div>
               </div>
             </div>
