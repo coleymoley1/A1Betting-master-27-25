@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useStore } from '../stores/useStore';
 import { webSocketManager } from '../services/unified/WebSocketManager';
+import type { PlayerProp, OddsUpdate, Opportunity } from '../types/core';
 
 interface UseBettingDataOptions {
   sport?: string;
