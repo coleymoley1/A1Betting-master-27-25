@@ -558,7 +558,7 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          <div className='flex items-center space-x-4'>
+          <div className='flex items-center space-x-4 relative'>
             <div className='hidden lg:flex items-center space-x-6 text-sm'>
               <div className='flex items-center space-x-2'>
                 <Zap className='text-electric-400 animate-pulse w-4 h-4' />
