@@ -517,7 +517,7 @@ const Header: React.FC = () => {
   return (
     <header className='ultra-glass border-b border-white/10 sticky top-0 z-50 backdrop-blur-30'>
       <div className='max-w-full mx-auto px-6 py-4'>
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center relative'>
           <div className='flex items-center space-x-6'>
             <motion.button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
