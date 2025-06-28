@@ -305,18 +305,28 @@ const PrizePicksPro: React.FC = () => {
           Neural-Enhanced Player Prop Analysis
         </p>
 
-        <div className='grid grid-cols-3 gap-8'>
+        <div className='grid grid-cols-4 gap-6'>
           <div>
-            <div className='text-3xl font-bold text-electric-400 font-cyber'>87.3%</div>
-            <div className='text-gray-400 font-mono'>AI Accuracy</div>
+            <div className='text-3xl font-bold text-electric-400 font-cyber'>
+              {quantumState.accuracy.toFixed(1)}%
+            </div>
+            <div className='text-gray-400 font-mono'>Quantum Accuracy</div>
           </div>
           <div>
             <div className='text-3xl font-bold text-purple-400 font-cyber'>{filteredProps}</div>
             <div className='text-gray-400 font-mono'>Props Analyzed</div>
           </div>
           <div>
-            <div className='text-3xl font-bold text-blue-400 font-cyber'>47</div>
-            <div className='text-gray-400 font-mono'>Neural Networks</div>
+            <div className='text-3xl font-bold text-blue-400 font-cyber'>
+              {quantumState.activeNetworks}
+            </div>
+            <div className='text-gray-400 font-mono'>Quantum Networks</div>
+          </div>
+          <div>
+            <div className='text-3xl font-bold text-cyan-400 font-cyber'>
+              {quantumState.coherence.toFixed(1)}%
+            </div>
+            <div className='text-gray-400 font-mono'>Coherence</div>
           </div>
         </div>
       </div>
