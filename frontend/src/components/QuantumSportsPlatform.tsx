@@ -272,7 +272,7 @@ const Sidebar: React.FC = () => {
       key: 'quantum',
       icon: Atom,
       category: 'ai',
-      indicator: '⚛️',
+      indicator: '⚛��',
       color: 'text-cyan-400',
     },
     {
@@ -450,23 +450,37 @@ const PageRenderer: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <div>Dashboard Placeholder</div>;
+        return <Dashboard />;
       case 'money-maker':
-        return <div>MoneyMaker Placeholder</div>;
+        return <MoneyMakerPro />;
       case 'prizepicks':
-        return <div>PrizePicksPro Placeholder</div>;
+        return <PrizePicksPro />;
       case 'propollama':
-        return <div>PropOllama Placeholder</div>;
+        return (
+          <div className='p-8'>
+            <h2 className='text-2xl font-bold text-white mb-4'>PropOllama AI</h2>
+            <p className='text-gray-300'>AI-powered prop analysis coming soon...</p>
+          </div>
+        );
       case 'ml-center':
-        return <div>MLModelDashboard Placeholder</div>;
+        return <MLModelDashboard />;
+      case 'quantum':
+        return (
+          <div className='p-8'>
+            <h2 className='text-2xl font-bold text-white mb-4'>Quantum Predictions</h2>
+            <p className='text-gray-300'>Quantum prediction engine coming soon...</p>
+          </div>
+        );
       case 'analytics':
-        return <div>Analytics Placeholder</div>;
+        return <UniversalAnalytics />;
+      case 'realtime':
+        return <Analytics />;
       case 'settings':
-        return <div>UltimateSettingsPage Placeholder</div>;
+        return <UltimateSettingsPage />;
       case 'admin':
-        return <div>AdminPanel Placeholder</div>;
+        return <AdminPanel />;
       default:
-        return <div>Dashboard Placeholder</div>;
+        return <Dashboard />;
     }
   };
 
