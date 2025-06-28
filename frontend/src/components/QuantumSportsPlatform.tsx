@@ -934,15 +934,24 @@ const Header: React.FC = () => {
               <motion.button
                 onClick={() => setShowNotifications(!showNotifications)}
                 className={`relative p-3 rounded-xl transition-all duration-300 group ${
-                  theme === 'neural-purple'
-                    ? 'hover:bg-purple-500/20 hover:shadow-neon-purple'
-                    : theme === 'cyber-blue'
-                      ? 'hover:bg-blue-500/20 hover:shadow-neon-blue'
-                      : theme === 'quantum-light'
-                        ? 'hover:bg-gray-200 hover:shadow-lg'
-                        : 'hover:bg-electric-500/20 hover:shadow-neon'
+                  showNotifications
+                    ? theme === 'neural-purple'
+                      ? 'bg-purple-500/30 shadow-neon-purple border border-purple-500/50'
+                      : theme === 'cyber-blue'
+                        ? 'bg-blue-500/30 shadow-neon-blue border border-blue-500/50'
+                        : theme === 'quantum-light'
+                          ? 'bg-gray-300 shadow-lg border border-gray-400'
+                          : 'bg-electric-500/30 shadow-neon border border-electric-500/50'
+                    : theme === 'neural-purple'
+                      ? 'hover:bg-purple-500/20 hover:shadow-neon-purple'
+                      : theme === 'cyber-blue'
+                        ? 'hover:bg-blue-500/20 hover:shadow-neon-blue'
+                        : theme === 'quantum-light'
+                          ? 'hover:bg-gray-200 hover:shadow-lg'
+                          : 'hover:bg-electric-500/20 hover:shadow-neon'
                 }`}
                 whileHover={{ scale: 1.05 }}
+                style={{ transformOrigin: 'center' }}
               >
                 <Bell
                   className={`w-5 h-5 transition-colors duration-300 ${
