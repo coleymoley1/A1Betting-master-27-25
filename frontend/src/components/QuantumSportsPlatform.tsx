@@ -674,240 +674,238 @@ const Header: React.FC = () => {
                   initial={{ opacity: 0, y: -10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  transition={{ type: 'spring', duration: 0.3, ease: 'easeOut' }}
+                  transition={{ type: 'spring', duration: 0.3, ease: "easeOut" }}
                   className='absolute right-0 top-full mt-4 w-96 z-30 quantum-card'
-                  style={{
-                    background:
-                      theme === 'neural-purple'
-                        ? 'linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(45, 27, 105, 0.95) 100%)'
-                        : theme === 'cyber-blue'
-                          ? 'linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%)'
-                          : theme === 'quantum-light'
-                            ? 'linear-gradient(135deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%)'
-                            : 'linear-gradient(135deg, rgba(15, 15, 20, 0.95) 0%, rgba(26, 26, 36, 0.95) 100%)',
-                    border:
-                      theme === 'neural-purple'
-                        ? '1px solid rgba(147, 51, 234, 0.6)'
-                        : theme === 'cyber-blue'
-                          ? '1px solid rgba(59, 130, 246, 0.6)'
-                          : theme === 'quantum-light'
-                            ? '1px solid rgba(100, 116, 139, 0.4)'
-                            : '1px solid rgba(64, 224, 208, 0.6)',
-                    borderRadius: '20px',
-                    boxShadow:
-                      theme === 'neural-purple'
-                        ? '0 25px 50px -12px rgba(88, 28, 135, 0.6), 0 0 40px rgba(147, 51, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                        : theme === 'cyber-blue'
-                          ? '0 25px 50px -12px rgba(29, 78, 216, 0.6), 0 0 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                          : theme === 'quantum-light'
-                            ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(100, 116, 139, 0.2)'
-                            : '0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(64, 224, 208, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-                    backdropFilter: 'blur(30px)',
-                  }}
-                >
-                  {/* Header Section */}
-                  <div
-                    className={`p-6 border-b rounded-t-[20px] ${
-                      theme === 'neural-purple'
-                        ? 'bg-gradient-to-r from-purple-900/30 to-purple-800/30 border-purple-500/30'
-                        : theme === 'cyber-blue'
-                          ? 'bg-gradient-to-r from-blue-900/30 to-blue-800/30 border-blue-500/30'
-                          : theme === 'quantum-light'
-                            ? 'bg-gradient-to-r from-gray-50/50 to-gray-100/50 border-gray-300/30'
-                            : 'bg-gradient-to-r from-gray-900/30 to-gray-800/30 border-electric-500/30'
-                    }`}
+                    style={{
+                      background:
+                        theme === 'neural-purple'
+                          ? 'linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(45, 27, 105, 0.95) 100%)'
+                          : theme === 'cyber-blue'
+                            ? 'linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%)'
+                            : theme === 'quantum-light'
+                              ? 'linear-gradient(135deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%)'
+                              : 'linear-gradient(135deg, rgba(15, 15, 20, 0.95) 0%, rgba(26, 26, 36, 0.95) 100%)',
+                      border:
+                        theme === 'neural-purple'
+                          ? '1px solid rgba(147, 51, 234, 0.6)'
+                          : theme === 'cyber-blue'
+                            ? '1px solid rgba(59, 130, 246, 0.6)'
+                            : theme === 'quantum-light'
+                              ? '1px solid rgba(100, 116, 139, 0.4)'
+                              : '1px solid rgba(64, 224, 208, 0.6)',
+                      borderRadius: '20px',
+                      boxShadow:
+                        theme === 'neural-purple'
+                          ? '0 25px 50px -12px rgba(88, 28, 135, 0.6), 0 0 40px rgba(147, 51, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                          : theme === 'cyber-blue'
+                            ? '0 25px 50px -12px rgba(29, 78, 216, 0.6), 0 0 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                            : theme === 'quantum-light'
+                              ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(100, 116, 139, 0.2)'
+                              : '0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(64, 224, 208, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                      backdropFilter: 'blur(30px)',
+                    }}
                   >
-                    <div className='flex items-center justify-between mb-3'>
-                      <div className='flex items-center space-x-3'>
-                        <div
-                          className={`p-2 rounded-xl ${
-                            theme === 'neural-purple'
-                              ? 'bg-purple-500/20'
-                              : theme === 'cyber-blue'
-                                ? 'bg-blue-500/20'
-                                : theme === 'quantum-light'
-                                  ? 'bg-gray-200'
-                                  : 'bg-electric-500/20'
-                          }`}
-                        >
-                          <Bell
-                            className={`w-5 h-5 ${
+                    {/* Header Section */}
+                    <div
+                      className={`p-6 border-b rounded-t-[20px] ${
+                        theme === 'neural-purple'
+                          ? 'bg-gradient-to-r from-purple-900/30 to-purple-800/30 border-purple-500/30'
+                          : theme === 'cyber-blue'
+                            ? 'bg-gradient-to-r from-blue-900/30 to-blue-800/30 border-blue-500/30'
+                            : theme === 'quantum-light'
+                              ? 'bg-gradient-to-r from-gray-50/50 to-gray-100/50 border-gray-300/30'
+                              : 'bg-gradient-to-r from-gray-900/30 to-gray-800/30 border-electric-500/30'
+                      }`}
+                    >
+                      <div className='flex items-center justify-between mb-3'>
+                        <div className='flex items-center space-x-3'>
+                          <div
+                            className={`p-2 rounded-xl ${
                               theme === 'neural-purple'
-                                ? 'text-purple-400'
+                                ? 'bg-purple-500/20'
                                 : theme === 'cyber-blue'
-                                  ? 'text-blue-400'
+                                  ? 'bg-blue-500/20'
                                   : theme === 'quantum-light'
-                                    ? 'text-gray-700'
-                                    : 'text-electric-400'
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <h3
-                            className={`text-lg font-bold font-cyber ${
-                              theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
+                                    ? 'bg-gray-200'
+                                    : 'bg-electric-500/20'
                             }`}
                           >
-                            Notifications
-                          </h3>
-                          <p
-                            className={`text-sm ${
-                              theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'
+                            <Bell
+                              className={`w-5 h-5 ${
+                                theme === 'neural-purple'
+                                  ? 'text-purple-400'
+                                  : theme === 'cyber-blue'
+                                    ? 'text-blue-400'
+                                    : theme === 'quantum-light'
+                                      ? 'text-gray-700'
+                                      : 'text-electric-400'
+                              }`}
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              className={`text-lg font-bold font-cyber ${
+                                theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
+                              }`}
+                            >
+                              Notifications
+                            </h3>
+                            <p
+                              className={`text-sm ${
+                                theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'
+                              }`}
+                            >
+                              Real-time system alerts
+                            </p>
+                          </div>
+                        </div>
+                        <div className={`flex items-center space-x-2`}>
+                          <div
+                            className={`text-xs px-3 py-1.5 rounded-full font-mono font-medium ${
+                              theme === 'neural-purple'
+                                ? 'bg-purple-500/30 text-purple-200 border border-purple-400/30'
+                                : theme === 'cyber-blue'
+                                  ? 'bg-blue-500/30 text-blue-200 border border-blue-400/30'
+                                  : theme === 'quantum-light'
+                                    ? 'bg-gray-200 text-gray-700 border border-gray-300'
+                                    : 'bg-electric-500/30 text-electric-200 border border-electric-400/30'
                             }`}
                           >
-                            Real-time system alerts
-                          </p>
-                        </div>
-                      </div>
-                      <div className={`flex items-center space-x-2`}>
-                        <div
-                          className={`text-xs px-3 py-1.5 rounded-full font-mono font-medium ${
-                            theme === 'neural-purple'
-                              ? 'bg-purple-500/30 text-purple-200 border border-purple-400/30'
-                              : theme === 'cyber-blue'
-                                ? 'bg-blue-500/30 text-blue-200 border border-blue-400/30'
-                                : theme === 'quantum-light'
-                                  ? 'bg-gray-200 text-gray-700 border border-gray-300'
-                                  : 'bg-electric-500/30 text-electric-200 border border-electric-400/30'
-                          }`}
-                        >
-                          {notifications.length} ACTIVE
+                            {notifications.length} ACTIVE
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Content Section */}
-                  <div className='max-h-80 overflow-y-auto custom-scrollbar'>
-                    {notifications.length > 0 ? (
-                      <div className='p-2'>
-                        {notifications.map((notif: any, index: number) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className={`m-2 p-4 rounded-xl transition-all cursor-pointer group ${
-                              theme === 'neural-purple'
-                                ? 'hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-400/40'
-                                : theme === 'cyber-blue'
-                                  ? 'hover:bg-blue-500/20 border border-blue-500/20 hover:border-blue-400/40'
-                                  : theme === 'quantum-light'
-                                    ? 'hover:bg-gray-100 border border-gray-200 hover:border-gray-300'
-                                    : 'hover:bg-electric-500/20 border border-electric-500/20 hover:border-electric-400/40'
-                            }`}
-                          >
-                            <div className='flex items-start space-x-4'>
-                              <div className='flex-shrink-0 pt-1'>
-                                <div
-                                  className={`w-3 h-3 rounded-full animate-pulse ${
-                                    theme === 'neural-purple'
-                                      ? 'bg-purple-400'
-                                      : theme === 'cyber-blue'
-                                        ? 'bg-blue-400'
-                                        : theme === 'quantum-light'
-                                          ? 'bg-green-500'
-                                          : 'bg-electric-400'
-                                  }`}
-                                />
-                              </div>
-                              <div className='flex-1 min-w-0'>
-                                <div className='flex items-start justify-between'>
-                                  <div className='flex-1'>
-                                    <p
-                                      className={`text-sm font-medium leading-relaxed ${
-                                        theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
-                                      }`}
-                                    >
-                                      {notif.message}
-                                    </p>
-                                    <div className='flex items-center mt-2 space-x-3'>
-                                      <span
-                                        className={`text-xs font-mono px-2 py-1 rounded ${
-                                          theme === 'neural-purple'
-                                            ? 'bg-purple-500/20 text-purple-300'
-                                            : theme === 'cyber-blue'
-                                              ? 'bg-blue-500/20 text-blue-300'
-                                              : theme === 'quantum-light'
-                                                ? 'bg-gray-200 text-gray-600'
-                                                : 'bg-electric-500/20 text-electric-300'
+                    {/* Content Section */}
+                    <div className='max-h-80 overflow-y-auto custom-scrollbar'>
+                      {notifications.length > 0 ? (
+                        <div className='p-2'>
+                          {notifications.map((notif: any, index: number) => (
+                            <motion.div
+                              key={index}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.1 }}
+                              className={`m-2 p-4 rounded-xl transition-all cursor-pointer group ${
+                                theme === 'neural-purple'
+                                  ? 'hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-400/40'
+                                  : theme === 'cyber-blue'
+                                    ? 'hover:bg-blue-500/20 border border-blue-500/20 hover:border-blue-400/40'
+                                    : theme === 'quantum-light'
+                                      ? 'hover:bg-gray-100 border border-gray-200 hover:border-gray-300'
+                                      : 'hover:bg-electric-500/20 border border-electric-500/20 hover:border-electric-400/40'
+                              }`}
+                            >
+                              <div className='flex items-start space-x-4'>
+                                <div className='flex-shrink-0 pt-1'>
+                                  <div
+                                    className={`w-3 h-3 rounded-full animate-pulse ${
+                                      theme === 'neural-purple'
+                                        ? 'bg-purple-400'
+                                        : theme === 'cyber-blue'
+                                          ? 'bg-blue-400'
+                                          : theme === 'quantum-light'
+                                            ? 'bg-green-500'
+                                            : 'bg-electric-400'
+                                    }`}
+                                  />
+                                </div>
+                                <div className='flex-1 min-w-0'>
+                                  <div className='flex items-start justify-between'>
+                                    <div className='flex-1'>
+                                      <p
+                                        className={`text-sm font-medium leading-relaxed ${
+                                          theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
                                         }`}
                                       >
-                                        {notif.time}
-                                      </span>
-                                      <span
-                                        className={`text-xs ${
-                                          theme === 'quantum-light'
-                                            ? 'text-gray-500'
-                                            : 'text-gray-400'
-                                        }`}
-                                      >
-                                        {notif.type || 'SYSTEM'}
-                                      </span>
+                                        {notif.message}
+                                      </p>
+                                      <div className='flex items-center mt-2 space-x-3'>
+                                        <span
+                                          className={`text-xs font-mono px-2 py-1 rounded ${
+                                            theme === 'neural-purple'
+                                              ? 'bg-purple-500/20 text-purple-300'
+                                              : theme === 'cyber-blue'
+                                                ? 'bg-blue-500/20 text-blue-300'
+                                                : theme === 'quantum-light'
+                                                  ? 'bg-gray-200 text-gray-600'
+                                                  : 'bg-electric-500/20 text-electric-300'
+                                          }`}
+                                        >
+                                          {notif.time}
+                                        </span>
+                                        <span
+                                          className={`text-xs ${
+                                            theme === 'quantum-light'
+                                              ? 'text-gray-500'
+                                              : 'text-gray-400'
+                                          }`}
+                                        >
+                                          {notif.type || 'SYSTEM'}
+                                        </span>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className='p-8 text-center'>
-                        <div
-                          className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
-                            theme === 'neural-purple'
-                              ? 'bg-purple-500/20'
-                              : theme === 'cyber-blue'
-                                ? 'bg-blue-500/20'
-                                : theme === 'quantum-light'
-                                  ? 'bg-gray-200'
-                                  : 'bg-electric-500/20'
-                          }`}
-                        >
-                          <Bell
-                            className={`w-8 h-8 ${
-                              theme === 'neural-purple'
-                                ? 'text-purple-400'
-                                : theme === 'cyber-blue'
-                                  ? 'text-blue-400'
-                                  : theme === 'quantum-light'
-                                    ? 'text-gray-500'
-                                    : 'text-electric-400'
-                            }`}
-                          />
+                            </motion.div>
+                          ))}
                         </div>
-                        <p
-                          className={`text-sm font-medium ${
-                            theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-400'
-                          }`}
-                        >
-                          No notifications
-                        </p>
-                        <p
-                          className={`text-xs mt-1 ${
-                            theme === 'quantum-light' ? 'text-gray-500' : 'text-gray-500'
-                          }`}
-                        >
-                          All systems operating normally
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
+                      ) : (
+                        <div className='p-8 text-center'>
+                          <div
+                            className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
+                              theme === 'neural-purple'
+                                ? 'bg-purple-500/20'
+                                : theme === 'cyber-blue'
+                                  ? 'bg-blue-500/20'
+                                  : theme === 'quantum-light'
+                                    ? 'bg-gray-200'
+                                    : 'bg-electric-500/20'
+                            }`}
+                          >
+                            <Bell
+                              className={`w-8 h-8 ${
+                                theme === 'neural-purple'
+                                  ? 'text-purple-400'
+                                  : theme === 'cyber-blue'
+                                    ? 'text-blue-400'
+                                    : theme === 'quantum-light'
+                                      ? 'text-gray-500'
+                                      : 'text-electric-400'
+                              }`}
+                            />
+                          </div>
+                          <p
+                            className={`text-sm font-medium ${
+                              theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-400'
+                            }`}
+                          >
+                            No notifications
+                          </p>
+                          <p
+                            className={`text-xs mt-1 ${
+                              theme === 'quantum-light' ? 'text-gray-500' : 'text-gray-500'
+                            }`}
+                          >
+                            All systems operating normally
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
               )}
             </div>
 
             {/* Enhanced System Monitor Panel */}
             {showSystemMonitor && (
-              <>
-                <div className='fixed inset-0 z-40' onClick={() => setShowSystemMonitor(false)} />
-                <motion.div
-                  initial={{ opacity: 0, y: -10, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                  transition={{ type: 'spring', duration: 0.4 }}
-                  className='absolute right-20 top-full mt-3 w-[420px] z-50 quantum-card'
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ type: 'spring', duration: 0.3, ease: "easeOut" }}
+                className='absolute right-20 top-full mt-4 w-[420px] z-30 quantum-card'
                   style={{
                     background:
                       theme === 'neural-purple'
