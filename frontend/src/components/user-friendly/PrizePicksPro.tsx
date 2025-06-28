@@ -19,6 +19,7 @@ import CompactFilterBar from '../filters/CompactFilterBar';
 import FluentLiveFilters from '../filters/FluentLiveFilters';
 import { useFilters } from '../../hooks/useFilters';
 import { useFluentFilters, useFilteredResults } from '../../hooks/useFluentFilters';
+import { useQuantumPredictions } from '../../hooks/useQuantumPredictions';
 
 interface PlayerProp {
   id: number;
@@ -71,6 +72,12 @@ const PrizePicksPro: React.FC = () => {
     fluentFilters,
     156
   );
+  const {
+    predictions: quantumPredictions,
+    systemState: quantumState,
+    getQuantumInsight,
+    getNetworkStatus,
+  } = useQuantumPredictions({ minConfidence: 80 });
 
   const mockProps: PlayerProp[] = [
     {
