@@ -125,11 +125,9 @@ const MoneyMakerPro: React.FC = () => {
     setLoading(true);
     setTimeout(() => {
       // Apply quantum filter bonuses
-      const sportsBonus = isAllSportsSelected(filters.sports)
-        ? 1.15
-        : 1 + filters.sports.length * 0.02; // Maximum opportunity bonus
-      const filterBonus = sportsBonus + filters.advanced.minConfidence / 1000;
-      const timeFrameBonus = filters.timeFrame === 'live' ? 1.15 : 1.0;
+      const sportsBonus = fluentFilters.sport === 'all' ? 1.15 : 1.05; // Single sport bonus
+      const filterBonus = sportsBonus + fluentFilters.confidence / 1000;
+      const timeFrameBonus = fluentFilters.timeFrame === 'live' ? 1.15 : 1.0;
 
       const multiplier =
         Math.pow(2.1, config.portfolio) *
