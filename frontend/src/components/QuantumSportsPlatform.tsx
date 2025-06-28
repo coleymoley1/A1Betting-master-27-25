@@ -321,7 +321,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
 // Import real services
 import { useAuth } from '../hooks/useAuth';
 import { useBettingData } from '../hooks/useBettingData';
-import { useRealTimeData } from '../hooks/useRealtimeData';
+import { useRealtimeData } from '../hooks/useRealtimeData';
 import { useStore } from '../stores/useStore';
 
 // Context for app state
