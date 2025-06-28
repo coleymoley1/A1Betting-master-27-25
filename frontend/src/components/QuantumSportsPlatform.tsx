@@ -909,88 +909,103 @@ const Header: React.FC = () => {
                   initial={{ opacity: 0, y: -10, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                  transition={{ type: "spring", duration: 0.4 }}
+                  transition={{ type: 'spring', duration: 0.4 }}
                   className='absolute right-20 top-full mt-3 w-[420px] z-50 quantum-card'
                   style={{
-                    background: theme === 'neural-purple'
-                      ? 'linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(45, 27, 105, 0.95) 100%)'
-                      : theme === 'cyber-blue'
-                        ? 'linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%)'
-                        : theme === 'quantum-light'
-                          ? 'linear-gradient(135deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%)'
-                          : 'linear-gradient(135deg, rgba(15, 15, 20, 0.95) 0%, rgba(26, 26, 36, 0.95) 100%)',
-                    border: theme === 'neural-purple'
-                      ? '1px solid rgba(147, 51, 234, 0.6)'
-                      : theme === 'cyber-blue'
-                        ? '1px solid rgba(59, 130, 246, 0.6)'
-                        : theme === 'quantum-light'
-                          ? '1px solid rgba(100, 116, 139, 0.4)'
-                          : '1px solid rgba(64, 224, 208, 0.6)',
+                    background:
+                      theme === 'neural-purple'
+                        ? 'linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(45, 27, 105, 0.95) 100%)'
+                        : theme === 'cyber-blue'
+                          ? 'linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%)'
+                          : theme === 'quantum-light'
+                            ? 'linear-gradient(135deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%)'
+                            : 'linear-gradient(135deg, rgba(15, 15, 20, 0.95) 0%, rgba(26, 26, 36, 0.95) 100%)',
+                    border:
+                      theme === 'neural-purple'
+                        ? '1px solid rgba(147, 51, 234, 0.6)'
+                        : theme === 'cyber-blue'
+                          ? '1px solid rgba(59, 130, 246, 0.6)'
+                          : theme === 'quantum-light'
+                            ? '1px solid rgba(100, 116, 139, 0.4)'
+                            : '1px solid rgba(64, 224, 208, 0.6)',
                     borderRadius: '20px',
-                    boxShadow: theme === 'neural-purple'
-                      ? '0 25px 50px -12px rgba(88, 28, 135, 0.6), 0 0 40px rgba(147, 51, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                      : theme === 'cyber-blue'
-                        ? '0 25px 50px -12px rgba(29, 78, 216, 0.6), 0 0 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                        : theme === 'quantum-light'
-                          ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(100, 116, 139, 0.2)'
-                          : '0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(64, 224, 208, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                    boxShadow:
+                      theme === 'neural-purple'
+                        ? '0 25px 50px -12px rgba(88, 28, 135, 0.6), 0 0 40px rgba(147, 51, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                        : theme === 'cyber-blue'
+                          ? '0 25px 50px -12px rgba(29, 78, 216, 0.6), 0 0 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                          : theme === 'quantum-light'
+                            ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(100, 116, 139, 0.2)'
+                            : '0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(64, 224, 208, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                     backdropFilter: 'blur(30px)',
                   }}
                 >
                   {/* Header Section */}
-                  <div className={`p-6 border-b rounded-t-[20px] ${
-                    theme === 'neural-purple'
-                      ? 'bg-gradient-to-r from-purple-900/30 to-purple-800/30 border-purple-500/30'
-                      : theme === 'cyber-blue'
-                        ? 'bg-gradient-to-r from-blue-900/30 to-blue-800/30 border-blue-500/30'
-                        : theme === 'quantum-light'
-                          ? 'bg-gradient-to-r from-gray-50/50 to-gray-100/50 border-gray-300/30'
-                          : 'bg-gradient-to-r from-gray-900/30 to-gray-800/30 border-electric-500/30'
-                  }`}>
+                  <div
+                    className={`p-6 border-b rounded-t-[20px] ${
+                      theme === 'neural-purple'
+                        ? 'bg-gradient-to-r from-purple-900/30 to-purple-800/30 border-purple-500/30'
+                        : theme === 'cyber-blue'
+                          ? 'bg-gradient-to-r from-blue-900/30 to-blue-800/30 border-blue-500/30'
+                          : theme === 'quantum-light'
+                            ? 'bg-gradient-to-r from-gray-50/50 to-gray-100/50 border-gray-300/30'
+                            : 'bg-gradient-to-r from-gray-900/30 to-gray-800/30 border-electric-500/30'
+                    }`}
+                  >
                     <div className='flex items-center justify-between mb-3'>
                       <div className='flex items-center space-x-3'>
-                        <div className={`p-2 rounded-xl ${
-                          theme === 'neural-purple'
-                            ? 'bg-purple-500/20'
-                            : theme === 'cyber-blue'
-                              ? 'bg-blue-500/20'
-                              : theme === 'quantum-light'
-                                ? 'bg-gray-200'
-                                : 'bg-electric-500/20'
-                        }`}>
-                          <Activity className={`w-5 h-5 animate-pulse ${
+                        <div
+                          className={`p-2 rounded-xl ${
                             theme === 'neural-purple'
-                              ? 'text-purple-400'
+                              ? 'bg-purple-500/20'
                               : theme === 'cyber-blue'
-                                ? 'text-blue-400'
+                                ? 'bg-blue-500/20'
                                 : theme === 'quantum-light'
-                                  ? 'text-gray-700'
-                                  : 'text-electric-400'
-                          }`} />
+                                  ? 'bg-gray-200'
+                                  : 'bg-electric-500/20'
+                          }`}
+                        >
+                          <Activity
+                            className={`w-5 h-5 animate-pulse ${
+                              theme === 'neural-purple'
+                                ? 'text-purple-400'
+                                : theme === 'cyber-blue'
+                                  ? 'text-blue-400'
+                                  : theme === 'quantum-light'
+                                    ? 'text-gray-700'
+                                    : 'text-electric-400'
+                            }`}
+                          />
                         </div>
                         <div>
-                          <h3 className={`text-lg font-bold font-cyber ${
-                            theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
-                          }`}>
+                          <h3
+                            className={`text-lg font-bold font-cyber ${
+                              theme === 'quantum-light' ? 'text-gray-800' : 'text-white'
+                            }`}
+                          >
                             System Monitor
                           </h3>
-                          <p className={`text-sm ${
-                            theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'
-                          }`}>
+                          <p
+                            className={`text-sm ${
+                              theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-300'
+                            }`}
+                          >
                             Live performance metrics
                           </p>
                         </div>
                       </div>
                       <div className={`flex items-center space-x-2`}>
-                        <div className={`text-xs px-3 py-1.5 rounded-full font-mono font-medium ${
-                          theme === 'neural-purple'
-                            ? 'bg-purple-500/30 text-purple-200 border border-purple-400/30'
-                            : theme === 'cyber-blue'
-                              ? 'bg-blue-500/30 text-blue-200 border border-blue-400/30'
-                              : theme === 'quantum-light'
-                                ? 'bg-gray-200 text-gray-700 border border-gray-300'
-                                : 'bg-electric-500/30 text-electric-200 border border-electric-400/30'
-                        }`}>
+                        <div
+                          className={`text-xs px-3 py-1.5 rounded-full font-mono font-medium ${
+                            theme === 'neural-purple'
+                              ? 'bg-purple-500/30 text-purple-200 border border-purple-400/30'
+                              : theme === 'cyber-blue'
+                                ? 'bg-blue-500/30 text-blue-200 border border-blue-400/30'
+                                : theme === 'quantum-light'
+                                  ? 'bg-gray-200 text-gray-700 border border-gray-300'
+                                  : 'bg-electric-500/30 text-electric-200 border border-electric-400/30'
+                          }`}
+                        >
                           LIVE
                         </div>
                       </div>
@@ -1006,20 +1021,21 @@ const Header: React.FC = () => {
                           value: '67%',
                           trend: '+2.3%',
                           icon: '🖥️',
-                          color: theme === 'neural-purple'
-                            ? 'purple'
-                            : theme === 'cyber-blue'
-                              ? 'blue'
-                              : theme === 'quantum-light'
-                                ? 'gray'
-                                : 'electric',
+                          color:
+                            theme === 'neural-purple'
+                              ? 'purple'
+                              : theme === 'cyber-blue'
+                                ? 'blue'
+                                : theme === 'quantum-light'
+                                  ? 'gray'
+                                  : 'electric',
                         },
                         {
                           label: 'Memory',
                           value: '4.2GB',
                           trend: '+180MB',
                           icon: '💾',
-                          color: 'green'
+                          color: 'green',
                         },
                         {
                           label: 'Networks',
@@ -1050,34 +1066,40 @@ const Header: React.FC = () => {
                                   ? 'bg-white border-gray-200 hover:bg-gray-50'
                                   : 'bg-electric-500/10 border-electric-500/30 hover:bg-electric-500/20'
                           }`}
-                          style={{
-                            backgroundColor:
-                              theme === 'neural-purple'
-                                ? '#2d1b69'
-                                : theme === 'cyber-blue'
-                                  ? '#1d4ed8'
-                                  : theme === 'quantum-light'
-                                    ? '#ffffff'
-                                    : '#1a1a24',
-                            borderColor:
-                              theme === 'neural-purple'
-                                ? 'rgba(147, 51, 234, 0.3)'
-                                : theme === 'cyber-blue'
-                                  ? 'rgba(59, 130, 246, 0.3)'
-                                  : theme === 'quantum-light'
-                                    ? 'rgba(100, 116, 139, 0.2)'
-                                    : 'rgba(100, 100, 120, 0.3)',
-                          }}
                         >
+                          <div className='flex items-center justify-between mb-2'>
+                            <span className='text-lg'>{metric.icon}</span>
+                            <span
+                              className={`text-xs font-mono px-2 py-1 rounded ${
+                                metric.trend.includes('+') || metric.trend === 'OPTIMAL'
+                                  ? theme === 'neural-purple'
+                                    ? 'bg-green-500/20 text-green-300'
+                                    : theme === 'cyber-blue'
+                                      ? 'bg-green-500/20 text-green-300'
+                                      : theme === 'quantum-light'
+                                        ? 'bg-green-100 text-green-700'
+                                        : 'bg-green-500/20 text-green-300'
+                                  : theme === 'neural-purple'
+                                    ? 'bg-blue-500/20 text-blue-300'
+                                    : theme === 'cyber-blue'
+                                      ? 'bg-blue-500/20 text-blue-300'
+                                      : theme === 'quantum-light'
+                                        ? 'bg-blue-100 text-blue-700'
+                                        : 'bg-blue-500/20 text-blue-300'
+                              }`}
+                            >
+                              {metric.trend}
+                            </span>
+                          </div>
                           <div
-                            className={`text-xs font-mono mb-1 ${
+                            className={`text-xs font-mono mb-2 ${
                               theme === 'quantum-light' ? 'text-gray-600' : 'text-gray-400'
                             }`}
                           >
                             {metric.label}
                           </div>
                           <div
-                            className={`font-bold font-cyber text-lg ${
+                            className={`font-bold font-cyber text-xl ${
                               metric.color === 'purple'
                                 ? 'text-purple-400'
                                 : metric.color === 'blue'
@@ -1093,7 +1115,7 @@ const Header: React.FC = () => {
                           >
                             {metric.value}
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
 
