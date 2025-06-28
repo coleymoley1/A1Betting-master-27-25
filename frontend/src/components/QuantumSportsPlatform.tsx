@@ -825,24 +825,6 @@ const PageRenderer: React.FC = () => {
         }
       case 'realtime':
         return <WorkingRealTimeMonitor />;
-      case 'quantum':
-        return (
-          <div className='p-8 space-y-6'>
-            <div className='text-center'>
-              <h2 className='text-3xl font-bold text-white mb-4 animate-cyber-pulse'>
-                Quantum Predictions
-              </h2>
-              <p className='text-neon-blue text-lg'>Next-Generation Quantum Processing</p>
-            </div>
-            <div className='quantum-card p-6 rounded-2xl text-center'>
-              <div className='text-6xl mb-4'>⚛️</div>
-              <h3 className='text-2xl font-bold text-white mb-3'>Quantum Coherence: 99.97%</h3>
-              <p className='text-gray-300'>
-                Quantum algorithms processing market data at unprecedented accuracy
-              </p>
-            </div>
-          </div>
-        );
       case 'settings':
         try {
           return <UltimateSettingsPage />;
