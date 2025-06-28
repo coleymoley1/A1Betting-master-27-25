@@ -8,13 +8,13 @@ interface ChatMessage {
   timestamp: Date;
 }
 
-const PropGPT: React.FC = () => {
+const PropOllama: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
       type: 'assistant',
       content:
-        "Welcome to PropGPT Quantum Neural Interface! I'm powered by 47 neural networks and quantum processing. I can analyze props, predict outcomes, and provide real-time market insights. How can I assist your betting strategy today?",
+        "Welcome to PropOllama Quantum Neural Interface! I'm powered by 47 neural networks and quantum processing. I can analyze props, predict outcomes, and provide real-time market insights. How can I assist your betting strategy today?",
       timestamp: new Date(),
     },
   ]);
