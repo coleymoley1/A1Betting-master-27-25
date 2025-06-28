@@ -201,18 +201,26 @@ const MoneyMakerPro: React.FC = () => {
           </div>
         </div>
 
-        <div className='grid grid-cols-3 gap-8 mb-8'>
+        <div className='grid grid-cols-4 gap-8 mb-8'>
           <div className='text-center'>
             <div className='text-4xl font-bold text-electric-400 font-cyber'>∞%</div>
             <div className='text-gray-400 font-mono'>Neural ROI</div>
           </div>
           <div className='text-center'>
-            <div className='text-4xl font-bold text-purple-400 font-cyber'>99.7%</div>
+            <div className='text-4xl font-bold text-purple-400 font-cyber'>
+              {quantumState.accuracy.toFixed(1)}%
+            </div>
             <div className='text-gray-400 font-mono'>Quantum Accuracy</div>
           </div>
           <div className='text-center'>
-            <div className='text-4xl font-bold text-blue-400 font-cyber'>&lt;1ms</div>
-            <div className='text-gray-400 font-mono'>Neural Response</div>
+            <div className='text-4xl font-bold text-cyan-400 font-cyber'>
+              {quantumState.coherence.toFixed(1)}%
+            </div>
+            <div className='text-gray-400 font-mono'>Coherence</div>
+          </div>
+          <div className='text-center'>
+            <div className='text-4xl font-bold text-blue-400 font-cyber'>{getNetworkStatus()}</div>
+            <div className='text-gray-400 font-mono'>Neural Status</div>
           </div>
         </div>
       </div>
