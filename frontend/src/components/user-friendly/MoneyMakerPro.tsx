@@ -83,7 +83,10 @@ const MoneyMakerPro: React.FC = () => {
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [lineupName, setLineupName] = useState('');
   const [showQuantumFilters, setShowQuantumFilters] = useState(false);
-  const { filters, updateFilters } = useFilters();
+  const { filters: oldFilters, updateFilters: updateOldFilters } = useFilters();
+  const { filters: fluentFilters, updateFilters: updateFluentFilters } = useFluentFilters();
+  const { totalItems: totalOpportunities, filteredItems: filteredOpportunities } =
+    useFilteredResults(fluentFilters, 89);
 
   const saveLineup = () => {
     if (!results || !lineupName.trim()) {
