@@ -658,14 +658,7 @@ const Sidebar: React.FC = () => {
       indicator: '🧠',
       color: 'text-purple-400',
     },
-    {
-      name: 'Quantum Predictions',
-      key: 'quantum',
-      icon: 'fa-atom',
-      category: 'ai',
-      indicator: '⚛️',
-      color: 'text-cyan-400',
-    },
+
     {
       name: 'Neural Analytics',
       key: 'analytics',
@@ -868,8 +861,7 @@ const PageRenderer: React.FC = () => {
         return <SavedLineups />;
       case 'ml-center':
         return <MLModelDashboard />;
-      case 'quantum':
-        return <QuantumPredictionsInterface />;
+
       case 'analytics':
         return <UniversalAnalytics />;
       case 'realtime':
