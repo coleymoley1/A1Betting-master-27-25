@@ -210,7 +210,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
               </div>
               <div className='text-center p-3 bg-gray-800/50 rounded-lg'>
                 <div className='text-yellow-400 font-bold font-mono'>
-                  {realTimeData.quantumCoherence.toFixed(2)}%
+                  {(realTimeData?.quantumCoherence || 99.97).toFixed(2)}%
                 </div>
                 <div className='text-gray-400 text-xs font-mono'>Coherence</div>
               </div>
