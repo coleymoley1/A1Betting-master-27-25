@@ -540,10 +540,25 @@ const Header: React.FC = () => {
 
             <motion.button
               onClick={toggleTheme}
-              className='p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300 hover:shadow-neon'
+              className='relative p-3 rounded-xl hover:bg-gray-100/10 transition-all duration-300 hover:shadow-neon group'
               whileHover={{ scale: 1.05 }}
+              title={`Current theme: ${theme.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}`}
             >
               <Eye className='text-electric-400 text-lg w-5 h-5' />
+              <div
+                className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border border-gray-600 ${
+                  theme === 'quantum-dark'
+                    ? 'bg-gray-400'
+                    : theme === 'neural-purple'
+                      ? 'bg-purple-400'
+                      : theme === 'cyber-blue'
+                        ? 'bg-blue-400'
+                        : 'bg-gray-200'
+                }`}
+              />
+              <div className='absolute bottom-full right-0 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity font-cyber whitespace-nowrap'>
+                {theme.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+              </div>
             </motion.button>
 
             <motion.button
