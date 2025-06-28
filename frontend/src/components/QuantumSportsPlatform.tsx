@@ -624,7 +624,7 @@ const PageRenderer: React.FC = () => {
   const context = useContext(AppContext);
   if (!context) return null;
 
-  const { currentPage } = context;
+  const { currentPage, setCurrentPage } = context;
 
   const renderPage = () => {
     switch (currentPage) {
