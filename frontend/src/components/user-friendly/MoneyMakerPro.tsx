@@ -269,7 +269,6 @@ const MoneyMakerPro: React.FC = () => {
               <option value="maximum">Maximum Risk</option>
             </select>
           </div>
-        </div>
         )}
 
         {/* Quantum Activation Button */}
