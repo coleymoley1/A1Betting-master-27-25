@@ -698,7 +698,7 @@ const PageRenderer: React.FC = () => {
           </div>
         );
       default:
-        return <WorkingDashboard />;
+        return <UserFriendlyDashboard onNavigate={setCurrentPage} />;
     }
   };
 
