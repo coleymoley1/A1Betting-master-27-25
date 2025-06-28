@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useStore } from '../stores/useStore';
+import { webSocketManager } from '../services/unified/WebSocketManager';
 
 interface UseBettingDataOptions {
   sport?: string;
@@ -72,7 +73,10 @@ export const useBettingData = ({
           if (oddsChange < minOddsChange) return;
           setOddsUpdates(prev => [update, ...prev].slice(0, 50));
           if (oddsChange >= 0.5) {
-            addToast('info', `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`);
+            addToast(
+              'info',
+              `Odds updated for ${update.propName} from ${update.oldOdds} to ${update.newOdds}`
+            );
           }
           break;
         }
