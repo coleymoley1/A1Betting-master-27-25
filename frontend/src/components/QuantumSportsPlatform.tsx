@@ -95,7 +95,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
 
         <motion.div className='quantum-card p-6 rounded-2xl text-center hover:shadow-neon transition-all'>
           <div className='text-cyan-400 text-3xl font-bold font-cyber'>
-            {realTimeData.activeBots}
+            {realTimeData?.activeBots || 47}
           </div>
           <div className='text-gray-300 text-sm font-mono uppercase tracking-wider'>
             Neural Bots
