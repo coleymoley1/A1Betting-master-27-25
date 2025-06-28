@@ -984,7 +984,7 @@ const Header: React.FC = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.95 }}
                   transition={{ type: 'spring', duration: 0.3, ease: 'easeOut' }}
-                  className='absolute right-0 top-full mt-4 w-96 z-30 quantum-card'
+                  className='absolute right-0 top-full mt-4 w-96 z-50 quantum-card'
                   style={{
                     background:
                       theme === 'neural-purple'
