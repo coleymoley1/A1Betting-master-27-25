@@ -114,7 +114,7 @@ const calculateExpectedValue = (
 ): number => {
 
   return (
-    winProbability * stake * (decimalOdds - 1) - (1 - winProbability) * stake;
+    winProbability * stake * (decimalOdds - 1) - (1 - winProbability) * stake
   );
 };
 

@@ -71,7 +71,7 @@ const Dashboard: React.FC = () => {
     <div className="space-y-8" key={778766}>
       {/* Notification Center */}
       <div className="flex justify-end mb-2" key={299759}>
-        <NotificationCenter / key={153924}>
+        <NotificationCenter />
       </div>
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" key={765662}>

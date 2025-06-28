@@ -163,7 +163,7 @@ export interface UniversalAnalyticsState {
 
 export const UniversalAnalytics: React.FC = () => {
   // State;
-  const [state, setState] = useState<UniversalAnalyticsState key={551871}>({
+  const [state, setState] = useState<UniversalAnalyticsState>({
     timeRange: "24h",
     refreshInterval: 30000,
     isAutoRefresh: true,
