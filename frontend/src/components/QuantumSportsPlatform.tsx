@@ -760,6 +760,8 @@ const PageRenderer: React.FC = () => {
         return <PrizePicksPro />;
       case 'propollama':
         return <PropOllama />;
+      case 'saved-lineups':
+        return <SavedLineups />;
       case 'ml-center':
         return <MLModelDashboard />;
       case 'quantum':
