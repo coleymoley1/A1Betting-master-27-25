@@ -108,7 +108,7 @@ const WorkingRealTimeMonitor: React.FC = () => {
 
         <motion.div className='quantum-card p-6 rounded-2xl text-center hover:shadow-neon transition-all'>
           <div className='text-purple-400 text-3xl font-bold font-cyber'>
-            {realTimeData.processingSpeed}ms
+            {realTimeData?.processingSpeed || 12}ms
           </div>
           <div className='text-gray-300 text-sm font-mono uppercase tracking-wider'>Response</div>
           <div className='flex items-center justify-center mt-2'>
