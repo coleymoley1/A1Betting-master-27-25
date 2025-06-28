@@ -87,7 +87,7 @@ interface ModelPerformanceMetrics {
   modelVersion: string;
   datasetSize: number;
   featureCount: number;
-  hyperparameters: Record<string, any key={989582}>;
+  hyperparameters: Record<string, any>;
 }
 
 interface SystemHealthMetrics {
