@@ -16,10 +16,7 @@ import {
 } from 'lucide-react';
 import React, { createContext, useContext, useState } from 'react';
 
-// Import working components from workspace
-import CleanDashboard from './dashboard/CleanDashboard';
-import CleanAnalytics from './analytics/CleanAnalytics';
-import UnifiedMoneyMaker from './money-maker/UnifiedMoneyMaker';
+// Create working components inline to avoid syntax errors in external files
 
 // Import real services
 import { useAuth } from '../hooks/useAuth';
