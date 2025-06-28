@@ -605,20 +605,43 @@ const Header: React.FC = () => {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className='absolute right-0 top-full mt-2 w-80 bg-gray-950/98 backdrop-blur-2xl rounded-2xl border border-electric-500/30 overflow-hidden z-50 shadow-2xl shadow-electric-500/20'
+                    className='absolute right-0 top-full mt-2 w-80 z-50'
+                    style={{
+                      backgroundColor: '#0f0f14',
+                      border: '2px solid rgba(64, 224, 208, 0.3)',
+                      borderRadius: '16px',
+                      boxShadow:
+                        '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(64, 224, 208, 0.2)',
+                      backdropFilter: 'blur(20px)',
+                    }}
                   >
-                    <div className='p-4 border-b border-electric-500/30 bg-gradient-to-r from-gray-900/80 to-gray-800/80'>
+                    <div
+                      className='p-4 border-b'
+                      style={{
+                        backgroundColor: '#1a1a24',
+                        borderBottom: '1px solid rgba(64, 224, 208, 0.3)',
+                      }}
+                    >
                       <h3 className='font-bold text-white font-cyber flex items-center space-x-2'>
                         <Bell className='w-4 h-4 text-electric-400' />
                         <span>Notifications</span>
                       </h3>
                       <p className='text-sm text-gray-300'>{notifications.length} new alerts</p>
                     </div>
-                    <div className='max-h-64 overflow-y-auto bg-gray-950/95'>
+                    <div
+                      className='max-h-64 overflow-y-auto'
+                      style={{ backgroundColor: '#0f0f14' }}
+                    >
                       {notifications.map((notif: any, index: number) => (
                         <div
                           key={index}
                           className='p-4 hover:bg-electric-500/10 border-b border-white/5 last:border-b-0 transition-all cursor-pointer'
+                          style={{
+                            borderBottom:
+                              index < notifications.length - 1
+                                ? '1px solid rgba(255, 255, 255, 0.05)'
+                                : 'none',
+                          }}
                         >
                           <div className='text-sm text-white mb-1'>{notif.message}</div>
                           <div className='text-xs text-gray-400'>{notif.time}</div>
@@ -638,32 +661,70 @@ const Header: React.FC = () => {
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className='absolute right-16 top-full mt-2 w-96 bg-gray-950/98 backdrop-blur-2xl rounded-2xl border border-electric-500/30 overflow-hidden z-50 shadow-2xl shadow-electric-500/20'
+                  className='absolute right-16 top-full mt-2 w-96 z-50'
+                  style={{
+                    backgroundColor: '#0f0f14',
+                    border: '2px solid rgba(64, 224, 208, 0.3)',
+                    borderRadius: '16px',
+                    boxShadow:
+                      '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(64, 224, 208, 0.2)',
+                    backdropFilter: 'blur(20px)',
+                  }}
                 >
-                  <div className='p-4 border-b border-electric-500/30 bg-gradient-to-r from-gray-900/80 to-gray-800/80'>
+                  <div
+                    className='p-4 border-b'
+                    style={{
+                      backgroundColor: '#1a1a24',
+                      borderBottom: '1px solid rgba(64, 224, 208, 0.3)',
+                    }}
+                  >
                     <h3 className='font-bold text-electric-400 font-cyber flex items-center space-x-2'>
                       <Activity className='w-5 h-5 animate-pulse' />
                       <span>System Monitor</span>
                     </h3>
                     <p className='text-sm text-gray-300'>Real-time system performance</p>
                   </div>
-                  <div className='p-4 space-y-4 bg-gray-950/95'>
+                  <div className='p-4 space-y-4' style={{ backgroundColor: '#0f0f14' }}>
                     <div className='grid grid-cols-2 gap-3'>
-                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                      <div
+                        className='rounded-lg p-3'
+                        style={{
+                          backgroundColor: '#1a1a24',
+                          border: '1px solid rgba(100, 100, 120, 0.3)',
+                        }}
+                      >
                         <div className='text-xs text-gray-400 font-mono'>CPU Usage</div>
                         <div className='text-electric-400 font-bold font-cyber'>67%</div>
                       </div>
-                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                      <div
+                        className='rounded-lg p-3'
+                        style={{
+                          backgroundColor: '#1a1a24',
+                          border: '1px solid rgba(100, 100, 120, 0.3)',
+                        }}
+                      >
                         <div className='text-xs text-gray-400 font-mono'>Memory</div>
                         <div className='text-green-400 font-bold font-cyber'>4.2GB</div>
                       </div>
-                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                      <div
+                        className='rounded-lg p-3'
+                        style={{
+                          backgroundColor: '#1a1a24',
+                          border: '1px solid rgba(100, 100, 120, 0.3)',
+                        }}
+                      >
                         <div className='text-xs text-gray-400 font-mono'>Networks</div>
                         <div className='text-purple-400 font-bold font-cyber'>
                           {realTimeData?.activeBots || 47}/47
                         </div>
                       </div>
-                      <div className='bg-gray-800/70 rounded-lg p-3 border border-gray-700/50'>
+                      <div
+                        className='rounded-lg p-3'
+                        style={{
+                          backgroundColor: '#1a1a24',
+                          border: '1px solid rgba(100, 100, 120, 0.3)',
+                        }}
+                      >
                         <div className='text-xs text-gray-400 font-mono'>Latency</div>
                         <div className='text-cyan-400 font-bold font-cyber'>
                           {realTimeData?.processingSpeed || 12}ms
@@ -677,10 +738,16 @@ const Header: React.FC = () => {
                           {realTimeData?.quantumCoherence || 99.97}%
                         </span>
                       </div>
-                      <div className='w-full bg-gray-700 rounded-full h-2'>
+                      <div
+                        className='w-full rounded-full h-2'
+                        style={{ backgroundColor: '#374151' }}
+                      >
                         <div
-                          className='bg-gradient-to-r from-cyan-400 to-electric-400 h-2 rounded-full transition-all'
-                          style={{ width: `${realTimeData?.quantumCoherence || 99.97}%` }}
+                          className='h-2 rounded-full transition-all'
+                          style={{
+                            width: `${realTimeData?.quantumCoherence || 99.97}%`,
+                            background: 'linear-gradient(to right, #22d3ee, #40e0d0)',
+                          }}
                         />
                       </div>
                     </div>
@@ -690,7 +757,17 @@ const Header: React.FC = () => {
                           setCurrentPage('realtime');
                           setShowSystemMonitor(false);
                         }}
-                        className='text-xs text-electric-400 hover:text-electric-300 font-cyber transition-colors px-3 py-1 rounded-lg hover:bg-electric-500/10'
+                        className='text-xs text-electric-400 hover:text-electric-300 font-cyber transition-colors px-3 py-1 rounded-lg'
+                        style={{
+                          backgroundColor: 'rgba(64, 224, 208, 0.1)',
+                          border: '1px solid rgba(64, 224, 208, 0.2)',
+                        }}
+                        onMouseEnter={e => {
+                          e.currentTarget.style.backgroundColor = 'rgba(64, 224, 208, 0.2)';
+                        }}
+                        onMouseLeave={e => {
+                          e.currentTarget.style.backgroundColor = 'rgba(64, 224, 208, 0.1)';
+                        }}
                       >
                         View Full Monitor →
                       </button>
