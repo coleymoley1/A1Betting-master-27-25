@@ -445,9 +445,68 @@ const PageRenderer: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <WorkingDashboard />;
+        return <UserFriendlyDashboard onNavigate={setCurrentPage} />;
       case 'money-maker':
-        return <WorkingMoneyMaker />;
+        return (
+          <div className='p-8 space-y-6'>
+            <div className='text-center mb-8'>
+              <h1 className='text-4xl font-bold text-white mb-4 animate-cyber-pulse'>
+                💰 Quantum Money Maker
+              </h1>
+              <p className='text-green-400 text-lg'>AI-Powered Profit Generation Engine</p>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-white mb-4'>Today's Opportunities</h3>
+                <div className='space-y-4'>
+                  <div className='border border-green-400/30 rounded-lg p-4'>
+                    <div className='flex justify-between items-center mb-2'>
+                      <span className='text-white font-bold'>Lakers vs Warriors</span>
+                      <span className='text-green-400 font-bold'>94.2%</span>
+                    </div>
+                    <div className='text-gray-300 text-sm'>LeBron James 25+ Points</div>
+                    <div className='text-electric-400 font-bold'>Recommended: $500 → $1,250</div>
+                  </div>
+
+                  <div className='border border-electric-400/30 rounded-lg p-4'>
+                    <div className='flex justify-between items-center mb-2'>
+                      <span className='text-white font-bold'>Chiefs vs Bills</span>
+                      <span className='text-electric-400 font-bold'>91.7%</span>
+                    </div>
+                    <div className='text-gray-300 text-sm'>Mahomes 300+ Yards</div>
+                    <div className='text-green-400 font-bold'>Recommended: $300 → $810</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className='quantum-card p-6 rounded-2xl'>
+                <h3 className='text-xl font-bold text-white mb-4'>Performance Summary</h3>
+                <div className='space-y-4'>
+                  <div className='text-center'>
+                    <div className='text-4xl font-bold text-green-400 mb-2'>+$24,750</div>
+                    <div className='text-gray-300'>Total Profit This Month</div>
+                  </div>
+
+                  <div className='grid grid-cols-2 gap-4 text-center'>
+                    <div>
+                      <div className='text-2xl font-bold text-electric-400'>73.2%</div>
+                      <div className='text-gray-300 text-sm'>Win Rate</div>
+                    </div>
+                    <div>
+                      <div className='text-2xl font-bold text-yellow-400'>247%</div>
+                      <div className='text-gray-300 text-sm'>ROI</div>
+                    </div>
+                  </div>
+
+                  <button className='w-full bg-gradient-to-r from-green-500 to-electric-500 text-black font-bold py-3 px-6 rounded-xl hover:from-green-400 hover:to-electric-400 transition-all duration-300'>
+                    Start Auto-Trading
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case 'prizepicks':
         return (
           <div className='p-8 space-y-6'>
@@ -477,30 +536,7 @@ const PageRenderer: React.FC = () => {
           </div>
         );
       case 'propollama':
-        return (
-          <div className='p-8 space-y-6'>
-            <div className='text-center'>
-              <h2 className='text-3xl font-bold text-white mb-4 animate-cyber-pulse'>
-                PropOllama AI
-              </h2>
-              <p className='text-purple-400 text-lg'>Advanced Conversational Prop Analysis</p>
-            </div>
-            <div className='quantum-card p-6 rounded-2xl'>
-              <div className='flex items-center space-x-4 mb-4'>
-                <div className='w-12 h-12 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full flex items-center justify-center'>
-                  <span className='text-white font-bold'>🤖</span>
-                </div>
-                <div>
-                  <h3 className='text-xl font-bold text-white'>AI Assistant Ready</h3>
-                  <p className='text-gray-300'>Ask me about any player prop or betting strategy</p>
-                </div>
-              </div>
-              <p className='text-gray-400 italic'>
-                Feature launching soon with GPT-4 integration...
-              </p>
-            </div>
-          </div>
-        );
+        return <PropOllama />;
       case 'ml-center':
         return (
           <div className='p-8 space-y-6'>
