@@ -79,9 +79,38 @@ const PrizePicksPro: React.FC = () => {
     getNetworkStatus,
   } = useQuantumPredictions({ minConfidence: 80 });
 
-  const mockProps: PlayerProp[] = [
+  // Generate props from quantum predictions
+  const quantumProps: PlayerProp[] = quantumPredictions
+    .filter(pred => pred.player && pred.odds) // Only predictions with player and odds
+    .map((pred, index) => {
+      const predictionParts = pred.prediction.match(/(Over|Under)\s+([\d.]+)\s+(.+)/);
+      const isOver = predictionParts?.[1] === 'Over';
+      const line = parseFloat(predictionParts?.[2] || '0');
+      const stat = predictionParts?.[3] || 'Points';
+
+      return {
+        id: index + 1,
+        player: pred.player!,
+        team:
+          pred.game
+            .split(' vs ')
+            [pred.player === pred.game.split(' vs ')[0].split(' ').pop() ? 0 : 1]?.split(' ')
+            .pop() || 'TBD',
+        stat: stat,
+        line: line,
+        over: pred.odds?.over || 1.9,
+        under: pred.odds?.under || 1.9,
+        confidence: pred.confidence,
+        neural: pred.neuralNetwork,
+        trend: pred.metadata.momentum > 0.6 ? 'up' : 'down',
+        game: pred.game,
+      };
+    });
+
+  // Fallback props if quantum predictions are insufficient
+  const fallbackProps: PlayerProp[] = [
     {
-      id: 1,
+      id: 101,
       player: 'LeBron James',
       team: 'LAL',
       stat: 'Points',
@@ -89,12 +118,12 @@ const PrizePicksPro: React.FC = () => {
       over: 1.85,
       under: 1.95,
       confidence: 94.7,
-      neural: 'Network #23',
+      neural: 'QuantumNet-Alpha',
       trend: 'up',
       game: 'LAL vs GSW',
     },
     {
-      id: 2,
+      id: 102,
       player: 'Stephen Curry',
       team: 'GSW',
       stat: 'Three-Pointers',
@@ -102,48 +131,9 @@ const PrizePicksPro: React.FC = () => {
       over: 1.9,
       under: 1.9,
       confidence: 91.3,
-      neural: 'Network #15',
+      neural: 'QuantumNet-Beta',
       trend: 'up',
       game: 'LAL vs GSW',
-    },
-    {
-      id: 3,
-      player: 'Giannis Antetokounmpo',
-      team: 'MIL',
-      stat: 'Rebounds',
-      line: 11.5,
-      over: 1.88,
-      under: 1.92,
-      confidence: 89.2,
-      neural: 'Network #41',
-      trend: 'down',
-      game: 'MIL vs BOS',
-    },
-    {
-      id: 4,
-      player: 'Luka Doncic',
-      team: 'DAL',
-      stat: 'Assists',
-      line: 8.5,
-      over: 1.93,
-      under: 1.87,
-      confidence: 87.9,
-      neural: 'Network #07',
-      trend: 'up',
-      game: 'DAL vs PHX',
-    },
-    {
-      id: 5,
-      player: 'Joel Embiid',
-      team: 'PHI',
-      stat: 'Points',
-      line: 28.5,
-      over: 1.89,
-      under: 1.91,
-      confidence: 92.4,
-      neural: 'Network #33',
-      trend: 'up',
-      game: 'PHI vs MIA',
     },
     {
       id: 6,
