@@ -22,11 +22,15 @@ const PropOllama: React.FC = () => {
       id: 1,
       type: 'assistant',
       content:
-        "Welcome to PropOllama Quantum Neural Interface! I'm powered by 47 neural networks and quantum processing. I can analyze props, predict outcomes, and provide real-time market insights. How can I assist your betting strategy today?",
+        "Welcome to PropOllama Quantum Neural Interface! I'm powered by 47 neural networks and quantum processing. I continuously learn from every interaction to provide better insights. How can I assist your betting strategy today?",
       timestamp: new Date(),
     },
   ]);
   const [input, setInput] = useState('');
+  const [learningContext, setLearningContext] = useState<string[]>([]);
+  const [conversationId] = useState(
+    () => `conv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  );
   const [isTyping, setIsTyping] = useState(false);
 
   // Mock real-time data (in production this would come from context/props)
